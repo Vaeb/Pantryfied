@@ -7,9 +7,10 @@ module.exports = {
     },
     env: {
         browser: 1,
+        'react-native/react-native': true,
     },
     extends: 'airbnb',
-    plugins: ['react', 'jsx-a11y', 'import'],
+    plugins: ['react', 'react-native', 'jsx-a11y', 'import'],
     rules: {
         // "class-methods-use-this": "off",
         // "default-case": "off",
