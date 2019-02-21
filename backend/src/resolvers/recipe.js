@@ -9,6 +9,16 @@ export default {
         },
     },
     Mutation: {
-        createRecipe: async (parent, { name }, { models }) => false,
+        createRecipe: async (parent, args, { models }) => {
+            try {
+                const recipe = await models.Recipe.create({
+                    ...args,
+                });
+
+                return { ok: true, recipe };
+            } catch (err) {
+                return { ok: false, errors: [{ path: 'Database recipe insertion', message: String(err) }] };
+            }
+        },
     },
 };
