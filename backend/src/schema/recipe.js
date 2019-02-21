@@ -12,7 +12,7 @@ export default `
     }
 
     type Query {
-        getRecipes(): [Recipe!]!
+        getRecipes: [Recipe!]!
     }
 
     type Mutation {
