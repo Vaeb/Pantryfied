@@ -13,7 +13,6 @@ export default `
 
     type Query {
         getRecipes(): [Recipe!]!
-        allMessages(numFetch: Int): [[Message!]!]!
     }
 
     type Mutation {
