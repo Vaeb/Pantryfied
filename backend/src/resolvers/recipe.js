@@ -8,5 +8,7 @@ export default {
             return recipes;
         },
     },
-    Mutation: {},
+    Mutation: {
+        createRecipe: async (parent, { name }, { models }) => false,
+    },
 };
