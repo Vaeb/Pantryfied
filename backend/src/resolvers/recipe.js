@@ -1,3 +1,5 @@
+import formatErrors from '../formatErrors';
+
 export default {
     Query: {
         getRecipes: async (parent, args, { models }) => {
@@ -17,7 +19,7 @@ export default {
 
                 return { ok: true, recipe };
             } catch (err) {
-                return { ok: false, errors: [{ path: 'Database recipe insertion', message: String(err) }] };
+                return { ok: false, errors: formatErrors(err, models) };
             }
         },
     },
