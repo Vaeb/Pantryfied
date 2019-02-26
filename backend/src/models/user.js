@@ -57,15 +57,5 @@ export default (sequelize, DataTypes) => {
         },
     );
 
-    User.associate = (models) => {
-        User.belongsToMany(models.Role, {
-            through: models.RoleUser,
-            foreignKey: {
-                name: 'userId',
-                field: 'user_id',
-            },
-        });
-    };
-
     return User;
 };
