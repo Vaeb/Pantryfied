@@ -20,7 +20,7 @@ app.use(cors('*'));
 
 // const graphqlEndpoint = '/graphql';
 const graphqlPort = 8080;
-const resetDatabase = false; // DANGEROUS
+const resetDatabase = true; // DANGEROUS
 
 const server = new ApolloServer({ typeDefs, resolvers, context: { models } }); // The http server system
 server.applyMiddleware({ app }); // Link it to our express app
