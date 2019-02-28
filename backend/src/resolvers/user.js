@@ -21,5 +21,17 @@ export default {
                 };
             }
         },
+        login: async (parent, args, { models }) => {
+            try {
+                const key = args.username ? 'username' : 'email';
+                const keyVal = args[key];
+            } catch (err) {
+                console.log('Mutation_Login', err);
+                return {
+                    ok: false,
+                    errors: formatErrors(err, models),
+                };
+            }
+        },
     },
 };

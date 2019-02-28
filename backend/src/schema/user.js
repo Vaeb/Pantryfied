@@ -18,12 +18,19 @@ export default `
         errors: [Error!]
     }
 
+    type LoginResponse {
+        ok: Boolean!
+        user: User
+        errors: [Error!]
+    }
+
     query {
         allUsers: [User!]!
     }
 
     mutation {
         register(username: String!, email: String!, password: String!): RegisterResponse!
+        login(username: String, email: String, password: String!): LoginResponse!
     }
 
 `;
