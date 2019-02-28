@@ -25,6 +25,10 @@ export default {
             try {
                 const key = args.username ? 'username' : 'email';
                 const keyVal = args[key];
+
+                return {
+                    ok: true,
+                };
             } catch (err) {
                 console.log('Mutation_Login', err);
                 return {

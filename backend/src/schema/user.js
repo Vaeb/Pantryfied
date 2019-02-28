@@ -24,11 +24,11 @@ export default `
         errors: [Error!]
     }
 
-    query {
+    type Query {
         allUsers: [User!]!
     }
 
-    mutation {
+    type Mutation {
         register(username: String!, email: String!, password: String!): RegisterResponse!
         login(username: String, email: String, password: String!): LoginResponse!
     }
