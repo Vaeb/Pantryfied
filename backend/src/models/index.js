@@ -18,6 +18,7 @@ sequelize.addHook('beforeDefine', (attributes) => {
 
 const models = {
     Recipe: sequelize.import('./recipe'),
+    User: sequelize.import('./user'),
 };
 
 Object.keys(models).forEach((modelName) => {
