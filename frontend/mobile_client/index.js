@@ -4,7 +4,11 @@
  */
 
 import { AppRegistry } from 'react-native';
-import App from './src/App';
 import { name as appName } from './app.json';
 
+// List of classes will go down here:
+import App from './src/App';
+import Login from './src/components/Login';
+
 AppRegistry.registerComponent(appName, () => App);
+AppRegistry.registerComponent(appName, () => Login);
