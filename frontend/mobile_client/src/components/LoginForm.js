@@ -3,22 +3,19 @@ import {
     Platform, StyleSheet, Text, View, TextInput, TouchableOpacity, StatusBar,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-/* How to install:
- https://stackoverflow.com/questions/42420931/how-to-use-react-native-vector-icons
- */
 
 const styles = StyleSheet.create({
     container: {
         padding: 20,
-        flex: 1,
-        justifyContent: 'flex-end', // https://reactnativecode.com/justifycontenton-style-explained/
+        bottom: 100,
+        justifyContent: 'center', // https://reactnativecode.com/justifycontenton-style-explained/
     },
     input: {
         height: 40,
         backgroundColor: 'rgba(255,255,255,0.3)',
         marginBottom: 15,
         color: '#fff',
-        paddingHorizontal: 10,
+        paddingLeft: 35,
         borderRadius: 10,
     },
     buttonContainer: {
@@ -30,18 +27,31 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontWeight: '700',
         color: '#fff',
+        borderColor: '#rgba(1,1,1,0.3)',
     },
-    inputIcon: {
-        position: 'absolute',
-        top: 10,
-        left: 37,
+    inputIconPerson: {
+        top: 55,
+        left: 8,
+    },
+    inputIconLock: {
+        top: 85,
+        left: 8,
+    },
+    signUpContainer: {
+        alignItems: 'center',
+        paddingTop: 150,
+    },
+    signUpText: {
+        color: '#fff',
+        fontSize: 16,
     },
 });
 
 const LoginForm = () => (
     <View style={styles.container}>
         <StatusBar barStyle="light-content" />
-        <Icon name="ios-person-outline" size={28} color={rgba(255, 255, 255, 0.3)} style={styles.inputIcon} />
+        <Icon name="ios-person" size={24} color="rgba(255, 255, 255, 0.3)" style={styles.inputIconPerson} />
+        <Icon name="ios-lock" size={24} color="rgba(255, 255, 255, 0.3)" style={styles.inputIconLock} />
         <TextInput
             style={styles.input}
             placeholder="Enter: username / email"
@@ -60,10 +70,19 @@ const LoginForm = () => (
             ref={input => (this.passwordInput = input)}
             secureTextEntry
         />
-
         <TouchableOpacity style={styles.buttonContainer}>
             <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
+        <View style={styles.signUpContainer}>
+            <Text> Don't Have an account yet? </Text>
+            <Text style={styles.signUpText}> Sign up</Text>
+        </View>
     </View>
 );
 export default LoginForm;
+
+/* How to install React Icons:
+ https://stackoverflow.com/questions/42420931/how-to-use-react-native-vector-icons
+ https://oblador.github.io/react-native-vector-icons/ -- List of icons to use
+ https://alligator.io/react/use-native-icons/ - Tips
+ */

@@ -3,68 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="a20f71dc-b88a-4212-8d55-699871ce50e4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/.buckconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/.eslintrc.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/.flowconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/.gitattributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/.watchmanconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/__tests__/App.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/app/BUCK" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/app/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/app/build_defs.bzl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/app/proguard-rules.pro" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/app/src/main/AndroidManifest.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/app/src/main/java/com/mobile_client/MainActivity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/app/src/main/java/com/mobile_client/MainApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/app/src/main/res/mipmap-hdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/app/src/main/res/mipmap-hdpi/ic_launcher_round.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/app/src/main/res/mipmap-mdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/app/src/main/res/mipmap-mdpi/ic_launcher_round.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/app/src/main/res/values/strings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/app/src/main/res/values/styles.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/gradle.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/gradlew" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/gradlew.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/keystores/BUCK" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/keystores/debug.keystore.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/settings.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/app.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/babel.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/ios/mobile_client-tvOS/Info.plist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/ios/mobile_client-tvOSTests/Info.plist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/ios/mobile_client.xcodeproj/project.pbxproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/ios/mobile_client.xcodeproj/xcshareddata/xcschemes/mobile_client-tvOS.xcscheme" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/ios/mobile_client.xcodeproj/xcshareddata/xcschemes/mobile_client.xcscheme" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/ios/mobile_client/AppDelegate.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/ios/mobile_client/AppDelegate.m" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/ios/mobile_client/Base.lproj/LaunchScreen.xib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/ios/mobile_client/Images.xcassets/AppIcon.appiconset/Contents.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/ios/mobile_client/Images.xcassets/Contents.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/ios/mobile_client/Info.plist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/ios/mobile_client/main.m" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/ios/mobile_clientTests/Info.plist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/ios/mobile_clientTests/mobile_clientTests.m" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/src/App.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/src/Images/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/src/components/Login.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/src/components/LoginForm.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/src/containers/temp.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/src/routes/temp.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/yarn.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mobile_client/android/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/app/src/main/java/com/frontend/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mobile_client/android/app/src/main/java/com/frontend/MainApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mobile_client/android/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/ios/FrontEnd.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mobile_client/ios/FrontEnd.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/ios/FrontEnd/Info.plist" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mobile_client/ios/FrontEnd/Info.plist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mobile_client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/src/components/LoginForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mobile_client/src/components/LoginForm.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -95,8 +40,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
       <pane id="PackagesPane" />
+      <pane id="ProjectPane" />
       <pane id="Scope" />
     </panes>
   </component>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-    Platform, StyleSheet, Text, View, Image, KeyboardAvoidingView,
+    Platform, StyleSheet, Text, View, Image, KeyboardAvoidingView, ImageBackground,
 } from 'react-native';
 import LoginForm from './LoginForm';
 
@@ -13,8 +13,8 @@ const styles = StyleSheet.create({
         alignItems: 'center', // https://reactnativecode.com/apply-alignitems-on-view-explained/
     },
     logo: {
-        width: 200,
-        height: 200,
+        width: 300,
+        height: 240,
         justifyContent: 'center',
     },
     title: {
@@ -22,14 +22,20 @@ const styles = StyleSheet.create({
         fontSize: 20,
         padding: 10,
     },
+    backgroundImage: {
+        width: '100%',
+        height: '100%',
+    },
 });
 
 const Login = () => (
-    <KeyboardAvoidingView behavior="padding" style={styles.container}>
+    /* BUG - when using the keyboard, the button for the login doesnt move up the screen properly, So i moved everything higher up */
+    /* <ImageBackground source={require('../Images/whiteBackgroundLogin.png')} style={styles.backgroundImage} /> * Does not like to work properly:) */
+
+    <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
         <View style={styles.container}>
             <View style={styles.logoContainer}>
                 <Image source={require('../Images/logo.png')} style={styles.logo} />
-                {/* <Text style={styles.title}> Welcome to Pantry Fied! </Text> */}
             </View>
             <View style={styles.formContainer} />
             <LoginForm />
@@ -39,20 +45,3 @@ const Login = () => (
 // <LoginFrom/> calls LoginForm function
 
 export default Login;
-
-// TO DO:
-// Add Logo and image background
-/*
-const Login = () => (
-    <View style={styles.container}>
-        <View style={styles.logoContainer}>
-            <Image style={styles.logo} source={require('src/Images/logo.png')} />
-            OR
-                    <Image style={styles.logo} source={require("../../Images/logo.png")} />
-
-            <Text style={styles.title}> Login screen! </Text>
-        </View>
-        <View style={styles.formContainer} />
-    </View>
-);
-*/
