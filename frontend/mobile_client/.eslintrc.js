@@ -15,6 +15,7 @@ module.exports = {
         // "class-methods-use-this": "off",
         // "default-case": "off",
         eqeqeq: 'off',
+        'global-require': 'off',
         // "import/no-dynamic-require": "off",
         indent: ['error', 4],
         // "func-names": "off",

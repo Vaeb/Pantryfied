@@ -2,7 +2,69 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a20f71dc-b88a-4212-8d55-699871ce50e4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/frontend/mobile-client/React-Native/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mobile-client/React-Native/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/.buckconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/.eslintrc.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/.flowconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/.watchmanconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/__tests__/App.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/app/BUCK" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/app/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/app/build_defs.bzl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/app/proguard-rules.pro" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/app/src/main/AndroidManifest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/app/src/main/java/com/mobile_client/MainActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/app/src/main/java/com/mobile_client/MainApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/app/src/main/res/mipmap-hdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/app/src/main/res/mipmap-hdpi/ic_launcher_round.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/app/src/main/res/mipmap-mdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/app/src/main/res/mipmap-mdpi/ic_launcher_round.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/app/src/main/res/values/strings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/app/src/main/res/values/styles.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/gradle.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/keystores/BUCK" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/keystores/debug.keystore.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/app.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/babel.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/ios/mobile_client-tvOS/Info.plist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/ios/mobile_client-tvOSTests/Info.plist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/ios/mobile_client.xcodeproj/project.pbxproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/ios/mobile_client.xcodeproj/xcshareddata/xcschemes/mobile_client-tvOS.xcscheme" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/ios/mobile_client.xcodeproj/xcshareddata/xcschemes/mobile_client.xcscheme" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/ios/mobile_client/AppDelegate.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/ios/mobile_client/AppDelegate.m" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/ios/mobile_client/Base.lproj/LaunchScreen.xib" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/ios/mobile_client/Images.xcassets/AppIcon.appiconset/Contents.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/ios/mobile_client/Images.xcassets/Contents.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/ios/mobile_client/Info.plist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/ios/mobile_client/main.m" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/ios/mobile_clientTests/Info.plist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/ios/mobile_clientTests/mobile_clientTests.m" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/src/App.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/src/Images/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/src/components/Login.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/src/components/LoginForm.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/src/containers/temp.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/src/routes/temp.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/yarn.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -11,17 +73,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/frontend/mobile-client/React-Native/App.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="50" selection-start-line="10" selection-start-column="50" selection-end-line="10" selection-end-column="50" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -33,21 +85,24 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="298" />
-    <option name="y" value="44" />
+  <component name="ProjectFrameBounds" extendedState="1">
+    <option name="x" value="-7" />
     <option name="width" value="1294" />
     <option name="height" value="1057" />
   </component>
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="ProjectPane" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../.." />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
   </component>
   <component name="RunDashboard">
@@ -76,11 +131,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="298" y="44" width="1294" height="1057" extended-state="0" />
-    <editor active="true" />
+    <frame x="-7" y="0" width="1294" height="1057" extended-state="0" />
     <layout>
       <window_info id="Captures" order="0" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="1" weight="0.32961783" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.32961783" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Designer" order="4" />
@@ -97,12 +151,6 @@
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/frontend/mobile-client/React-Native/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="50" selection-start-line="10" selection-start-column="50" selection-end-line="10" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/mobile-client/React-Native/App.js" />
   </component>
 </project>

@@ -9,7 +9,8 @@
   },
   "dependencies": {
     "react": "16.6.3",
-    "react-native": "0.58.5"
+    "react-native": "0.58.6",
+    "react-native-vector-icons": "^6.3.0"
   },
   "devDependencies": {
     "babel-core": "7.0.0-bridge.0",
@@ -32,3 +33,25 @@
     "preset": "react-native"
   }
 }
+
+/* 
+{
+  "name": "pantryfied",
+  "version": "1.0.0",
+  "description": "Pantryfied mobile app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vaeb/Pantryfied.git"
+  },
+  "author": "University of Liverpool 2019 CS COMP208 Team 42",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Vaeb/Pantryfied/issues"
+  },
+  "homepage": "https://github.com/Vaeb/Pantryfied#readme"
+}
+*/ 
