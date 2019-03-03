@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-    Platform, StyleSheet, Text, View, TextInput, TouchableOpacity, StatusBar,
+    Platform, StyleSheet, Text, View, TextInput, TouchableOpacity, StatusBar, KeyboardAvoidingView,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -20,7 +20,6 @@ const styles = StyleSheet.create({
     },
     buttonContainer: {
         backgroundColor: '#rgba(1,1,1,0.3)',
-        padding: 10,
         borderRadius: 5,
     },
     buttonText: {
@@ -28,6 +27,7 @@ const styles = StyleSheet.create({
         fontWeight: '700',
         color: '#fff',
         borderColor: '#rgba(1,1,1,0.3)',
+        padding: 10,
     },
     inputIconPerson: {
         top: 55,
@@ -54,7 +54,7 @@ const LoginForm = () => (
         <Icon name="ios-lock" size={24} color="rgba(255, 255, 255, 0.3)" style={styles.inputIconLock} />
         <TextInput
             style={styles.input}
-            placeholder="Enter: username / email"
+            placeholder="Email"
             placeholderTextColor="rgba(255,255,255,0.7)"
             returnKeyType="next" // changes keyboard button
             onSubmitEditing={() => this.passwordInput.focus()} // After pressing next, moves onto password container
@@ -64,7 +64,7 @@ const LoginForm = () => (
         />
         <TextInput
             style={styles.input}
-            placeholder="Enter: password"
+            placeholder="Password"
             placeholderTextColor="rgba(255,255,255,0.7)"
             returnKeyType="go"
             ref={input => (this.passwordInput = input)}
