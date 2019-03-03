@@ -22,6 +22,6 @@ export default {
                 };
             }
         },
-        login: (parent, args, { models }) => login(args, models),
+        login: (parent, args, { models, SECRETS }) => login(args, models, SECRETS),
     },
 };

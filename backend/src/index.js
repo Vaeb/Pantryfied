@@ -12,6 +12,8 @@ process.on('unhandledRejection', (reason, p) => {
     console.log('Reason:', reason);
 });
 
+const SECRETS = { tokenSecret: 'fdafkjlaefaf9834j2f', refreshTokenSecret: 'j4r3rjnkjklfau33325f' };
+
 const typeDefs = mergeTypes(fileLoader(path.join(__dirname, './schema'))); // Our GraphQL schema
 const resolvers = mergeResolvers(fileLoader(path.join(__dirname, './resolvers'))); // Our GraphQL resolvers
 
@@ -21,7 +23,7 @@ app.use(cors('*'));
 const graphqlPort = 8080;
 const resetDatabase = false; // DANGEROUS
 
-const server = new ApolloServer({ typeDefs, resolvers, context: { models } }); // The http server system
+const server = new ApolloServer({ typeDefs, resolvers, context: { models, SECRETS } }); // The http server system
 server.applyMiddleware({ app }); // Link it to our express app
 
 app.listen({ port: graphqlPort }, () => console.log(`GraphQL server ready at http://localhost:${graphqlPort}${server.graphqlPath}`)); // Setup the http port to listen to
