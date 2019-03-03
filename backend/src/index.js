@@ -28,7 +28,7 @@ const resetDatabase = false; // DANGEROUS
 const authUser = async (req, res, next) => {
     const token = req.headers['x-token'];
 
-    console.log(111, token);
+    console.log('Client accessed API with token:', token);
 
     if (token) {
         try {
