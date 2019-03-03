@@ -53,7 +53,7 @@ const authUser = async (req, res, next) => {
 
 app.use(authUser); // Nvm you working <3 ... now how to block unwanted users!!!
 
-const server = new ApolloServer({ typeDefs, resolvers, context: ({ req }) => ({ models, me: req.user, SECRETS }) }); // The http server system
+const server = new ApolloServer({ typeDefs, resolvers, context: ({ req }) => ({ models, clientUser: req.user, SECRETS }) }); // The http server system
 server.applyMiddleware({ app }); // Link it to our express app
 
 app.listen({ port: graphqlPort }, () => console.log(`GraphQL server ready at http://localhost:${graphqlPort}${server.graphqlPath}`)); // Setup the http port to listen to

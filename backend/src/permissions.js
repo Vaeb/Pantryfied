@@ -47,8 +47,8 @@ const createResolver = (resolver) => {
 };
 
 // eslint-disable-next-line import/prefer-default-export
-export const requiresAuth = createResolver((parent, args, { me }) => {
-    if (!me || !me.id) {
+export const requiresAuth = createResolver((parent, args, { clientUser }) => {
+    if (!clientUser || !clientUser.id) {
         throw new QuickError('Not logged in');
     }
 });
