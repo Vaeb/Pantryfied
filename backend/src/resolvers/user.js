@@ -1,4 +1,5 @@
 import formatErrors from '../formatErrors';
+import { login } from '../auth';
 
 export default {
     Query: {
@@ -21,21 +22,6 @@ export default {
                 };
             }
         },
-        login: async (parent, args, { models }) => {
-            try {
-                const key = args.username ? 'username' : 'email';
-                const keyVal = args[key];
-
-                return {
-                    ok: true,
-                };
-            } catch (err) {
-                console.log('Mutation_Login', err);
-                return {
-                    ok: false,
-                    errors: formatErrors(err, models),
-                };
-            }
-        },
+        login: (parent, args, { models }) => login(args, models),
     },
 };
