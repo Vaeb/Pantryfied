@@ -1,10 +1,12 @@
 import express from 'express';
+import jwt from 'jsonwebtoken';
 import { ApolloServer } from 'apollo-server-express';
 import path from 'path';
 import { fileLoader, mergeTypes, mergeResolvers } from 'merge-graphql-schemas';
 import cors from 'cors';
 
 import models from './models';
+import { refreshTokens } from './auth';
 
 process.on('unhandledRejection', (reason, p) => {
     // When we forget to catch a promise which errors, it'll be auto-caught here
@@ -22,6 +24,32 @@ app.use(cors('*'));
 
 const graphqlPort = 8080;
 const resetDatabase = false; // DANGEROUS
+
+const authUser = async (req, res, next) => {
+    const token = req.headers['x-token'];
+
+    if (token) {
+        try {
+            const { user } = jwt.verify(token, SECRETS.tokenSecret);
+            req.user = user;
+            console.log(`Got token for user ${req.user.username}`);
+        } catch (err) {
+            const refreshToken = req.headers['x-refresh-token'];
+            const newTokens = await refreshToken(refreshToken, models, SECRETS);
+            if (newTokens.token && newTokens.refreshToken) {
+                res.set('Access-Control-Expose-Headers', 'x-token', 'x-refresh-token');
+                res.set('x-token', newTokens.token);
+                res.set('x-refresh-token', newTokens.refreshToken);
+            }
+            req.user = newTokens.user;
+            console.log(`Created new tokens for user ${req.user.username}`);
+        }
+    }
+
+    next();
+};
+
+app.use(authUser);
 
 const server = new ApolloServer({ typeDefs, resolvers, context: { models, SECRETS } }); // The http server system
 server.applyMiddleware({ app }); // Link it to our express app
