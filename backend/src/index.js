@@ -28,6 +28,8 @@ const resetDatabase = false; // DANGEROUS
 const authUser = async (req, res, next) => {
     const token = req.headers['x-token'];
 
+    console.log(111, token);
+
     if (token) {
         try {
             const { user } = jwt.verify(token, SECRETS.tokenSecret);
@@ -35,7 +37,7 @@ const authUser = async (req, res, next) => {
             console.log(`Got token for user ${req.user.username}`);
         } catch (err) {
             const refreshToken = req.headers['x-refresh-token'];
-            const newTokens = await refreshToken(refreshToken, models, SECRETS);
+            const newTokens = await refreshTokens(refreshToken, models, SECRETS);
             if (newTokens.token && newTokens.refreshToken) {
                 res.set('Access-Control-Expose-Headers', 'x-token', 'x-refresh-token');
                 res.set('x-token', newTokens.token);
@@ -49,9 +51,9 @@ const authUser = async (req, res, next) => {
     next();
 };
 
-app.use(authUser);
+app.use(authUser); // Nvm you working <3 ... now how to block unwanted users!!!
 
-const server = new ApolloServer({ typeDefs, resolvers, context: { models, SECRETS } }); // The http server system
+const server = new ApolloServer({ typeDefs, resolvers, context: ({ req }) => ({ models, me: req.user, SECRETS }) }); // The http server system
 server.applyMiddleware({ app }); // Link it to our express app
 
 app.listen({ port: graphqlPort }, () => console.log(`GraphQL server ready at http://localhost:${graphqlPort}${server.graphqlPath}`)); // Setup the http port to listen to

@@ -1,4 +1,5 @@
 import formatErrors from '../formatErrors';
+import { requiresAuth } from '../permissions';
 
 export default {
     Query: {
@@ -11,7 +12,7 @@ export default {
         },
     },
     Mutation: {
-        createIngredient: async (parent, args, { models }) => {
+        createIngredient: requiresAuth.createResolver(async (parent, args, { models }) => {
             try {
                 const ingredient = await models.Ingredient.create({
                     ...args,
@@ -21,6 +22,6 @@ export default {
             } catch (err) {
                 return { ok: false, errors: formatErrors(err, models) };
             }
-        },
+        }),
     },
 };
