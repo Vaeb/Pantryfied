@@ -28,13 +28,13 @@ const styles = StyleSheet.create({
 /* <ImageBackground source={require('../Images/whiteBackgroundLogin.png')} style={styles.backgroundImage} /> * Does not like to work properly:) */
 
 const Login = () => (
-    <View style={styles.container}>
+    <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
         <View style={styles.logoContainer}>
             <Image source={require('../Images/logo.png')} style={styles.logo} />
         </View>
         <View style={styles.formContainer} />
         <LoginForm />
-    </View>
+    </KeyboardAvoidingView>
 );
 // <LoginFrom/> calls LoginForm function
 

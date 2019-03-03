@@ -43,40 +43,46 @@ const styles = StyleSheet.create({
     },
 });
 
-const SignUpForm = () => (
-    <View style={styles.container}>
-        <StatusBar barStyle="light-content" />
-        <Icon name="ios-mail" size={24} color="#28BAA5" style={styles.inputIconEmail} />
-        <Icon name="ios-lock" size={24} color="#28BAA5" style={styles.inputIconLock} />
-        <Icon name="ios-person" size={24} color="#28BAA5" style={styles.inputIconPerson} />
-        <TextInput
-            style={styles.input}
-            placeholder="Email"
-            returnKeyType="next" // changes keyboard button
-            onSubmitEditing={() => this.passwordInput.focus()} // After pressing next, moves onto password container
-            keyboardType="email-address" // Changes keyboard settings
-            autoCapitalize="none"
-            autoCorrect={false}
-        />
-        <TextInput
-            style={styles.input}
-            placeholder="Password"
-            returnKeyType="next"
-            ref={input => (this.passwordInput = input)}
-            secureTextEntry
-        />
-        <TextInput
-            style={styles.input}
-            placeholder="First name"
-            returnKeyType="go" // changes keyboard button
-            // I think once they hit go, we can move them onto the next screen, thus removing the "done" button
-            onSubmitEditing={() => this.passwordInput.focus()} // After pressing next, moves onto password container
-            autoCorrect={false}
-        />
-        <TouchableOpacity style={styles.buttonContainer}>
-            <Text style={styles.buttonText}>Done</Text>
-        </TouchableOpacity>
-    </View>
-);
+export default class LoginForm extends Component {
+    static navigationOptions = {
+        title: 'Second screen',
+    };
 
-export default SignUpForm;
+    render() {
+        return (
+            <View style={styles.container}>
+                <StatusBar barStyle="light-content" />
+                <Icon name="ios-mail" size={24} color="#28BAA5" style={styles.inputIconEmail} />
+                <Icon name="ios-lock" size={24} color="#28BAA5" style={styles.inputIconLock} />
+                <Icon name="ios-person" size={24} color="#28BAA5" style={styles.inputIconPerson} />
+                <TextInput
+                    style={styles.input}
+                    placeholder="Email"
+                    returnKeyType="next" // changes keyboard button
+                    onSubmitEditing={() => this.passwordInput.focus()} // After pressing next, moves onto password container
+                    keyboardType="email-address" // Changes keyboard settings
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                />
+                <TextInput
+                    style={styles.input}
+                    placeholder="Password"
+                    returnKeyType="next"
+                    ref={input => (this.passwordInput = input)}
+                    secureTextEntry
+                />
+                <TextInput
+                    style={styles.input}
+                    placeholder="First name"
+                    returnKeyType="go" // changes keyboard button
+                    // I think once they hit go, we can move them onto the next screen, thus removing the "done" button
+                    onSubmitEditing={() => this.passwordInput.focus()} // After pressing next, moves onto password container
+                    autoCorrect={false}
+                />
+                <TouchableOpacity style={styles.buttonContainer}>
+                    <Text style={styles.buttonText}>Done</Text>
+                </TouchableOpacity>
+            </View>
+        );
+    }
+}

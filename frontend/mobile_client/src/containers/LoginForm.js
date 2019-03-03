@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-    Platform, StyleSheet, Text, View, TextInput, TouchableOpacity, StatusBar, KeyboardAvoidingView,
+    Platform, StyleSheet, Text, View, TextInput, TouchableOpacity, StatusBar, KeyboardAvoidingView, Button,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -47,39 +47,42 @@ const styles = StyleSheet.create({
     },
 });
 
-const LoginForm = () => (
-    <View style={styles.container}>
-        <StatusBar barStyle="light-content" />
-        <Icon name="ios-person" size={24} color="rgba(255, 255, 255, 0.3)" style={styles.inputIconPerson} />
-        <Icon name="ios-lock" size={24} color="rgba(255, 255, 255, 0.3)" style={styles.inputIconLock} />
-        <TextInput
-            style={styles.input}
-            placeholder="Email"
-            placeholderTextColor="rgba(255,255,255,0.7)"
-            returnKeyType="next" // changes keyboard button
-            onSubmitEditing={() => this.passwordInput.focus()} // After pressing next, moves onto password container
-            keyboardType="email-address" // Changes keyboard settings
-            autoCapitalize="none"
-            autoCorrect={false}
-        />
-        <TextInput
-            style={styles.input}
-            placeholder="Password"
-            placeholderTextColor="rgba(255,255,255,0.7)"
-            returnKeyType="go"
-            ref={input => (this.passwordInput = input)}
-            secureTextEntry
-        />
-        <TouchableOpacity style={styles.buttonContainer}>
-            <Text style={styles.buttonText}>Login</Text>
-        </TouchableOpacity>
-        <View style={styles.signUpContainer}>
-            <Text> Don't Have an account yet? </Text>
-            <Text style={styles.signUpText}> Sign up</Text>
-        </View>
-    </View>
-);
-export default LoginForm;
+export default class LoginForm extends Component {
+    render() {
+        return (
+            <View style={styles.container}>
+                <StatusBar barStyle="light-content" />
+                <Icon name="ios-person" size={24} color="rgba(255, 255, 255, 0.3)" style={styles.inputIconPerson} />
+                <Icon name="ios-lock" size={24} color="rgba(255, 255, 255, 0.3)" style={styles.inputIconLock} />
+                <TextInput
+                    style={styles.input}
+                    placeholder="Email"
+                    placeholderTextColor="rgba(255,255,255,0.7)"
+                    returnKeyType="next" // changes keyboard button
+                    onSubmitEditing={() => this.passwordInput.focus()} // After pressing next, moves onto password container
+                    keyboardType="email-address" // Changes keyboard settings
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                />
+                <TextInput
+                    style={styles.input}
+                    placeholder="Password"
+                    placeholderTextColor="rgba(255,255,255,0.7)"
+                    returnKeyType="go"
+                    ref={input => (this.passwordInput = input)}
+                    secureTextEntry
+                />
+                <TouchableOpacity style={styles.buttonContainer}>
+                    <Text style={styles.buttonText}>Login</Text>
+                </TouchableOpacity>
+                <View style={styles.signUpContainer}>
+                    <Text> Don't Have an account yet? </Text>
+                    <Text style={styles.signUpText}> Sign up</Text>
+                </View>
+            </View>
+        );
+    }
+}
 
 /* How to install React Icons:
  https://stackoverflow.com/questions/42420931/how-to-use-react-native-vector-icons
