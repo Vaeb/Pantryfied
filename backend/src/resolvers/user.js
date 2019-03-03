@@ -2,7 +2,7 @@ import formatErrors from '../formatErrors';
 
 export default {
     Query: {
-        allUsers: () => (parent, args, { models }) => models.User.findAll({ raw: true }),
+        allUsers: (parent, args, { models }) => models.User.findAll({ raw: true }),
     },
     Mutation: {
         register: async (parent, args, { models }) => {

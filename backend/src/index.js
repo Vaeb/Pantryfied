@@ -18,7 +18,6 @@ const resolvers = mergeResolvers(fileLoader(path.join(__dirname, './resolvers'))
 const app = express();
 app.use(cors('*'));
 
-// const graphqlEndpoint = '/graphql';
 const graphqlPort = 8080;
 const resetDatabase = false; // DANGEROUS
 
