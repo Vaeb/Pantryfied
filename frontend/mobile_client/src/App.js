@@ -53,11 +53,17 @@ const styles = StyleSheet.create({
     },
 });
 
-class HomeScreen extends React.Component {
-    render() {
-        const { navigate } = this.props.navigation;
-        return <Button title="Go to Login page" onPress={() => navigate('Login')} />;
-    }
+const HomeScreen = () => {
+    const { navigate } = this.props.navigation;
+    return <Button title="Go to Login page" onPress={() => navigate('Login')} />;
+};
+    
+
+// class HomeScreen extends React.Component {
+//     render() {
+//         const { navigate } = this.props.navigation;
+//         return <Button title="Go to Login page" onPress={() => navigate('Login')} />;
+//     }
 }
 // static navigationOptions = { // This is used as the header bar (where the back arrow goes on the top nav bar)
 //     title: 'Welcome to Pantryfied', // Falls under the class bit & above render
