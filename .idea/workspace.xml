@@ -2,12 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a20f71dc-b88a-4212-8d55-699871ce50e4" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mobile_client/android/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/app/src/main/java/com/frontend/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mobile_client/android/app/src/main/java/com/frontend/MainApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mobile_client/android/settings.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/mobile_client/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mobile_client/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/ios/FrontEnd.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mobile_client/ios/FrontEnd.xcodeproj/project.pbxproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/mobile_client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mobile_client/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/mobile_client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mobile_client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mobile_client/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/mobile_client/src/containers/LoginForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mobile_client/src/containers/LoginForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/src/routes/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mobile_client/src/routes/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/src/routes/SignUp.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mobile_client/src/routes/SignUp.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,9 +42,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">

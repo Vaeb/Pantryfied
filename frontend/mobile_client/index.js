@@ -13,5 +13,5 @@ import Login from './src/routes/Login';
 import SignUp from './src/routes/SignUp';
 
 AppRegistry.registerComponent(appName, () => App);
-AppRegistry.registerComponent(appName, () => Login);
-AppRegistry.registerComponent(appName, () => SignUp);
+// AppRegistry.registerComponent(appName, () => Login);
+// AppRegistry.registerComponent(appName, () => SignUp);

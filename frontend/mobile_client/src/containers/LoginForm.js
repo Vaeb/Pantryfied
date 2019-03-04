@@ -3,6 +3,8 @@ import {
     Platform, StyleSheet, Text, View, TextInput, TouchableOpacity, StatusBar, KeyboardAvoidingView, Button,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { createAppContainer, createStackNavigator } from 'react-navigation';
+import SignUp from '../routes/SignUp';
 
 const styles = StyleSheet.create({
     container: {
@@ -73,6 +75,7 @@ export default class LoginForm extends Component {
                     secureTextEntry
                 />
                 <TouchableOpacity style={styles.buttonContainer}>
+                    {/* <TouchableOpacity onPress={() => navigate('SignUp')} style={styles.buttonContainer}> */}
                     <Text style={styles.buttonText}>Login</Text>
                 </TouchableOpacity>
                 <View style={styles.signUpContainer}>
