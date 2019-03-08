@@ -7,55 +7,40 @@
  * @lint-ignore-every XPLATJSCOPYRIGHT1
  */
 
-import React, { Component } from "react";
-import { Platform, StyleSheet, Text, View, Image } from "react-native";
+import React, { Component } from 'react';
+import {
+  Platform,
+  StyleSheet,
+  Text,
+  View,
+  Image,
+} from 'react-native';
+import { PantryfiedContext } from './context/PantryfiedContext';
+import AppNavigation from './navigation/AppNavigation';
 
-const instructions = Platform.select({
-  // Knows which platform you are on and shows a specific message
-  ios: "Press Cmd+R to reload,\n" + "Cmd+D or shake for dev menu",
-  android:
-    "Double tap R on your keyboard to reload,\n" +
-    "Shake or press menu button for dev WORD menu"
-});
-
-// type Props = {};
-// export default class App extends Component<Props> {
-//     render() {
-//         return (
-//             <View style={styles.container}>
-//                 <Text style={styles.welcome}>Welcome to React Native!</Text>
-//                 <Text style={styles.instructions}>To get started, edit App.js</Text>
-//                 <Text style={styles.instructions}>{instructions}</Text>
-//             </View>
-//         );
-//     }
-// }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#F5FCFF"
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: "center",
-    margin: 10
-  },
-  instructions: {
-    textAlign: "center",
-    color: "#333333",
-    marginBottom: 5
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      userData: {
+        username: undefined,
+        password: undefined,
+        loginToken: undefined,
+      },
+    };
   }
-});
 
-const App = () => (
-  <View style={styles.container}>
-    <Text style={styles.welcome}>Welcome to React Native !</Text>
-    <Text style={styles.instructions}>To get started, edit App.js</Text>
-    <Text style={styles.instructions}>{instructions}</Text>
-  </View>
-);
+  render() {
+    return (
+      <PantryfiedContext.Provider
+        value={{
+          user: this.state.userData,
+        }}
+      >
+        <AppNavigation screenProps={this.props} />
+      </PantryfiedContext.Provider>
+    );
+  }
+}
 
-export default App;
+App.contextType = PantryfiedContext;
