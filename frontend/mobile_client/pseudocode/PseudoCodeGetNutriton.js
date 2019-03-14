@@ -34,7 +34,7 @@ getRecipes() {
         sugar: undefined
         salt: undefined
         instructions: undefined
-        error: "Error"
+        error: 'Error'
 }
 
 // Search recipes based on ingredients entered
@@ -44,5 +44,9 @@ SET recipes[] // Stores an array of the user inputs (List of ingredients)
 searchRecipes(ingredients[]) {
     apiCall = fetch('APIName{ingredients[]}')
     data = apiCall.JSON
-    recipes[] = data[]
+    IF data is empty THEN
+        error: 'Found nothing'
+    ELSE THEN
+        recipes[] = data[]
+    
 }
