@@ -3,6 +3,7 @@ import {
   Platform, StyleSheet, Text, View, TextInput, TouchableOpacity, StatusBar, ScrollView,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { withNavigation } from 'react-navigation';
 
 const LoginForm = () => (
   <View style={styles.container}>
@@ -28,7 +29,7 @@ const LoginForm = () => (
         ref={input => (this.passwordInput = input)}
         secureTextEntry
       />
-      <TouchableOpacity style={styles.buttonContainer}>
+      <TouchableOpacity style={styles.buttonContainer} onPress={this.props.navigation.navigate("Main")}>
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
       <View style={styles.signUpContainer}>
@@ -38,7 +39,7 @@ const LoginForm = () => (
     </ScrollView>
   </View>
 );
-export default LoginForm;
+export default withNavigation(LoginForm);
 
 /* How to install React Icons:
  https://stackoverflow.com/questions/42420931/how-to-use-react-native-vector-icons

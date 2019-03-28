@@ -37,7 +37,7 @@ export default class App extends Component {
           user: this.state.userData,
         }}
       >
-        <AppNavigation screenProps={this.props} />
+        <AppNavigation screenProps={{ ...this.props }} />
       </PantryfiedContext.Provider>
     );
   }
