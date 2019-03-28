@@ -3,33 +3,39 @@ import {
   createBottomTabNavigator,
 } from 'react-navigation';
 
-import HomeScreen from 'Wherever';
-import NutritionScreen from 'these';
-import IngredientsScreen from 'will';
-import InstructionsScreen from 'be';
+import SearchStack from './RecipeNavigation';
+import FavouritesScreen from '../screens/FavouritesScreen';
+import MainSettingsScreen from '../screens/MainSettingsScreen';
 
 // stack is like one screen loading on top of another one
-const HomeStack = createStackNavigator(
+const FavouritesStack = createStackNavigator(
   {
-    Home: HomeScreen,
+    Favourites: FavouritesScreen,
   },
   {
     headerMode: 'none',
   },
 );
 
+FavouritesStack.navigationOptions = {
+  tabBarLabel: 'Favourites',
+};
 
-// HomeStack.navigationOptions = {};
-// not used yet
-
-const RecipeStack = createStackNavigator({
-  Nutrition: NutritionScreen,
-  Ingredients: IngredientsScreen,
-  Instructions: InstructionsScreen,
+const SettingsStack = createStackNavigator({
+  MainSettings: MainSettingsScreen,
 });
+
+SettingsStack.navigationOptions = {
+  tabBarLabel: 'Settings',
+};
+
+SearchStack.navigationOptions = {
+  tabBarLabel: 'Search',
+};
 
 // tab navigator is like buttons at the bottom side scrolling through screens
 export default createBottomTabNavigator({
-  HomeStack,
-  RecipeStack,
+  FavouritesStack,
+  SearchStack,
+  SettingsStack,
 });
