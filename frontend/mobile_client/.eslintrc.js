@@ -17,10 +17,10 @@ module.exports = {
         eqeqeq: 'off',
         'global-require': 'off',
         // "import/no-dynamic-require": "off",
-        indent: ['error', 4],
+        indent: ['error', 2],
         // "func-names": "off",
         // "global-require": "off",
-        // "import/prefer-default-export": "off",
+        "import/prefer-default-export": "off",
         'jsx-a11y/anchor-is-valid': 'off',
         'jsx-a11y/href-no-hash': 'off',
         'linebreak-style': 'off',
@@ -44,6 +44,7 @@ module.exports = {
         // "no-restricted-syntax": "off",
         // "no-underscore-dangle": "off",
         'no-unused-vars': ['warn', { vars: 'all', args: 'after-used', ignoreRestSiblings: true }],
+        'no-use-before-define': 'off',
         'object-curly-newline': ['error', { minProperties: 5, multiline: true, consistent: true }],
         /* "prefer-destructuring": ["error", {
             "array": false,
@@ -51,8 +52,8 @@ module.exports = {
         }], */
         // "quote-props": "off"
         'react/jsx-filename-extension': 'off',
-        'react/jsx-indent': ['error', 4],
-        'react/jsx-indent-props': ['error', 4],
+        'react/jsx-indent': ['error', 2],
+        'react/jsx-indent-props': ['error', 2],
         'react/no-unused-state': 'warn',
         'react/prop-types': 'off',
         'react/sort-comp': [
