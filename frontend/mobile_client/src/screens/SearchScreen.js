@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, FlatList } from 'react-native';
 import { PantryfiedContext } from '../context/PantryfiedContext';
 import { Button } from '../components/common/Button';
 
@@ -16,7 +16,15 @@ export default class SearchScreen extends Component {
   render() {
     return (
       <View>
+        
         <Text style={{ flex: 2 }}> Search Screen </Text>
+        <FlatList
+            data={[
+              {key: "Recipe1"},
+              {key: "Recipe2"},
+            ]}
+            renderItem={({item}) => <Text style={styles.item}>{item.key}</Text>}
+        />
         <Button onPress={this.navigateRecipePressed} inheritStyle={styles.navButton} inheritTextStyle={styles.navButtonText}>
           Navigate to Recipe Screen
         </Button>
@@ -31,6 +39,11 @@ const styles = StyleSheet.create({
   },
   navButtonText: {
     fontSize: 18,
+  },
+  item: {
+    padding: 10,
+    fontSize: 18,
+    height: 44,
   },
 });
 
