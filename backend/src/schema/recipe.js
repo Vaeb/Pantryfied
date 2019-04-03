@@ -16,7 +16,7 @@ export default `
     }
 
     type Mutation {
-        createRecipe(name: String!): CreateRecipeResponse!
+        createRecipe(name: String!, testing: Int): CreateRecipeResponse!
     }
 
 `;

@@ -56,6 +56,7 @@
 		42D258051BD549989D8CD962 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1C97BA21E5DE41A5893FD5DA /* Octicons.ttf */; };
 		349CF156F09748429ACB27B3 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 05EA850B342E4A3684E67503 /* SimpleLineIcons.ttf */; };
 		38AE99DDC15941FF8F31C626 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D0A39C49A1C7477A846B6950 /* Zocial.ttf */; };
+
 		23F7350FE49A4BB4BB289C63 /* libRNGestureHandler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 314EDD4F5B9B4B7AB069B9AA /* libRNGestureHandler.a */; };
 		D89080666BDF43778AC44E6D /* libRNGestureHandler-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D726C5F1E074E7C85ED9F6A /* libRNGestureHandler-tvOS.a */; };
 /* End PBXBuildFile section */
@@ -383,9 +384,11 @@
 		1C97BA21E5DE41A5893FD5DA /* Octicons.ttf */ = {isa = PBXFileReference; name = "Octicons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		05EA850B342E4A3684E67503 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; name = "SimpleLineIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		D0A39C49A1C7477A846B6950 /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+
 		E2481239D3214339A07BD175 /* RNGestureHandler.xcodeproj */ = {isa = PBXFileReference; name = "RNGestureHandler.xcodeproj"; path = "../node_modules/react-native-gesture-handler/ios/RNGestureHandler.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		314EDD4F5B9B4B7AB069B9AA /* libRNGestureHandler.a */ = {isa = PBXFileReference; name = "libRNGestureHandler.a"; path = "libRNGestureHandler.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		7D726C5F1E074E7C85ED9F6A /* libRNGestureHandler-tvOS.a */ = {isa = PBXFileReference; name = "libRNGestureHandler-tvOS.a"; path = "libRNGestureHandler-tvOS.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */

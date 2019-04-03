@@ -6,10 +6,12 @@
       <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mobile_client/android/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/app/src/main/java/com/frontend/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mobile_client/android/app/src/main/java/com/frontend/MainApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/mobile_client/android/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mobile_client/android/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mobile_client/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/mobile_client/ios/FrontEnd.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mobile_client/ios/FrontEnd.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/ios/FrontEnd/Info.plist" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mobile_client/ios/FrontEnd/Info.plist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mobile_client/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/mobile_client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mobile_client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/src/components/LoginForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mobile_client/src/components/LoginForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mobile_client/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/src/containers/LoginForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mobile_client/src/containers/LoginForm.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -40,9 +42,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -76,7 +78,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="0" width="1294" height="1057" extended-state="0" />
+    <frame x="-7" y="0" width="1294" height="1057" extended-state="1" />
     <layout>
       <window_info id="Captures" order="0" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.32961783" />

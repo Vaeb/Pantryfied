@@ -1,8 +1,9 @@
 import formatErrors from '../formatErrors';
+import { login } from '../auth';
 
 export default {
     Query: {
-        allUsers: () => (parent, args, { models }) => models.User.findAll({ raw: true }),
+        allUsers: (parent, args, { models }) => models.User.findAll({ raw: true }),
     },
     Mutation: {
         register: async (parent, args, { models }) => {
@@ -21,21 +22,6 @@ export default {
                 };
             }
         },
-        login: async (parent, args, { models }) => {
-            try {
-                const key = args.username ? 'username' : 'email';
-                const keyVal = args[key];
-
-                return {
-                    ok: true,
-                };
-            } catch (err) {
-                console.log('Mutation_Login', err);
-                return {
-                    ok: false,
-                    errors: formatErrors(err, models),
-                };
-            }
-        },
+        login: (parent, args, { models, SECRETS }) => login(args, models, SECRETS),
     },
 };

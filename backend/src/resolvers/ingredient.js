@@ -3,22 +3,22 @@ import { requiresAuth } from '../permissions';
 
 export default {
     Query: {
-        getRecipes: async (parent, args, { models }) => {
-            const recipes = models.Recipe.findAll({
+        getIngredients: async (parent, args, { models }) => {
+            const ingredients = models.Ingredient.findAll({
                 raw: true,
             });
 
-            return recipes;
+            return ingredients;
         },
     },
     Mutation: {
-        createRecipe: requiresAuth.createResolver(async (parent, args, { models }) => {
+        createIngredient: requiresAuth.createResolver(async (parent, args, { models }) => {
             try {
-                const recipe = await models.Recipe.create({
+                const ingredient = await models.Ingredient.create({
                     ...args,
                 });
 
-                return { ok: true, recipe };
+                return { ok: true, ingredient };
             } catch (err) {
                 return { ok: false, errors: formatErrors(err, models) };
             }
