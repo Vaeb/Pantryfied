@@ -21,9 +21,14 @@ FavouritesStack.navigationOptions = {
   tabBarLabel: 'Favourites',
 };
 
-const SettingsStack = createStackNavigator({
-  MainSettings: MainSettingsScreen,
-});
+const SettingsStack = createStackNavigator(
+  {
+    MainSettings: MainSettingsScreen,
+  },
+  {
+    headerMode: 'none',
+  },
+);
 
 SettingsStack.navigationOptions = {
   tabBarLabel: 'Settings',
