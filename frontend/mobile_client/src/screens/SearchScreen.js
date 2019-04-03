@@ -17,6 +17,7 @@ export default class SearchScreen extends Component {
   render() {
     return (
       <View>
+        
         <Text style={{ flex: 2 }}> Search Screen </Text>
         <FlatList
             data={[
