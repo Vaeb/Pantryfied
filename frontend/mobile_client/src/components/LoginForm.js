@@ -5,40 +5,53 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons';
 import { withNavigation } from 'react-navigation';
 
-const LoginForm = () => (
-  <View style={styles.container}>
-    <ScrollView>
-      <StatusBar barStyle="light-content" />
-      <Icon name="ios-person" size={24} color="rgba(255, 255, 255, 0.3)" style={styles.inputIconPerson} />
-      <Icon name="ios-lock" size={24} color="rgba(255, 255, 255, 0.3)" style={styles.inputIconLock} />
-      <TextInput
-        style={styles.input}
-        placeholder="Enter: username / email"
-        placeholderTextColor="rgba(255,255,255,0.7)"
-        returnKeyType="next" // changes keyboard button
-        onSubmitEditing={() => this.passwordInput.focus()} // After pressing next, moves onto password container
-        keyboardType="email-address" // Changes keyboard settings
-        autoCapitalize="none"
-        autoCorrect={false}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Enter: password"
-        placeholderTextColor="rgba(255,255,255,0.7)"
-        returnKeyType="go"
-        ref={input => (this.passwordInput = input)}
-        secureTextEntry
-      />
-      <TouchableOpacity style={styles.buttonContainer} onPress={this.props.navigation.navigate("Main")}>
-        <Text style={styles.buttonText}>Login</Text>
-      </TouchableOpacity>
-      <View style={styles.signUpContainer}>
-        <Text> Don't Have an account yet? </Text>
-        <Text style={styles.signUpText}> Sign up</Text>
+class LoginForm extends Component {
+  constructor(props) {
+    super(props);
+    this.navButtonPressed = this.navButtonPressed.bind(this);
+  }
+
+  navButtonPressed() {
+    this.props.navigation.navigate("Main");
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <ScrollView>
+          <StatusBar barStyle="light-content" />
+          <Icon name="ios-person" size={24} color="rgba(255, 255, 255, 0.3)" style={styles.inputIconPerson} />
+          <Icon name="ios-lock" size={24} color="rgba(255, 255, 255, 0.3)" style={styles.inputIconLock} />
+          <TextInput
+            style={styles.input}
+            placeholder="Enter: username / email"
+            placeholderTextColor="rgba(255,255,255,0.7)"
+            returnKeyType="next" // changes keyboard button
+            onSubmitEditing={() => this.passwordInput.focus()} // After pressing next, moves onto password container
+            keyboardType="email-address" // Changes keyboard settings
+            autoCapitalize="none"
+            autoCorrect={false}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Enter: password"
+            placeholderTextColor="rgba(255,255,255,0.7)"
+            returnKeyType="go"
+            ref={input => (this.passwordInput = input)}
+            secureTextEntry
+          />
+          <TouchableOpacity style={styles.buttonContainer} onPress={this.navButtonPressed}>
+            <Text style={styles.buttonText}>Login</Text>
+          </TouchableOpacity>
+          <View style={styles.signUpContainer}>
+            <Text> Don't Have an account yet? </Text>
+            <Text style={styles.signUpText}> Sign up</Text>
+          </View>
+        </ScrollView>
       </View>
-    </ScrollView>
-  </View>
-);
+    );
+  }
+}
 export default withNavigation(LoginForm);
 
 /* How to install React Icons:
