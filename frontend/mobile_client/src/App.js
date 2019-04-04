@@ -14,6 +14,7 @@ import {
   Text,
   View,
   Image,
+  AsyncStorage,
 } from 'react-native';
 import { PantryfiedContext } from './context/PantryfiedContext';
 import AppNavigation from './navigation/AppNavigation';
@@ -21,12 +22,24 @@ import AppNavigation from './navigation/AppNavigation';
 export default class App extends Component {
   constructor(props) {
     super(props);
+
+    this.storeFavourite = async (newFavourite) => {
+      await AsyncStorage.mergeItem('favouritesList', JSON.stringify(newFavourite), (error) => { console.log('Merge error: ', error); });
+    };
+
+    this.setRecipeToRender = (recipe) => {
+      this.setState({ renderRecipe: recipe });
+    };
+
     this.state = {
       userData: {
         username: undefined,
         password: undefined,
         loginToken: undefined,
       },
+      storeNewFavourite: this.storeFavourite,
+      renderRecipe: {},
+      setRenderRecipe: this.setRecipeToRender,
     };
   }
 
@@ -35,6 +48,9 @@ export default class App extends Component {
       <PantryfiedContext.Provider
         value={{
           user: this.state.userData,
+          storeNewFavourite: this.state.storeNewFavourite,
+          setRenderRecipe: this.state.setRenderRecipe,
+          renderRecipe: this.state.renderRecipe,
         }}
       >
         <AppNavigation screenProps={{ ...this.props }} />

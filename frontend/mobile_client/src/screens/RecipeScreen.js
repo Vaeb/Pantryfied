@@ -14,9 +14,11 @@ export default class RecipeScreen extends Component {
     this.props.navigation.navigate("InstructionsScreen");
   }
   render() {
+    let toRenderRecipe = JSON.stringify(this.context.renderRecipe);
     return (
       <View>
-        <Text style={{ flex: 2 }}> Recipe Screen </Text>
+        <Text> Recipe Screen </Text>
+        <Text>{toRenderRecipe}</Text>
         <Button onPress={this.navigateInstructionsPressed} inheritStyle={styles.navButton} inheritTextStyle={styles.navButtonText}>
           Navigate to Instructions Screen
         </Button>
