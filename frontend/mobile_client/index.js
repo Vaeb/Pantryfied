@@ -3,8 +3,10 @@
  * @lint-ignore-every XPLATJSCOPYRIGHT1
  */
 
-import { AppRegistry } from 'react-native';
+import { AppRegistry, YellowBox } from 'react-native';
 import { name as appName } from './app.json';
+
+YellowBox.ignoreWarnings(['Remote debugger']);
 
 // List of classes will go down here:
 // import App from "./App";

@@ -11,6 +11,11 @@ export default class SearchScreen extends Component {
     this.renderItem = this.renderItem.bind(this);
     this.favouriteButtonPressed = this.favouriteButtonPressed.bind(this);
     this.recipePressed = this.recipePressed.bind(this);
+    this.state = {
+      recipes: [
+        
+      ]
+    }
   }
 
   favouriteButtonPressed(item) {

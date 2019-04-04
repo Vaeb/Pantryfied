@@ -19,13 +19,46 @@ export default class FavouritesScreen extends Component {
     this.getFavourites = this.getFavourites.bind(this);
     this.renderItem = this.renderItem.bind(this);
     this.favouriteButtonPressed = this.favouriteButtonPressed.bind(this);
+    this.updateFavouriteArray = this.updateFavouriteArray.bind(this);
     this.state = {
-      favourites: {},
+      favourites: [
+        { key: 'key1', id: "Recipe1", favourite: true },
+        { key: 'key2', id: "Recipe2", favourite: false },
+      ],
+      refresh: true,
     };
+
+    console.log(this.state.favourites);
+  }
+
+  componentDidMount() {
+    console.log("Fav mounted");
+  }
+
+  componentWillUnmount() {
+    console.log("Fav unmounted");
+  }
+
+  updateFavouriteArray(item) {
+    //console.log(this.state.favourites);
+
+    this.state.favourites.forEach((arrayItem) => {
+      if (arrayItem.key == item.key) {
+        if (arrayItem.favourite) {
+          arrayItem.favourite = false;
+        } else {
+          arrayItem.favourite = true;
+        }
+      }
+    });
+
+    //console.log(this.state.favourites);
   }
 
 
   renderFavButton(item) {
+
+    console.log("rendering: ", JSON.stringify(item));
     if (item.favourite) {
       return (
         <FavButtonFill onPress={() => this.favouriteButtonPressed(item)} definedFlex={1} />
@@ -39,7 +72,8 @@ export default class FavouritesScreen extends Component {
   favouriteButtonPressed(item) {
     // invert item favourite setting
     // add or remove favourite as required
-    console.log("item: ", item);
+    this.updateFavouriteArray(item);
+    this.setState({ refresh: !this.state.refresh });
   }
 
   recipePressed(recipe) {
@@ -65,27 +99,20 @@ export default class FavouritesScreen extends Component {
     } catch (error) {
       console.log(error.message);
     }
-    this.setState({ favourites: JSON.parse(favList) });
+    this.setState({ favourites: [JSON.parse(favList)] });
   }
 
 
   // will only render the favourites that were present when app was loaded
   // make function to update and rerender (may just have to update state object)
   render() {
-
-    //const dataArr = [this.state.favourites];
-    const dataArr = [
-      {key: 'key1', id: "Recipe1", favourite: true },
-      {key: 'key2', id: "Recipe2", favourite: false },
-    ];
+    console.log("render");
     return (
       <View>
         <Text> Favourites Screen </Text>
         <FlatList
-          data={[
-            {key: "key1", id: "Recipe1", favourite: true },
-            {key: "key2", id: "Recipe2", favourite: false },
-          ]}
+          data={this.state.favourites}
+          extraData={this.state.refresh}
           renderItem={({item}) => this.renderItem(item)}
         />
       </View>
