@@ -20,41 +20,105 @@ export default class FavouritesScreen extends Component {
     this.renderItem = this.renderItem.bind(this);
     this.favouriteButtonPressed = this.favouriteButtonPressed.bind(this);
     this.updateFavouriteArray = this.updateFavouriteArray.bind(this);
+    this.removeFavourite = this.removeFavourite.bind(this);
+    this.addFavourite = this.addFavourite.bind(this);
+    this.resetAsyncStorage = this.resetAsyncStorage.bind(this);
+    this.removeItemFromArray = this.removeItemFromArray.bind(this);
     this.state = {
+      /*
+      for testing
       favourites: [
-        { key: 'key1', id: "Recipe1", favourite: true },
-        { key: 'key2', id: "Recipe2", favourite: false },
+        { key: "key1", name: "Recipe1", favourite: true },
+        { key: "key2", name: "Recipe2", favourite: true },
+        { key: "key3", name: "Recipe3", favourite: true },
+        { key: "key4", name: "Recipe4", favourite: true },
       ],
+      */
+      favourites: [],
       refresh: true,
     };
-
-    console.log(this.state.favourites);
   }
+
+  // may be unused code in this component, not checked yet
 
   componentDidMount() {
     console.log("Fav mounted");
+    // this.resetAsyncStorage();
+
+    this.getFavourites();
+    this.forceUpdate();
   }
 
   componentWillUnmount() {
     console.log("Fav unmounted");
   }
 
-  updateFavouriteArray(item) {
-    //console.log(this.state.favourites);
+  // testing
+  async resetAsyncStorage() {
+    await AsyncStorage.setItem('favouritesList', JSON.stringify(this.state.favourites));
+  }
 
+  updateFavouriteArray(item) {
     this.state.favourites.forEach((arrayItem) => {
       if (arrayItem.key == item.key) {
         if (arrayItem.favourite) {
           arrayItem.favourite = false;
+          this.removeFavourite(item);
         } else {
           arrayItem.favourite = true;
+          this.addFavourite(item);
         }
       }
     });
-
-    //console.log(this.state.favourites);
   }
 
+  async addFavourite(item) {
+    console.log("Item:", item);
+    if (this.checkIfInList(item)) {
+      console.log("item already in list so dont push");
+    } else {
+      console.log("item not in list");
+      this.state.favourites.push(item);
+      try {
+        await AsyncStorage.setItem('favouritesList', JSON.stringify(this.state.favourites));
+        console.log("favList add: ", JSON.stringify(this.state.favourites));
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
+  }
+
+  checkIfInList(item) {
+    console.log("checkItem");
+    let itemFound = false;
+    this.state.favourites.forEach((arrayItem) => {
+      if (arrayItem.key == item.key) {
+        console.log("Item found");
+        itemFound = true;
+      }
+    });
+    return itemFound;
+  }
+
+  async removeFavourite(item) {
+    try {
+      const favListArr = this.removeItemFromArray(item);
+      await AsyncStorage.setItem('favouritesList', JSON.stringify(favListArr));
+      console.log("favList remove: ", favListArr);
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
+  removeItemFromArray(item) {
+    let newFavArr = [];
+    this.state.favourites.forEach((arrayItem) => {
+      if (arrayItem.key != item.key) {
+        newFavArr.push(arrayItem);
+      }
+    });
+    return newFavArr;
+  }
 
   renderFavButton(item) {
 
@@ -96,10 +160,11 @@ export default class FavouritesScreen extends Component {
     let favList = '';
     try {
       favList = await AsyncStorage.getItem('favouritesList') || 'none';
+      console.log("init favList: ", favList);
     } catch (error) {
       console.log(error.message);
     }
-    this.setState({ favourites: [JSON.parse(favList)] });
+    this.setState({ favourites: JSON.parse(favList) });
   }
 
 

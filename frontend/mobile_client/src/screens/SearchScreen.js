@@ -14,7 +14,7 @@ export default class SearchScreen extends Component {
     this.state = {
       recipes: [
         
-      ]
+      ],
     }
   }
 
