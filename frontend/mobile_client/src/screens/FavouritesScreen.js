@@ -121,8 +121,6 @@ export default class FavouritesScreen extends Component {
   }
 
   renderFavButton(item) {
-
-    console.log("rendering: ", JSON.stringify(item));
     if (item.favourite) {
       return (
         <FavButtonFill onPress={() => this.favouriteButtonPressed(item)} definedFlex={1} />

@@ -31,12 +31,18 @@ export default class App extends Component {
       this.setState({ renderRecipe: recipe });
     };
 
+    this.setRecipeList = (recipeList) => {
+      this.setState({ foundRecipes: recipeList });
+    };
+
     this.state = {
       userData: {
         username: undefined,
         password: undefined,
         loginToken: undefined,
       },
+      setFoundRecipeList: this.setRecipeList,
+      foundRecipes: [],
       storeNewFavourite: this.storeFavourite,
       renderRecipe: {},
       setRenderRecipe: this.setRecipeToRender,
