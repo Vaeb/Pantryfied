@@ -42,7 +42,23 @@ export default class App extends Component {
         loginToken: undefined,
       },
       setFoundRecipeList: this.setRecipeList,
-      foundRecipes: [],
+      // foundRecipes: [],
+      foundRecipes: [
+        {
+          key: 101,
+          name: "RecipeName",
+          ingredients: [
+            {
+              id: 201,
+              name: "Ingredient 1",
+            },
+            {
+              id: 202,
+              name: "Ingredient 2",
+            },
+          ],
+        },
+      ],
       storeNewFavourite: this.storeFavourite,
       renderRecipe: {},
       setRenderRecipe: this.setRecipeToRender,
@@ -57,6 +73,7 @@ export default class App extends Component {
           storeNewFavourite: this.state.storeNewFavourite,
           setRenderRecipe: this.state.setRenderRecipe,
           renderRecipe: this.state.renderRecipe,
+          foundRecipes: this.state.foundRecipes,
         }}
       >
         <AppNavigation screenProps={{ ...this.props }} />

@@ -23,7 +23,6 @@ export default class SearchScreen extends Component {
   }
 
   ingredientPressed(item) {
-    
     this.state.ingredients.forEach((arrayItem) => {
       if (arrayItem.key == item.key) {
         if (arrayItem.selected) {
@@ -47,7 +46,7 @@ export default class SearchScreen extends Component {
     return (
       <View style={{ flex: 1, flexDirection: 'row' }}>
         <TouchableOpacity onPress={() => this.ingredientPressed(item)} style={{ flex: 4 }}>
-          <Text style={styles.item}>{item.key}</Text>
+          <Text style={styles.item}>{item.name}</Text>
         </TouchableOpacity>
         {this.renderSelected(item)}
       </View>

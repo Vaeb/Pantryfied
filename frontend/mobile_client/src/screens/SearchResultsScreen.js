@@ -5,12 +5,17 @@ import { Button } from '../components/common/Button';
 import { FavButton } from '../components/common/FavButton';
 
 // eslint-disable-next-line react/prefer-stateless-function
-export default class SearchScreen extends Component {
+export default class SearchResultsScreen extends Component {
   constructor(props) {
     super(props);
     this.renderItem = this.renderItem.bind(this);
     this.favouriteButtonPressed = this.favouriteButtonPressed.bind(this);
     this.recipePressed = this.recipePressed.bind(this);
+  }
+
+  componentDidMount() {
+    console.log("got here");
+    console.log(JSON.stringify(this.context.foundRecipes));
   }
 
   favouriteButtonPressed(item) {
@@ -44,7 +49,7 @@ export default class SearchScreen extends Component {
   render() {
     return (
       <View>
-        <Text style={{ flex: 2 }}> Search Screen </Text>
+        <Text style={{ flex: 2, fontSize: 20 }}> Search Results Screen </Text>
         <FlatList
             data={this.context.foundRecipes}
             renderItem={({item}) => this.renderItem(item)}
@@ -68,4 +73,4 @@ const styles = StyleSheet.create({
   },
 });
 
-SearchScreen.contextType = PantryfiedContext;
+SearchResultsScreen.contextType = PantryfiedContext;
