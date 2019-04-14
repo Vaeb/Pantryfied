@@ -1,7 +1,39 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, FlatList, TouchableOpacity, Image } from 'react-native';
+import {
+  Text,
+  View,
+  StyleSheet,
+  FlatList,
+  TouchableOpacity,
+  Image,
+} from 'react-native';
+import gql from 'graphql-tag';
 import { PantryfiedContext } from '../context/PantryfiedContext';
 import { Button } from '../components/common/Button';
+
+
+const getRecipeQuery = gql`
+    query GetRecipes($ingredients: [Int!]!) {
+        getRecipes(ingredients: $ingredients) {
+            id
+            name
+            imgUrl
+            ingredients {
+                id
+                name
+            }
+        }
+    }
+`;
+
+const getIngredientsQuery = gql`
+    query {
+      getIngredients {
+        id
+        name
+      }
+    }
+`;
 
 // eslint-disable-next-line react/prefer-stateless-function
 export default class SearchScreen extends Component {
@@ -12,14 +44,34 @@ export default class SearchScreen extends Component {
     this.renderSelected = this.renderSelected.bind(this);
     this.searchButtonPressed = this.searchButtonPressed.bind(this);
     this.shaveList = this.shaveList.bind(this);
+    this.fetchIngredientList = this.fetchIngredientList.bind(this);
     this.state = {
-      ingredients: [
-        { key: "key1", name: "ingredient1", selected: false },
-        { key: "key2", name: "ingredient2", selected: false },
-        { key: "key3", name: "ingredient3", selected: false },
-      ],
+      ingredients: [],
+      ingredientsArg: [],
       ingredientsToSearch: [],
     };
+  }
+
+  componentDidMount() {
+    this.fetchIngredientList();
+  }
+
+  async fetchIngredientList() {
+    await this.context.apolloClient
+      .query({
+        query: getIngredientsQuery,
+        fetchPolicy: 'network-only',
+      })
+      .then(({ data }) => {
+        const dataArr = data.getIngredients;
+        dataArr.forEach((arrayItem) => {
+          arrayItem.selected = false;
+          arrayItem.key = arrayItem.id.toString();
+          this.state.ingredients.push(arrayItem);
+        });
+      })
+      .catch((error) => console.log(error));
+      this.setState({ refresh: !this.state.refresh });
   }
 
   ingredientPressed(item) {
@@ -53,17 +105,33 @@ export default class SearchScreen extends Component {
     );
   }
 
-  searchButtonPressed() {
+  async searchButtonPressed() {
     this.shaveList();
-    console.log("ingredients Arr: " + JSON.stringify(this.state.ingredientsToSearch));
     // get the recipes from the backend using this.state.ingredientsToSearch
-    // this.context.setFoundRecipeList(returned Recipe list array)
+
+    await this.context.apolloClient
+      .query({
+        query: getRecipeQuery,
+        variables: { ingredients: this.state.ingredientsArg },
+        fetchPolicy: 'network-only',
+      })
+      .then(({ data }) => {
+        // const dataArr = data.getRecipes
+        // console.log(dataArr);
+        // dataArr.forEach((arrayItem) => {
+        //   arrayItem.key = arrayItem.id.toString();
+        // });
+        // this.context.setFoundRecipeList(dataArr)
+      })
+      .catch((error) => console.log(error));
+
     this.props.navigation.navigate('SearchResultsScreen');
   }
 
   shaveList() {
     this.state.ingredients.forEach((arrayItem) => {
       if (arrayItem.selected) {
+        this.state.ingredientsArg.push(arrayItem.id);
         this.state.ingredientsToSearch.push(arrayItem);
       }
     });

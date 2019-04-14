@@ -16,8 +16,13 @@ import {
   Image,
   AsyncStorage,
 } from 'react-native';
+import ApolloClient from 'apollo-boost';
 import { PantryfiedContext } from './context/PantryfiedContext';
 import AppNavigation from './navigation/AppNavigation';
+
+const client = new ApolloClient({
+  uri: 'http://vaeb.io:8080/graphql',
+});
 
 export default class App extends Component {
   constructor(props) {
@@ -42,26 +47,11 @@ export default class App extends Component {
         loginToken: undefined,
       },
       setFoundRecipeList: this.setRecipeList,
-      // foundRecipes: [],
-      foundRecipes: [
-        {
-          key: 101,
-          name: "RecipeName",
-          ingredients: [
-            {
-              id: 201,
-              name: "Ingredient 1",
-            },
-            {
-              id: 202,
-              name: "Ingredient 2",
-            },
-          ],
-        },
-      ],
+      foundRecipes: [],
       storeNewFavourite: this.storeFavourite,
       renderRecipe: {},
       setRenderRecipe: this.setRecipeToRender,
+      apolloClient: client,
     };
   }
 
@@ -74,6 +64,7 @@ export default class App extends Component {
           setRenderRecipe: this.state.setRenderRecipe,
           renderRecipe: this.state.renderRecipe,
           foundRecipes: this.state.foundRecipes,
+          apolloClient: this.state.apolloClient,
         }}
       >
         <AppNavigation screenProps={{ ...this.props }} />

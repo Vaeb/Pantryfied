@@ -14,8 +14,7 @@ export default class SearchResultsScreen extends Component {
   }
 
   componentDidMount() {
-    console.log("got here");
-    console.log(JSON.stringify(this.context.foundRecipes));
+    console.log('Found Recipes: ', JSON.stringify(this.context.foundRecipes));
   }
 
   favouriteButtonPressed(item) {
