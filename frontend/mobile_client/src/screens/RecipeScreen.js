@@ -10,6 +10,10 @@ export default class RecipeScreen extends Component {
     this.navigateInstructionsPressed = this.navigateInstructionsPressed.bind(this);
   }
 
+  componentDidMount() {
+    console.log(JSON.stringify(this.context.renderRecipe));
+  }
+
   /*
    * The recipe object will be stored in this.context.renderRecipe
    * Not sure what the object layout is yet but it will probably be in disc by the time you do this

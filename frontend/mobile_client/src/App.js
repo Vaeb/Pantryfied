@@ -28,7 +28,7 @@ export default class App extends Component {
     };
 
     this.setRecipeToRender = (recipe) => {
-      this.setState({ renderRecipe: recipe });
+      this.setState({ renderRecipe: recipe.recipe });
     };
 
     this.setRecipeList = (recipeList) => {
@@ -47,6 +47,7 @@ export default class App extends Component {
         {
           key: 101,
           name: "RecipeName",
+          description: "Description of recipe goes here",
           ingredients: [
             {
               id: 201,
@@ -57,7 +58,6 @@ export default class App extends Component {
               name: "Ingredient 2",
             },
           ],
-          description: "Description of recipe goes here"
         },
       ],
       storeNewFavourite: this.storeFavourite,
