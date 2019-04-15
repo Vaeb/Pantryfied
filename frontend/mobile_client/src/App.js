@@ -57,6 +57,7 @@ export default class App extends Component {
               name: "Ingredient 2",
             },
           ],
+          description: "Description of recipe goes here"
         },
       ],
       storeNewFavourite: this.storeFavourite,

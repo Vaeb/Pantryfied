@@ -29,6 +29,7 @@ export default class RecipeScreen extends Component {
       <View>
         <Text> Recipe Screen </Text>
         <Text>{toRenderRecipe}</Text>
+        <Text>{this.context.renderRecipe.description}</Text>
         <Button onPress={this.navigateInstructionsPressed} inheritStyle={styles.navButton} inheritTextStyle={styles.navButtonText}>
           Navigate to Instructions Screen
         </Button>
@@ -37,6 +38,7 @@ export default class RecipeScreen extends Component {
   }
 }
 
+
 const styles = StyleSheet.create({
   navButton: {
     flex: 1,
@@ -44,6 +46,10 @@ const styles = StyleSheet.create({
   navButtonText: {
     fontSize: 18,
   },
+
+  descriptionText: {
+    fontSize: 18,
+  }
 });
 
 RecipeScreen.contextType = PantryfiedContext;
