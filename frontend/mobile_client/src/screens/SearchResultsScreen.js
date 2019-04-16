@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, FlatList, TouchableOpacity, AsyncStorage } from 'react-native';
 import { PantryfiedContext } from '../context/PantryfiedContext';
-import { Button } from '../components/common/Button';
 import { FavButton } from '../components/common/FavButton';
+import { FavButtonFill } from '../components/common/FavButtonFill';
 
 // eslint-disable-next-line react/prefer-stateless-function
 export default class SearchResultsScreen extends Component {
@@ -11,20 +11,24 @@ export default class SearchResultsScreen extends Component {
     this.renderItem = this.renderItem.bind(this);
     this.favouriteButtonPressed = this.favouriteButtonPressed.bind(this);
     this.recipePressed = this.recipePressed.bind(this);
+    this.renderFavourite = this.renderFavourite.bind(this);
+    this.state = {
+      refresh: true,
+    };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     console.log('Found Recipes: ', JSON.stringify(this.context.foundRecipes));
+    console.log("searchReulst");
   }
 
+  // sync this.state.favourites with favourites screen using context and functions
   favouriteButtonPressed(item) {
-    // invert item favourite setting
-    // add or remove favourite as required
-    console.log("item: ", item);
-  }
-
-  addFavourite(newFavourite) {
-    this.context.storeNewFavourite(newFavourite);
+    console.log(item);
+    console.log("Fav before: " + JSON.stringify(this.context.favourites));
+    this.context.updateFavouriteArray(item);
+    this.setState({ refresh: !this.state.refresh });
+    console.log("Fav after: " + JSON.stringify(this.context.favourites));
   }
 
   recipePressed(recipe) {
@@ -32,18 +36,24 @@ export default class SearchResultsScreen extends Component {
     this.props.navigation.navigate('RecipeScreen');
   }
 
+
+  renderFavourite(item) {
+    if (item.favourite) {
+      return <FavButtonFill onPress={() => this.favouriteButtonPressed(item)} definedFlex={1} />;
+    }
+    return <FavButton onPress={() => this.favouriteButtonPressed(item)} definedFlex={1} />;
+  }
+
   renderItem(item) {
     return (
       <View style={{ flex: 1, flexDirection: 'row' }}>
         <TouchableOpacity onPress={() => this.recipePressed({ recipe: item })} style={{ flex: 4 }}>
-          <Text style={styles.item}>{item.key}</Text>
+          <Text style={styles.item}>{item.name}</Text>
         </TouchableOpacity>
-        <FavButton onPress={() => this.favouriteButtonPressed(item)} definedFlex={1} />
+        {this.renderFavourite(item)}
       </View>
     );
   }
-
-  
   
   render() {
     return (
@@ -51,6 +61,7 @@ export default class SearchResultsScreen extends Component {
         <Text style={{ flex: 2, fontSize: 20 }}> Search Results Screen </Text>
         <FlatList
             data={this.context.foundRecipes}
+            extraData={this.state.refresh}
             renderItem={({item}) => this.renderItem(item)}
         />
       </View>

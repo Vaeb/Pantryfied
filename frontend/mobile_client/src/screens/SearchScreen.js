@@ -12,18 +12,28 @@ import { PantryfiedContext } from '../context/PantryfiedContext';
 import { Button } from '../components/common/Button';
 
 
-const getRecipeQuery = gql`
-    query GetRecipes($ingredients: [Int!]!) {
+/*const getRecipeQuery = gql`
+    query($ingredients: [Int]!) {
         getRecipes(ingredients: $ingredients) {
             id
             name
+            description
             imgUrl
             ingredients {
-                id
-                name
+              id
+              name
             }
         }
     }
+`;*/
+
+const getRecipeQuery = gql`
+  query {
+    getRecipes {
+      id
+      name
+    }
+  }
 `;
 
 const getIngredientsQuery = gql`
@@ -45,6 +55,7 @@ export default class SearchScreen extends Component {
     this.searchButtonPressed = this.searchButtonPressed.bind(this);
     this.shaveList = this.shaveList.bind(this);
     this.fetchIngredientList = this.fetchIngredientList.bind(this);
+    this.checkResultsFavourites = this.checkResultsFavourites.bind(this);
     this.state = {
       ingredients: [],
       ingredientsArg: [],
@@ -108,24 +119,39 @@ export default class SearchScreen extends Component {
   async searchButtonPressed() {
     this.shaveList();
     // get the recipes from the backend using this.state.ingredientsToSearch
-
     await this.context.apolloClient
       .query({
         query: getRecipeQuery,
-        variables: { ingredients: this.state.ingredientsArg },
+        //variables: { ingredients: this.state.ingredientsArg },
         fetchPolicy: 'network-only',
       })
       .then(({ data }) => {
-        // const dataArr = data.getRecipes
-        // console.log(dataArr);
-        // dataArr.forEach((arrayItem) => {
-        //   arrayItem.key = arrayItem.id.toString();
-        // });
-        // this.context.setFoundRecipeList(dataArr)
+        let dataArr = data.getRecipes;
+        console.log(dataArr);
+        dataArr.forEach((arrayItem) => {
+          arrayItem.key = arrayItem.id.toString();
+          arrayItem.favourite = false;
+        });
+        dataArr = this.checkResultsFavourites(dataArr);
+        this.context.setFoundRecipeList(dataArr);
+        console.log("data arr: ", dataArr);
       })
       .catch((error) => console.log(error));
 
     this.props.navigation.navigate('SearchResultsScreen');
+  }
+
+
+  // probably needs optimising
+  checkResultsFavourites(dataArr) {
+    this.context.favourites.forEach((arrayItem) => {
+      dataArr.forEach((dataItem) => {
+        if (arrayItem.key == dataItem.key) {
+          dataItem.favourite = true;
+        }
+      });
+    });
+    return dataArr;
   }
 
   shaveList() {

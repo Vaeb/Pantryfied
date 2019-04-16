@@ -3,8 +3,21 @@ import {
   Platform, StyleSheet, Text, View, TextInput, TouchableOpacity, StatusBar, ScrollView, ActivityIndicator,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import gql from 'graphql-tag';
 import { withNavigation } from 'react-navigation';
+import { PantryfiedContext } from '../context/PantryfiedContext';
 
+const loginRequest = gql`
+  mutation($username: String!, $password: String!) {
+    login(userKey: $username, password: $password) {
+      ok
+      user
+      token
+      refreshToken
+      errors
+    }
+  }
+`;
 
 class LoginForm extends Component {
   constructor(props) {
@@ -26,10 +39,29 @@ class LoginForm extends Component {
     console.log("user: " + this.state.username + " pass: " + this.state.password);
     // check username and password here, if correct then set loading to false, and navigate
     // if incorrect then set loading to false and loginfailed to true
+    this.props.navigation.navigate("Main");
+/*
+    await this.context.apolloClient
+      .mutate({
+        mutation: loginRequest,
+        variables: { username: this.state.username, password: this.state.password },
+        fetchPolicy: 'no-cache',
+      })
+      .then(({ data }) => {
+        const dataArr = data.getIngredients;
+        console.log("log Data Arr", dataArr)
+        dataArr.forEach((arrayItem) => {
+          arrayItem.selected = false;
+          arrayItem.key = arrayItem.id.toString();
+          this.state.ingredients.push(arrayItem);
+        });
+      })
+      .catch((error) => console.log(error));
+
     setTimeout(() => {
       this.setState({ loading: false, loginFailed: true, username: '', password: '' });
     }, 3000);
-
+*/
     //this.props.navigation.navigate("Main");
   }
 
@@ -108,6 +140,8 @@ class LoginForm extends Component {
   }
 }
 export default withNavigation(LoginForm);
+
+LoginForm.contextType = PantryfiedContext;
 
 /* How to install React Icons:
  https://stackoverflow.com/questions/42420931/how-to-use-react-native-vector-icons
