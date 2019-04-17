@@ -32,10 +32,7 @@ export default class App extends Component {
     this.removeFavourite = this.removeFavourite.bind(this);
     this.removeItemFromArray = this.removeItemFromArray.bind(this);
     this.getFavourites = this.getFavourites.bind(this);
-
-    this.storeFavourite = async (newFavourite) => {
-      await AsyncStorage.mergeItem('favouritesList', JSON.stringify(newFavourite), (error) => { console.log('Merge error: ', error); });
-    };
+    this.storeFavourites = this.storeFavourites.bind(this);
 
     this.setRecipeToRender = (recipe) => {
       this.setState({ renderRecipe: recipe.recipe });
@@ -44,15 +41,29 @@ export default class App extends Component {
     this.setRecipeList = (recipeList) => {
       this.setState({ foundRecipes: recipeList });
     };
+
+    this.updateResultsFavourites = () => {
+      console.log("updateResultsFav");
+      this.state.favourites.forEach((arrayItem) => {
+        this.state.foundRecipes.forEach((dataItem) => {
+          if (arrayItem.key == dataItem.key) {
+            if (arrayItem.favourite) {
+              dataItem.favourite = true;
+            } else {
+              dataItem.favourite = false;
+            }
+          }
+        });
+      });
+    };
     
     this.updateFavouriteArray = (item) => {
       // also update foundRecipes with the check
-      console.log("item: ", item);
       let newFav = [];
       if (!this.checkIfInList(item)) {
         console.log("item not in list");
         item.favourite = true;
-        this.state.favourites.push(item);
+        this.addFavourite(item);
       } else {
         console.log("item already in list");
         this.state.favourites.forEach((arrayItem) => {
@@ -69,6 +80,7 @@ export default class App extends Component {
         });
         this.setState({ favourites: newFav });
       }
+      this.updateResultsFavourites();
     };
 
     this.state = {
@@ -103,10 +115,10 @@ export default class App extends Component {
           ],
         },
       ],
-      storeNewFavourite: this.storeFavourite,
       renderRecipe: {},
       setRenderRecipe: this.setRecipeToRender,
       updateFavouriteArray: this.updateFavouriteArray,
+      updateResultsFavourites: this.updateResultsFavourites,
       apolloClient: client,
       favourites: [],
       /*
@@ -137,19 +149,30 @@ export default class App extends Component {
   }
 
   async addFavourite(item) {
-    console.log("Item:", item);
     if (this.checkIfInList(item)) {
       console.log("item already in list so dont push");
     } else {
       console.log("item not in list");
       this.state.favourites.push(item);
-      try {
-        await AsyncStorage.setItem('favouritesList', JSON.stringify(this.state.favourites));
-        console.log("favList add: ", JSON.stringify(this.state.favourites));
-      } catch (error) {
-        console.log(error.message);
-      }
     }
+    try {
+      let newFavArr = [];
+      newFavArr = this.storeFavourites();
+      await AsyncStorage.setItem('favouritesList', JSON.stringify(newFavArr));
+      console.log("favList add: ", JSON.stringify(newFavArr));
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
+  storeFavourites() {
+    let newFavArr = [];
+    this.state.favourites.forEach((arrayItem) => {
+      if (arrayItem.favourite) {
+        newFavArr.push(arrayItem);
+      }
+    });
+    return newFavArr;
   }
 
   checkIfInList(item) {
@@ -167,6 +190,7 @@ export default class App extends Component {
   async removeFavourite(item) {
     try {
       const favListArr = this.removeItemFromArray(item);
+    console.log("newFavArr: " + JSON.stringify(favListArr));
       await AsyncStorage.setItem('favouritesList', JSON.stringify(favListArr));
       console.log("favList remove: ", favListArr);
     } catch (error) {
@@ -178,7 +202,10 @@ export default class App extends Component {
     let newFavArr = [];
     this.state.favourites.forEach((arrayItem) => {
       if (arrayItem.key != item.key) {
-        newFavArr.push(arrayItem);
+        if(arrayItem.favourite) {
+          console.log("item: ", arrayItem, " added to favArr");
+          newFavArr.push(arrayItem);
+        }
       }
     });
     return newFavArr;
@@ -189,7 +216,6 @@ export default class App extends Component {
       <PantryfiedContext.Provider
         value={{
           user: this.state.userData,
-          storeNewFavourite: this.state.storeNewFavourite,
           setRenderRecipe: this.state.setRenderRecipe,
           renderRecipe: this.state.renderRecipe,
           foundRecipes: this.state.foundRecipes,
@@ -197,6 +223,7 @@ export default class App extends Component {
           setFoundRecipeList: this.state.setFoundRecipeList,
           favourites: this.state.favourites,
           updateFavouriteArray: this.state.updateFavouriteArray,
+          updateResultsFavourites: this.state.updateResultsFavourites,
         }}
       >
         <AppNavigation screenProps={{ ...this.props }} />

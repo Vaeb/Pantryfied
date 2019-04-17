@@ -24,11 +24,9 @@ export default class SearchResultsScreen extends Component {
 
   // sync this.state.favourites with favourites screen using context and functions
   favouriteButtonPressed(item) {
-    console.log(item);
-    console.log("Fav before: " + JSON.stringify(this.context.favourites));
     this.context.updateFavouriteArray(item);
+    this.context.updateResultsFavourites();
     this.setState({ refresh: !this.state.refresh });
-    console.log("Fav after: " + JSON.stringify(this.context.favourites));
   }
 
   recipePressed(recipe) {

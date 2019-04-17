@@ -147,7 +147,9 @@ export default class SearchScreen extends Component {
     this.context.favourites.forEach((arrayItem) => {
       dataArr.forEach((dataItem) => {
         if (arrayItem.key == dataItem.key) {
-          dataItem.favourite = true;
+          if (arrayItem.favourite) {
+            dataItem.favourite = true;
+          }
         }
       });
     });

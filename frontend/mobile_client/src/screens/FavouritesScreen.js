@@ -23,10 +23,17 @@ export default class FavouritesScreen extends Component {
       refresh: true,
     };
   }
+
+  
+  // componentDidMount() {
+  //   this.resetAsyncStorage();
+  // }
   
   // testing
   async resetAsyncStorage() {
-    await AsyncStorage.setItem('favouritesList', JSON.stringify(this.context.favourites));
+    console.log("reset");
+    //await AsyncStorage.setItem('favouritesList', JSON.stringify(this.context.favourites));
+    await AsyncStorage.setItem('favouritesList', '');
   }
 
   renderFavButton(item) {
@@ -54,7 +61,7 @@ export default class FavouritesScreen extends Component {
     return (
       <View style={{ flex: 1, flexDirection: 'row' }}>
         <TouchableOpacity onPress={() => this.recipePressed({ recipe: item })} style={{ flex: 4 }}>
-          <Text style={styles.item}>{item.key}</Text>
+          <Text style={styles.item}>{item.name}</Text>
         </TouchableOpacity>
         {this.renderFavButton(item)}
       </View>
