@@ -10,6 +10,8 @@ export default class InstructionsScreen extends Component {
    * Will probably just be a simple case of displaying an image in the <Image> tag
    * Along with some <Text> which you'll need to style
   */
+
+  // make lists into ListItem and add key fields in App.js when setting renderRecipe
   render() {
     return (
       <View>
