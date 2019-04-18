@@ -9,6 +9,7 @@ export default class InstructionsScreen extends Component {
    * The recipe object will be stored in this.context.renderRecipe
    * Will probably just be a simple case of displaying an image in the <Image> tag
    * Along with some <Text> which you'll need to style
+   * remove the braces from where the comments are in the middle of the JSX when you remove the comments
   */
 
   // make lists into ListItem and add key fields in App.js when setting renderRecipe
@@ -17,9 +18,11 @@ export default class InstructionsScreen extends Component {
       <View>
         <Text style={styles.nameText}>{this.context.renderRecipe.name}</Text>
         <Text style={styles.headerText}>Ingredients</Text>
-        <Text style={styles.instructionText}>{this.context.renderRecipe.ingredients}</Text>
+        {/* either use ListItem or FlatList for ingredients, they work mostly the same */}
+        <Text style={styles.instructionText}>{this.context.renderRecipe.ingredients[0].name}</Text>
         <Text style={styles.headerText}>Instructions</Text>
-        <Text style={styles.instructionText}>{this.context.renderRecipe.directions}</Text>
+        {/* not sure what this looks like yet so probably just ignore it */}
+        {/* <Text style={styles.instructionText}>{this.context.renderRecipe.directions}</Text> */}
       </View>
     );
   }

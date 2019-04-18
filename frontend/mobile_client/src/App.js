@@ -56,13 +56,15 @@ export default class App extends Component {
           {
             id: 201,
             name: "Ingredient 1",
+            key: "201",
           },
           {
             id: 202,
             name: "Ingredient 2",
+            key: "202",
           },
         ],
-      } });
+      }});
     };
 
     this.setRecipeList = (recipeList) => {
