@@ -127,10 +127,14 @@ export default class SearchScreen extends Component {
       })
       .then(({ data }) => {
         let dataArr = data.getRecipes;
-        console.log(dataArr);
+        console.log("dataArr here", dataArr);
         dataArr.forEach((arrayItem) => {
           arrayItem.key = arrayItem.id.toString();
           arrayItem.favourite = false;
+          // this code wont work for now so leave it commented out
+          // arrayItem.ingredients.forEach((ingredientItem) => {
+          //   ingredientItem.key = ingredientItem.id.toString();
+          // });
         });
         dataArr = this.checkResultsFavourites(dataArr);
         this.context.setFoundRecipeList(dataArr);
