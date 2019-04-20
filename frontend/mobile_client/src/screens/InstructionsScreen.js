@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import { PantryfiedContext } from '../context/PantryfiedContext';
+import { Button } from '../components/common/Button';
+import {Image} from 'react-native' ;
 
 // eslint-disable-next-line react/prefer-stateless-function
 export default class InstructionsScreen extends Component {
@@ -15,38 +17,38 @@ export default class InstructionsScreen extends Component {
   render() {
     return (
       <View>
-        <Text style={styles.nameText}>{this.context.renderRecipe.name}</Text>
-        <Text style={styles.headerText}>Ingredients</Text>
-        <Text style={styles.instructionText}>{this.context.renderRecipe.ingredients}</Text>
-        <Text style={styles.headerText}>Instructions</Text>
-        <Text style={styles.instructionText}>{this.context.renderRecipe.directions}</Text>
+        <Text allowFontScaling adjustsFontSizeToFit numberOfLines={1} style={styles.nameText}>{this.context.renderRecipe.title}</Text>
+        <Image
+            source={{uri: this.context.renderRecipe.imgUrl}}
+            style={{width: 200, height: 200,}}
+        /> //Display the image for the recipe with height and width 200 from the recipe object in the database
+        <Text style={styles.directionHeading}>Directions</Text> //Heading with text Directions
+        <Text style={styles.directionText}>{this.context.renderRecipe.directions}</Text> //Display the directions for the recipe
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+    nameText: { //make the title central at the top with a black background
+        fontSize: 25,
 
-      nameText: {
-          fontSize: 30,
-          color: "#FFFFFF",
-          backgroundColor: "#28BAA5",
-          textAlign: "center",
-          height: 50,
-          alignItems: "center",
-        },
+        color: "#FFFFFF",
+        backgroundColor: "#28BAA5",
+        height: 50,
+        alignItems: "center",
+        textAlign: "center",
+        textAlignVertical:"center"
+    },
 
-      instructionText: {
-         fontSize: 20,
-         color: "black",
-      },
+    directionHeading: {
+        fontSize: 20,
+        fontWeight: "bold"
+    },
 
-      headerText: {
-        fontSize: 22,
-        color: "black",
-        fontWeight: "bold",
-      }
-
+    directionText: {
+        fontSize: 18
+    },
 });
 
 InstructionsScreen.contextType = PantryfiedContext;
