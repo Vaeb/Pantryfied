@@ -36,11 +36,11 @@ class LoginForm extends Component {
 
   async loginButtonPressed() {
     this.setState({ loading: true });
-    console.log("user: " + this.state.username + " pass: " + this.state.password);
+    console.log(`user: ${this.state.username} pass: ${this.state.password}`);
     // check username and password here, if correct then set loading to false, and navigate
     // if incorrect then set loading to false and loginfailed to true
-    this.props.navigation.navigate("Main");
-/*
+    this.props.navigation.navigate('Main');
+    /*
     await this.context.apolloClient
       .mutate({
         mutation: loginRequest,
@@ -62,7 +62,7 @@ class LoginForm extends Component {
       this.setState({ loading: false, loginFailed: true, username: '', password: '' });
     }, 3000);
 */
-    //this.props.navigation.navigate("Main");
+    // this.props.navigation.navigate("Main");
   }
 
   registerButtonPressed() {
@@ -85,7 +85,7 @@ class LoginForm extends Component {
             keyboardType="email-address" // Changes keyboard settings
             autoCapitalize="none"
             autoCorrect={false}
-            onChangeText={(text) => this.setState({ username: text })}
+            onChangeText={text => this.setState({ username: text })}
           />
           <TextInput
             style={styles.input}
@@ -94,7 +94,7 @@ class LoginForm extends Component {
             returnKeyType="go"
             ref={input => (this.passwordInput = input)}
             secureTextEntry
-            onChangeText={(text) => this.setState({ password: text })}
+            onChangeText={text => this.setState({ password: text })}
           />
           <TouchableOpacity style={styles.buttonContainer} onPress={this.loginButtonPressed}>
             <Text style={styles.buttonText}>Login</Text>
@@ -112,20 +112,14 @@ class LoginForm extends Component {
 
   displayFailedLogin() {
     if (this.state.loginFailed) {
-      return (
-        <Text style={{ color: 'red', fontSize: 18, alignSelf: 'center' }}>
-          Failed to Log in
-        </Text>
-      );
+      return <Text style={{ color: 'red', fontSize: 18, alignSelf: 'center' }}>Failed to Log in</Text>;
     }
     return <View />;
   }
 
   displayLoading() {
     if (this.state.loading) {
-      return (
-        <ActivityIndicator size="large" color="#FFFFFF" />
-      );
+      return <ActivityIndicator size="large" color="#FFFFFF" />;
     }
     return <View />;
   }
