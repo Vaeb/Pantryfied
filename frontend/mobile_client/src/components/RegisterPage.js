@@ -3,7 +3,6 @@ import {
   StyleSheet, Text, View, TouchableOpacity, TextInput, StatusBar,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { Button } from './common/Button';
 
 export default class RegisterPage extends Component {
   constructor(props) {
