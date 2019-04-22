@@ -4,25 +4,20 @@ import { PantryfiedContext } from '../context/PantryfiedContext';
 
 // eslint-disable-next-line react/prefer-stateless-function
 export default class PersonalDetailsScreen extends Component {
-
   constructor(props) {
     super(props);
 
     // obtain stored data
     this.state = {
       details: {
-        height: "",
-        weight: "",
-      }, 
-    }; 
+        height: '',
+        weight: '',
+      },
+    };
   }
 
-  
-
   render() {
-    return (
-
-    );
+    return null;
   }
 }
 

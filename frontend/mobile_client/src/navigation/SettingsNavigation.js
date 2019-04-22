@@ -1,8 +1,6 @@
-import {
-  createStackNavigator,
-} from 'react-navigation';
+import { createStackNavigator } from 'react-navigation';
 
-import MainSettingsPage from '../screens/MainSettingsPage';
+import MainSettingsPage from '../screens/MainSettingsScreen';
 import PreferencesScreen from '../screens/PreferencesScreen';
 import PersonalDetailsScreen from '../screens/PersonalDetailsScreen';
 import AccountDetailsScreen from '../screens/AccountDetailsScreen';
@@ -13,7 +11,7 @@ export default createStackNavigator(
   {
     MainSettingsPage,
     PreferencesScreen,
-    PersonalDetailsScreen
+    PersonalDetailsScreen,
     AccountDetailsScreen,
     LogoutScreen,
     UnitsScreen,

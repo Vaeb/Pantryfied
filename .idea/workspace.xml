@@ -2,11 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a20f71dc-b88a-4212-8d55-699871ce50e4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/ios/FrontEnd.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mobile_client/ios/FrontEnd.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mobile_client/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mobile_client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/src/components/RegisterPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mobile_client/src/components/RegisterPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/src/navigation/SettingsNavigation.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mobile_client/src/navigation/SettingsNavigation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/src/screens/AccountDetailsScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mobile_client/src/screens/AccountDetailsScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/src/screens/LogoutScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mobile_client/src/screens/LogoutScreen.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/mobile_client/src/screens/MainSettingsScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mobile_client/src/screens/MainSettingsScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/src/screens/PersonalDetailsScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mobile_client/src/screens/PersonalDetailsScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/src/screens/PreferencesScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mobile_client/src/screens/PreferencesScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/src/screens/UnitsScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mobile_client/src/screens/UnitsScreen.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -37,9 +40,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -76,7 +79,7 @@
     <frame x="-7" y="0" width="1294" height="1057" extended-state="1" />
     <layout>
       <window_info id="Captures" order="0" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.33549434" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.33519107" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Designer" order="4" />
@@ -87,10 +90,10 @@
       <window_info anchor="bottom" id="TODO" order="1" />
       <window_info anchor="bottom" id="Terminal" order="2" />
       <window_info anchor="bottom" id="Event Log" order="3" side_tool="true" />
-      <window_info active="true" anchor="right" id="Assistant" visible="true" weight="0.3298217" />
       <window_info anchor="right" id="Capture Analysis" order="0" />
       <window_info anchor="right" id="Theme Preview" order="1" />
       <window_info anchor="right" id="Palette&#9;" order="2" />
+      <window_info active="true" anchor="right" id="Assistant" order="3" visible="true" weight="0.3298217" />
     </layout>
   </component>
   <component name="editorHistoryManager">

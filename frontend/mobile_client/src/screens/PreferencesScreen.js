@@ -4,25 +4,25 @@ import { PantryfiedContext } from '../context/PantryfiedContext';
 
 // eslint-disable-next-line react/prefer-stateless-function
 export default class PreferencesScreen extends Component {
-
   constructor(props) {
     super(props);
 
     // obtain stored data
     this.state = {
-      details: {
-      }, 
-    }; 
+      details: {},
+    };
   }
-
-  
 
   render() {
-    return (
-
-    );
+    return null;
   }
 }
+// render() {
+//   return (
+//     null
+//   );
+// }
+//
 
 PreferencesScreen.contextType = PantryfiedContext;
 
