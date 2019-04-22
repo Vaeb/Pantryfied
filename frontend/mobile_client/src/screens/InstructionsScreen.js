@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, Image, FlatList} from 'react-native';
 import { PantryfiedContext } from '../context/PantryfiedContext';
 import { Button } from '../components/common/Button';
-import {Image} from 'react-native' ;
+
 
 // eslint-disable-next-line react/prefer-stateless-function
 export default class InstructionsScreen extends Component {
@@ -23,6 +23,15 @@ export default class InstructionsScreen extends Component {
             source={{uri: this.context.renderRecipe.imgUrl}}
             style={{width: 200, height: 200,}}
         /> //Display the image for the recipe with height and width 200 from the recipe object in the database
+
+        //<View>
+            <FlatList
+                data={this.context.renderRecipe.ingredients}
+                renderItem={({ item }) => <Text> {item.name} </Text>}
+            />
+        //</View>
+
+
         <Text style={styles.directionHeading}>Directions</Text> //Heading with text Directions
         <Text style={styles.directionText}>{this.context.renderRecipe.directions}</Text> //Display the directions for the recipe
       </View>
