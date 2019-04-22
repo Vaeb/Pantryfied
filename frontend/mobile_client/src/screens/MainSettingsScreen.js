@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native';
 import { PantryfiedContext } from '../context/PantryfiedContext';
 
 // eslint-disable-next-line react/prefer-stateless-function
@@ -8,27 +8,39 @@ export default class MainSettingsScreen extends Component {
    * This will probably just be a <FlatList> of buttons, dont worry about the navigation yet, just get it looking decent
    * and then ill give you some more pages to add in once we decide what settings there are
    */
-  // constructor(prop) {
-  //   super(props);
+  constructor(props) {
+    super(props);
+    this.navigateToScreen = this.navigateToScreen.bind(this); 
+    this.renderButton = this.renderButton.bind(this);
+    this.state = {
+      data = [
+        { key: 'Personal details', nav: "PersonalDetailsScreen" },
+        { key: 'Account details', nav: "AccountDetailsScreen" },
+        { key: 'Unit system', nav: "UnitsScreen" },
+        { key: 'Food preference', nav: "PreferencesScreen" },
+        { key: 'Logout', nav: "LogoutScreen" },
+      ],
+      loading: false,
+      refreshing: false,
+    };
+  }
 
-  //   this.state = {
-  //     data: ['a'],
-  //     loading: false,
-  //     refreshing: false,
-  //   };
-  // }
+  navigateToScreen(item) {
+    this.props.navigation.navigate(item.nav);
+  }
+  
+  renderButton(item) {
+    return(
+      <TouchableOpacity onPress={() => this.navigateToScreen(item)}>
+        <Text>{item.key}</Text> 
+      </TouchableOpacity>
+    );
+  }
 
   render() {
-    const data = [
-      { key: 'Personal details' },
-      { key: 'Account details' },
-      { key: 'Unit system' },
-      { key: 'Food preference' },
-      { key: 'Logout' },
-    ];
     return (
       <View style={styles.MainContainer}>
-        <FlatList data={data} renderItem={({ item }) => <Text>{item.key}</Text>} />
+          <FlatList data={this.state.data} renderItem={({ item }) => {this.renderButton(item)} />
       </View>
     );
   }
