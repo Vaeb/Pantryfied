@@ -4,7 +4,6 @@ import {
 } from 'react-native';
 import LoginForm from './LoginForm';
 
-
 const LoginPage = () => (
   /* BUG - when using the keyboard, the button for the login doesnt move up the screen properly, So i moved everything higher up */
   /* <ImageBackground source={require('../Images/whiteBackgroundLogin.png')} style={styles.backgroundImage} /> * Does not like to work properly:) */

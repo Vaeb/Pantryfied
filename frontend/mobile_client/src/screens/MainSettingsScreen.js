@@ -32,11 +32,10 @@ export default class MainSettingsScreen extends Component {
   renderButton(item) {
     return(
       <TouchableOpacity onPress={() => this.navigateToScreen(item)}>
-        <Text>{item.key}</Text> 
+        <Text style={styles.text}>{item.key}</Text> 
       </TouchableOpacity>
     );
   }
-
   render() {
     return (
       <View style={styles.MainContainer}>
@@ -55,11 +54,14 @@ const styles = StyleSheet.create({
     flex: 1,
     margin: 2,
   },
-  cell: {
-    padding: 10,
-    fontSize: 18,
-    height: 44,
-    margin: 30,
-    justifyContent: 'center', // https://reactnativecode.com/justifycontenton-style-explained/
+  text: {
+    textAlign: 'center',
+    width: 360,
+    height: 40,
+    borderColor: 'grey',
+    marginTop: 20,
+    fontSize: 28,
+    borderBottomWidth: 1,
+    borderBottomColor: 'grey',
   },
 });
