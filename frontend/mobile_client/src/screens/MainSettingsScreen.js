@@ -19,7 +19,13 @@ export default class MainSettingsScreen extends Component {
   // }
 
   render() {
-    const data = [{ key: 'a' }, { key: 'b' }, { key: 'b' }, { key: 'b' }, { key: 'b' }, { key: 'b' }, { key: 'b' }, { key: 'b' }];
+    const data = [
+      { key: 'Personal details' },
+      { key: 'Account details' },
+      { key: 'Unit system' },
+      { key: 'Food preference' },
+      { key: 'Logout' },
+    ];
     return (
       <View style={styles.MainContainer}>
         <FlatList data={data} renderItem={({ item }) => <Text>{item.key}</Text>} />
@@ -41,6 +47,7 @@ const styles = StyleSheet.create({
     padding: 10,
     fontSize: 18,
     height: 44,
+    margin: 30,
     justifyContent: 'center', // https://reactnativecode.com/justifycontenton-style-explained/
   },
 });
