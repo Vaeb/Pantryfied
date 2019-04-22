@@ -22,18 +22,16 @@ export default class InstructionsScreen extends Component {
         <Image
             source={{uri: this.context.renderRecipe.imgUrl}}
             style={{width: 200, height: 200,}}
-        /> //Display the image for the recipe with height and width 200 from the recipe object in the database
-
-        //<View>
+        />
+        <Text style={styles.directionHeading}>Ingredients</Text>
             <FlatList
                 data={this.context.renderRecipe.ingredients}
-                renderItem={({ item }) => <Text> {item.name} </Text>}
+                renderItem={({ item }) => <Text style={styles.directionText}>{item.quantity}x {item.name}</Text>}
             />
-        //</View>
 
 
-        <Text style={styles.directionHeading}>Directions</Text> //Heading with text Directions
-        <Text style={styles.directionText}>{this.context.renderRecipe.directions}</Text> //Display the directions for the recipe
+        <Text style={styles.directionHeading}>Directions</Text>
+        <Text style={styles.directionText}>{this.context.renderRecipe.directions}</Text>
         {/* either use ListItem or FlatList for ingredients, they work mostly the same */}
       </View>
     );
@@ -58,7 +56,7 @@ const styles = StyleSheet.create({
     },
 
     directionText: {
-        fontSize: 18
+        fontSize: 15
     },
 });
 
