@@ -5,6 +5,7 @@ import {
 
 import SearchStack from './RecipeNavigation';
 import FavouritesScreen from '../screens/FavouritesScreen';
+import SettingsStack from './SettingsNavigation';
 import MainSettingsScreen from '../screens/MainSettingsScreen';
 
 // stack is like one screen loading on top of another one
@@ -20,15 +21,6 @@ const FavouritesStack = createStackNavigator(
 FavouritesStack.navigationOptions = {
   tabBarLabel: 'Favourites',
 };
-
-const SettingsStack = createStackNavigator(
-  {
-    MainSettings: MainSettingsScreen,
-  },
-  {
-    headerMode: 'none',
-  },
-);
 
 SettingsStack.navigationOptions = {
   tabBarLabel: 'Settings',

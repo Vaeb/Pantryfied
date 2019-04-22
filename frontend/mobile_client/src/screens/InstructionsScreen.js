@@ -34,6 +34,7 @@ export default class InstructionsScreen extends Component {
 
         <Text style={styles.directionHeading}>Directions</Text> //Heading with text Directions
         <Text style={styles.directionText}>{this.context.renderRecipe.directions}</Text> //Display the directions for the recipe
+        {/* either use ListItem or FlatList for ingredients, they work mostly the same */}
       </View>
     );
   }
