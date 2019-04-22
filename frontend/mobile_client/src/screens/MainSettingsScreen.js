@@ -6,10 +6,7 @@ import { PantryfiedContext } from '../context/PantryfiedContext';
 
 // eslint-disable-next-line react/prefer-stateless-function
 export default class MainSettingsScreen extends Component {
-  /*
-   * This will probably just be a <FlatList> of buttons, dont worry about the navigation yet, just get it looking decent
-   * and then ill give you some more pages to add in once we decide what settings there are
-   */
+
   constructor(props) {
     super(props);
     this.navigateToScreen = this.navigateToScreen.bind(this);
@@ -28,27 +25,31 @@ export default class MainSettingsScreen extends Component {
   }
 
   navigateToScreen(item) {
-    this.props.navigation.navigate(item.nav);
+    if (item.nav == "LogoutScreen") {
+      // logout user and switch back to login page
+      console.log("logout");
+    } else {
+      this.props.navigation.navigate(item.nav);
+    }
   }
 
   renderButton(item) {
+    console.log('renderButton: ', item);
     return (
-      <TouchableOpacity onPress={() => this.navigateToScreen(item)}>
-        <Text style={styles.text}>{item.key}</Text>
-      </TouchableOpacity>
+      <View style={{ flex: 1 }}>
+        <TouchableOpacity onPress={() => this.navigateToScreen(item)}>
+          <Text style={styles.text}>{item.key}</Text>
+        </TouchableOpacity>
+      </View>
     );
   }
 
   render() {
-    console.log('111');
-    console.log('renderButton: ', item);
     return (
-      <View style={styles.MainContainer}>
+      <View style={{ flex: 1 }}>
         <FlatList
           data={this.state.data}
-          renderItem={({ item }) => {
-            this.renderButton(item);
-          }}
+          renderItem={({ item }) => this.renderButton(item)}
         />
       </View>
     );

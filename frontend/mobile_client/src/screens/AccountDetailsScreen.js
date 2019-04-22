@@ -14,7 +14,7 @@ export default class AccountDetailsScreen extends Component {
   }
 
   render() {
-    return null;
+    return <Text>Account details</Text>;
   }
 }
 

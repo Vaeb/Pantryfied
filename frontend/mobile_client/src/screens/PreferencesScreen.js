@@ -14,15 +14,9 @@ export default class PreferencesScreen extends Component {
   }
 
   render() {
-    return null;
+    return <Text>Preferences</Text>;
   }
 }
-// render() {
-//   return (
-//     null
-//   );
-// }
-//
 
 PreferencesScreen.contextType = PantryfiedContext;
 

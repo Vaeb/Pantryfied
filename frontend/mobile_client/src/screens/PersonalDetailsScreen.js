@@ -17,7 +17,7 @@ export default class PersonalDetailsScreen extends Component {
   }
 
   render() {
-    return null;
+    return <Text>Personal details</Text>;
   }
 }
 

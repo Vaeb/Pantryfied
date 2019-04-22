@@ -14,7 +14,7 @@ export default class UnitsScreen extends Component {
   }
 
   render() {
-    return null;
+    return <Text>Units</Text>;
   }
 }
 
