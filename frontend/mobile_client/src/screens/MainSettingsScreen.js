@@ -12,7 +12,7 @@ export default class MainSettingsScreen extends Component {
   //   super(props);
 
   //   this.state = {
-  //     data: ['a'],
+  //     data: [],
   //     loading: false,
   //     refreshing: false,
   //   };
@@ -28,7 +28,7 @@ export default class MainSettingsScreen extends Component {
     ];
     return (
       <View style={styles.MainContainer}>
-        <FlatList data={data} renderItem={({ item }) => <Text>{item.key}</Text>} />
+        <FlatList data={data} renderItem={({ item }) => <Text style={styles.text}>{item.key}</Text>} />
       </View>
     );
   }
@@ -43,11 +43,14 @@ const styles = StyleSheet.create({
     flex: 1,
     margin: 2,
   },
-  cell: {
-    padding: 10,
-    fontSize: 18,
-    height: 44,
-    margin: 30,
-    justifyContent: 'center', // https://reactnativecode.com/justifycontenton-style-explained/
+  text: {
+    textAlign: 'center',
+    width: 360,
+    height: 40,
+    borderColor: 'grey',
+    marginTop: 20,
+    fontSize: 28,
+    borderBottomWidth: 1,
+    borderBottomColor: 'grey',
   },
 });
