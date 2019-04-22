@@ -25,13 +25,6 @@ export default class InstructionsScreen extends Component {
         /> //Display the image for the recipe with height and width 200 from the recipe object in the database
         <Text style={styles.directionHeading}>Directions</Text> //Heading with text Directions
         <Text style={styles.directionText}>{this.context.renderRecipe.directions}</Text> //Display the directions for the recipe
-        {/*<Text style={styles.nameText}>{this.context.renderRecipe.name}</Text>*/}
-        {/*<Text style={styles.headerText}>Ingredients</Text>*/}
-        {/* either use ListItem or FlatList for ingredients, they work mostly the same */}
-        {/*<Text style={styles.instructionText}>{this.context.renderRecipe.ingredients[0].name}</Text>*/}
-        {/*<Text style={styles.headerText}>Instructions</Text>*/}
-        {/* not sure what this looks like yet so probably just ignore it */}
-        {/* <Text style={styles.instructionText}>{this.context.renderRecipe.directions}</Text> */}
       </View>
     );
   }
