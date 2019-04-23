@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a20f71dc-b88a-4212-8d55-699871ce50e4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/src/navigation/SettingsNavigation.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mobile_client/src/navigation/SettingsNavigation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/src/screens/AccountDetailsScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mobile_client/src/screens/AccountDetailsScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/src/screens/LogoutScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mobile_client/src/screens/LogoutScreen.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/mobile_client/src/screens/MainSettingsScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mobile_client/src/screens/MainSettingsScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/src/screens/PersonalDetailsScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mobile_client/src/screens/PersonalDetailsScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/src/screens/PreferencesScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mobile_client/src/screens/PreferencesScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mobile_client/src/screens/UnitsScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mobile_client/src/screens/UnitsScreen.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -41,8 +34,8 @@
     </navigator>
     <panes>
       <pane id="ProjectPane" />
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">

@@ -6,7 +6,6 @@ import { PantryfiedContext } from '../context/PantryfiedContext';
 
 // eslint-disable-next-line react/prefer-stateless-function
 export default class MainSettingsScreen extends Component {
-
   constructor(props) {
     super(props);
     this.navigateToScreen = this.navigateToScreen.bind(this);
@@ -25,9 +24,10 @@ export default class MainSettingsScreen extends Component {
   }
 
   navigateToScreen(item) {
-    if (item.nav == "LogoutScreen") {
+    if (item == 'LogoutScreen') {
       // logout user and switch back to login page
-      console.log("logout");
+      console.log('logout');
+      this.props.navigation.navigate(item.nav);
     } else {
       this.props.navigation.navigate(item.nav);
     }
@@ -36,7 +36,7 @@ export default class MainSettingsScreen extends Component {
   renderButton(item) {
     console.log('renderButton: ', item);
     return (
-      <View style={{ flex: 1 }}>
+      <View>
         <TouchableOpacity onPress={() => this.navigateToScreen(item)}>
           <Text style={styles.text}>{item.key}</Text>
         </TouchableOpacity>
@@ -46,11 +46,8 @@ export default class MainSettingsScreen extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
-        <FlatList
-          data={this.state.data}
-          renderItem={({ item }) => this.renderButton(item)}
-        />
+      <View>
+        <FlatList data={this.state.data} renderItem={({ item }) => this.renderButton(item)} />
       </View>
     );
   }
