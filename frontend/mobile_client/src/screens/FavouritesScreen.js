@@ -1,16 +1,10 @@
 import React, { Component } from 'react';
 import {
-  Text,
-  View,
-  AsyncStorage,
-  FlatList,
-  StyleSheet,
-  TouchableOpacity,
+  Text, View, AsyncStorage, FlatList, StyleSheet, TouchableOpacity,
 } from 'react-native';
 import { PantryfiedContext } from '../context/PantryfiedContext';
 import { FavButton } from '../components/common/FavButton';
 import { FavButtonFill } from '../components/common/FavButtonFill';
-
 
 // eslint-disable-next-line react/prefer-stateless-function
 export default class FavouritesScreen extends Component {
@@ -24,27 +18,22 @@ export default class FavouritesScreen extends Component {
     };
   }
 
-  
   // componentDidMount() {
   //   this.resetAsyncStorage();
   // }
-  
+
   // testing
   async resetAsyncStorage() {
-    console.log("reset");
-    //await AsyncStorage.setItem('favouritesList', JSON.stringify(this.context.favourites));
+    console.log('reset');
+    // await AsyncStorage.setItem('favouritesList', JSON.stringify(this.context.favourites));
     await AsyncStorage.setItem('favouritesList', '');
   }
 
   renderFavButton(item) {
     if (item.favourite) {
-      return (
-        <FavButtonFill onPress={() => this.favouriteButtonPressed(item)} definedFlex={1} />
-      );
+      return <FavButtonFill onPress={() => this.favouriteButtonPressed(item)} definedFlex={1} />;
     }
-    return (
-      <FavButton onPress={() => this.favouriteButtonPressed(item)} definedFlex={1} />
-    );
+    return <FavButton onPress={() => this.favouriteButtonPressed(item)} definedFlex={1} />;
   }
 
   favouriteButtonPressed(item) {
@@ -68,23 +57,19 @@ export default class FavouritesScreen extends Component {
     );
   }
 
-
-
   // will only render the favourites that were present when app was loaded
   // make function to update and rerender (may just have to update state object)
   render() {
     return (
       <View>
-        <Text> Favourites Screen </Text>
-        <FlatList
-          data={this.context.favourites}
-          extraData={this.state.refresh}
-          renderItem={({item}) => this.renderItem(item)}
-        />
+        <Text style={styles.headerBar}> Favourites </Text>
+        <FlatList data={this.context.favourites} extraData={this.state.refresh} renderItem={({ item }) => this.renderItem(item)} />
       </View>
     );
   }
 }
+
+// Loch can you fix the issue with it not spanning across the whole width?
 
 const styles = StyleSheet.create({
   navButton: {
@@ -97,7 +82,20 @@ const styles = StyleSheet.create({
     flex: 4,
     padding: 10,
     fontSize: 18,
-    height: 44,
+    borderBottomWidth: 1,
+    borderBottomColor: 'grey',
+  },
+
+  headerBar: {
+    textAlign: 'center',
+    width: 360,
+    height: 50,
+    paddingTop: 10,
+    fontSize: 28,
+    borderBottomWidth: 1,
+    color: '#fff',
+    borderBottomColor: 'grey',
+    backgroundColor: '#28BAA5',
   },
 });
 

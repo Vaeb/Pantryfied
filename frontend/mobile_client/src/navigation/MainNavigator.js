@@ -1,12 +1,7 @@
-import {
-  createStackNavigator,
-  createBottomTabNavigator,
-} from 'react-navigation';
-
+import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 import SearchStack from './RecipeNavigation';
 import FavouritesScreen from '../screens/FavouritesScreen';
 import SettingsStack from './SettingsNavigation';
-import MainSettingsScreen from '../screens/MainSettingsScreen';
 
 // stack is like one screen loading on top of another one
 const FavouritesStack = createStackNavigator(

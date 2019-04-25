@@ -1,18 +1,13 @@
 import React, { Component } from 'react';
 import {
-  Text,
-  View,
-  StyleSheet,
-  FlatList,
-  TouchableOpacity,
-  Image,
+  Text, View, StyleSheet, FlatList, TouchableOpacity, Image, CheckBox,
 } from 'react-native';
 import gql from 'graphql-tag';
+// import { SearchBar } from 'react-native-elements';
 import { PantryfiedContext } from '../context/PantryfiedContext';
 import { Button } from '../components/common/Button';
 
-
-/*const getRecipeQuery = gql`
+/* const getRecipeQuery = gql`
     query($ingredients: [Int]!) {
         getRecipes(ingredients: $ingredients) {
             id
@@ -25,7 +20,7 @@ import { Button } from '../components/common/Button';
             }
         }
     }
-`;*/
+`; */
 
 const getRecipeQuery = gql`
   query {
@@ -37,12 +32,12 @@ const getRecipeQuery = gql`
 `;
 
 const getIngredientsQuery = gql`
-    query {
-      getIngredients {
-        id
-        name
-      }
+  query {
+    getIngredients {
+      id
+      name
     }
+  }
 `;
 
 // eslint-disable-next-line react/prefer-stateless-function
@@ -60,7 +55,12 @@ export default class SearchScreen extends Component {
       ingredients: [],
       ingredientsArg: [],
       ingredientsToSearch: [],
+      isChecked: false,
+      // search: '', // Can remove this if you dont need, following a tutorial to add search bar in
     };
+    // updateSearch = (search) => {
+    //   this.setState({ search });
+    // };
   }
 
   componentDidMount() {
@@ -81,8 +81,8 @@ export default class SearchScreen extends Component {
           this.state.ingredients.push(arrayItem);
         });
       })
-      .catch((error) => console.log(error));
-      this.setState({ refresh: !this.state.refresh });
+      .catch(error => console.log(error));
+    this.setState({ refresh: !this.state.refresh });
   }
 
   ingredientPressed(item) {
@@ -122,12 +122,12 @@ export default class SearchScreen extends Component {
     await this.context.apolloClient
       .query({
         query: getRecipeQuery,
-        //variables: { ingredients: this.state.ingredientsArg },
+        // variables: { ingredients: this.state.ingredientsArg },
         fetchPolicy: 'network-only',
       })
       .then(({ data }) => {
         let dataArr = data.getRecipes;
-        console.log("dataArr here", dataArr);
+        console.log('dataArr here', dataArr);
         dataArr.forEach((arrayItem) => {
           arrayItem.key = arrayItem.id.toString();
           arrayItem.favourite = false;
@@ -138,13 +138,12 @@ export default class SearchScreen extends Component {
         });
         dataArr = this.checkResultsFavourites(dataArr);
         this.context.setFoundRecipeList(dataArr);
-        console.log("data arr: ", dataArr);
+        console.log('data arr: ', dataArr);
       })
-      .catch((error) => console.log(error));
+      .catch(error => console.log(error));
 
     this.props.navigation.navigate('SearchResultsScreen');
   }
-
 
   // probably needs optimising
   checkResultsFavourites(dataArr) {
@@ -170,18 +169,17 @@ export default class SearchScreen extends Component {
   }
 
   render() {
+    const { search } = this.state;
+
     return (
       <View>
-        <Text style={{ flex: 2 }}> Search Screen </Text>
-        <FlatList
-            data={this.state.ingredients}
-            extraData={this.state.refresh}
-            renderItem={({item}) => this.renderItem(item)}
-        />
+        {/* <SearchBar placeholder="Type Here..." onChangeText={this.updateSearch} value={search} /> */}
+        <Text style={styles.headerBar}> Search Screen </Text>
+        <FlatList data={this.state.ingredients} extraData={this.state.refresh} renderItem={({ item }) => this.renderItem(item)} />
         <Button inheritStyle={styles.searchButtonStyle} inheritTextStyle={styles.searchButtonText} onPress={this.searchButtonPressed}>
+
           Search with selected ingredients
         </Button>
-
       </View>
     );
   }
@@ -195,9 +193,11 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   item: {
+    flex: 4,
     padding: 10,
     fontSize: 18,
-    height: 44,
+    borderBottomWidth: 1,
+    borderBottomColor: 'grey',
   },
   searchButtonStyle: {
     padding: 10,
@@ -205,6 +205,17 @@ const styles = StyleSheet.create({
   },
   searchButtonText: {
     fontSize: 18,
+  },
+  headerBar: {
+    textAlign: 'center',
+    width: 360,
+    height: 50,
+    paddingTop: 10,
+    fontSize: 28,
+    borderBottomWidth: 1,
+    color: '#fff',
+    borderBottomColor: 'grey',
+    backgroundColor: '#28BAA5',
   },
 });
 
