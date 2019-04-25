@@ -1,5 +1,4 @@
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
-
 import SearchStack from './RecipeNavigation';
 import FavouritesScreen from '../screens/FavouritesScreen';
 import SettingsStack from './SettingsNavigation';

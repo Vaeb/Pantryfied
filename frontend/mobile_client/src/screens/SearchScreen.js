@@ -3,6 +3,7 @@ import {
   Text, View, StyleSheet, FlatList, TouchableOpacity, Image, CheckBox,
 } from 'react-native';
 import gql from 'graphql-tag';
+// import { SearchBar } from 'react-native-elements';
 import { PantryfiedContext } from '../context/PantryfiedContext';
 import { Button } from '../components/common/Button';
 
@@ -55,7 +56,11 @@ export default class SearchScreen extends Component {
       ingredientsArg: [],
       ingredientsToSearch: [],
       isChecked: false,
+      // search: '', // Can remove this if you dont need, following a tutorial to add search bar in
     };
+    // updateSearch = (search) => {
+    //   this.setState({ search });
+    // };
   }
 
   componentDidMount() {
@@ -164,8 +169,11 @@ export default class SearchScreen extends Component {
   }
 
   render() {
+    const { search } = this.state;
+
     return (
       <View>
+        {/* <SearchBar placeholder="Type Here..." onChangeText={this.updateSearch} value={search} /> */}
         <Text style={styles.headerBar}> Search Screen </Text>
         <FlatList data={this.state.ingredients} extraData={this.state.refresh} renderItem={({ item }) => this.renderItem(item)} />
         <Button inheritStyle={styles.searchButtonStyle} inheritTextStyle={styles.searchButtonText} onPress={this.searchButtonPressed}>
