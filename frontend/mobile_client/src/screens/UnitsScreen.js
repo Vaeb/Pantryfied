@@ -12,6 +12,7 @@ export default class UnitsScreen extends Component {
     // obtain stored data
     this.state = {
       details: {},
+      toggle: true,
     };
   }
 
@@ -43,20 +44,23 @@ export default class UnitsScreen extends Component {
     console.log('Selected Imperial');
   }
 
-  render() {
-    // const data = [{ key: 'Imperial system - Ounces' }, { key: 'Metric system - Grams' }];
-    return (
-    // <TouchableOpacity>
-    //   <View>
-    //     <FlatList data={data} renderItem={({ item }) => this.renderButton(item)} />
-    //   </View>
-    // </TouchableOpacity>
+  test() {
+    // const newState = !this.state.toggle;
+    // this.setState({ toggle: newState });
+    console.log(this.state.toggle);
+  }
 
+  render() {
+    const { toggle } = this.state;
+    const textValue = toggle ? 'On' : 'off';
+    const color = toggle ? 'blue' : 'red';
+
+    return (
       <View>
         <TouchableOpacity style={styles.buttonContainer}>
-          <Text onPress={this.changeToImperial} style={styles.buttonText}>
+          <Text onPress={this.test()} style={{ backgroundColor: color }}>
 
-            Imperial system - Ounces
+            Imperial system - Ounces!
           </Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.buttonContainer}>
@@ -84,7 +88,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 10,
     margin: 10,
-    marginTop: 50,
+    top: 100,
+    marginTop: 90,
     borderRadius: 5,
   },
   buttonText: {
