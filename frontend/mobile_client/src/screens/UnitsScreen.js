@@ -8,13 +8,33 @@ import { PantryfiedContext } from '../context/PantryfiedContext';
 export default class UnitsScreen extends Component {
   constructor(props) {
     super(props);
-
+    //this.checkInitialState = this.checkInitialState.bind(this);
+    this.buttonPressed = this.buttonPressed.bind(this);
     // obtain stored data
     this.state = {
       details: {},
-      toggle: true,
+      checked: false,
+      colorMetric: 'green',
+      colorImperial: '#rgba(40,186,163, 1)',
     };
   }
+  
+
+  componentDidMount() {
+    if (!this.state.checked) {
+      this.checkInitialState();
+    }
+  }
+
+  checkInitialState() {
+    if (this.context.units == 'imperial') {
+      this.setState({ checked: true });
+      this.setState({ colorMetric: '#rgba(40,186,163, 1)' });
+      this.setState({ colorImperial: 'green' });
+    }
+  }
+  
+
 
   // eslint-disable-next-line class-methods-use-this
   // changeUnit() {
@@ -36,36 +56,31 @@ export default class UnitsScreen extends Component {
   //     </View>
   //   );
   // }
-  changeToMetric() {
-    console.log('Selected Metric');
-  }
 
-  changeToImperial() {
-    console.log('Selected Imperial');
+  buttonPressed(unit) {
+    console.log("unit: ", unit);
+    this.context.setUnits({ unit: unit });
+    if (unit == "imperial") {
+      console.log("Set imperial colors");
+      this.setState({ colorImperial: 'green' });
+      this.setState({ colorMetric: '#rgba(40,186,163, 1)' });
+    } else {
+      console.log("Set metric colors");
+      this.setState({ colorImperial: '#rgba(40,186,163, 1)' });
+      this.setState({ colorMetric: 'green' });
+    }
   }
-
-  test() {
-    // const newState = !this.state.toggle;
-    // this.setState({ toggle: newState });
-    console.log(this.state.toggle);
-  }
-
+ 
   render() {
-    const { toggle } = this.state;
-    const textValue = toggle ? 'On' : 'off';
-    const color = toggle ? 'blue' : 'red';
-
     return (
       <View>
-        <TouchableOpacity style={styles.buttonContainer}>
-          <Text onPress={this.test()} style={{ backgroundColor: color }}>
-
+        <TouchableOpacity style={[styles.buttonContainer, { backgroundColor: this.state.colorImperial }]} onPress={() => this.buttonPressed('imperial')}>
+          <Text style={styles.buttonText}>
             Imperial system - Ounces!
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.buttonContainer}>
-          <Text onPress={this.changeToMetric} style={styles.buttonText}>
-
+        <TouchableOpacity style={[styles.buttonContainer, { backgroundColor: this.state.colorMetric }]} onPress={() => this.buttonPressed('metric')}>
+          <Text style={styles.buttonText}>
             Metric system - Grams
           </Text>
         </TouchableOpacity>
@@ -83,7 +98,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   buttonContainer: {
-    backgroundColor: '#rgba(40,186,163, 1)',
     justifyContent: 'center',
     alignItems: 'center',
     padding: 10,

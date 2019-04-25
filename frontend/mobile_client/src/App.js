@@ -33,6 +33,8 @@ export default class App extends Component {
     this.removeItemFromArray = this.removeItemFromArray.bind(this);
     this.getFavourites = this.getFavourites.bind(this);
     this.storeFavourites = this.storeFavourites.bind(this);
+    this.getUnits = this.getUnits.bind(this);
+    this.storeUnits = this.storeUnits.bind(this);
 
     // actual code
     // this.setRecipeToRender = (recipe) => {
@@ -112,12 +114,18 @@ export default class App extends Component {
       this.updateResultsFavourites();
     };
 
+    this.setUnits = (unit) => {
+      this.setState({ units: unit });
+      this.storeUnits(unit);
+    };
+
     this.state = {
       userData: {
         username: undefined,
         password: undefined,
         loginToken: undefined,
       },
+      units: '',
       setFoundRecipeList: this.setRecipeList,
       // foundRecipes: [],
       foundRecipes: [
@@ -148,6 +156,7 @@ export default class App extends Component {
       setRenderRecipe: this.setRecipeToRender,
       updateFavouriteArray: this.updateFavouriteArray,
       updateResultsFavourites: this.updateResultsFavourites,
+      setUnits: this.setUnits,
       apolloClient: client,
       favourites: [],
       /*
@@ -164,6 +173,25 @@ export default class App extends Component {
 
   componentDidMount() {
     this.getFavourites();
+    this.getUnits();
+  }
+
+  async getUnits() {
+    let retreivedUnit = '';
+    try {
+      retreivedUnit = await AsyncStorage.getItem('userUnits') || 'metric';
+    } catch (error) {
+      console.log(error.message);
+    }
+    this.setState({ units: JSON.parse(retreivedUnit).unit });
+  }
+
+  async storeUnits(unit) {
+    try {
+      await AsyncStorage.setItem('userUnits', JSON.stringify(unit));
+    } catch (error) {
+      console.log(error.message);
+    }
   }
 
   async getFavourites() {
@@ -253,6 +281,8 @@ export default class App extends Component {
           favourites: this.state.favourites,
           updateFavouriteArray: this.state.updateFavouriteArray,
           updateResultsFavourites: this.state.updateResultsFavourites,
+          units: this.state.units,
+          setUnits: this.state.setUnits,
         }}
       >
         <AppNavigation screenProps={{ ...this.props }} />
