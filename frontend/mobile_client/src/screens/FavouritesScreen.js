@@ -6,7 +6,6 @@ import { PantryfiedContext } from '../context/PantryfiedContext';
 import { FavButton } from '../components/common/FavButton';
 import { FavButtonFill } from '../components/common/FavButtonFill';
 
-// eslint-disable-next-line react/prefer-stateless-function
 export default class FavouritesScreen extends Component {
   constructor(props) {
     super(props);
@@ -80,8 +79,6 @@ const styles = StyleSheet.create({
     flex: 4,
     padding: 10,
     fontSize: 18,
-    borderBottomWidth: 1,
-    borderBottomColor: 'grey',
   },
   headerBar: {
     textAlign: 'center',

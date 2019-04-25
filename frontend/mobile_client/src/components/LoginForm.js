@@ -101,7 +101,7 @@ class LoginForm extends Component {
           </TouchableOpacity>
           {this.displayFailedLogin()}
           <TouchableOpacity style={styles.signUpContainer} onPress={this.registerButtonPressed}>
-            <Text> Don't Have an account yet? </Text>
+            <Text style={{ fontSize: 16 }}> Don't Have an account yet? </Text>
             <Text style={styles.signUpText}>Sign up</Text>
           </TouchableOpacity>
         </ScrollView>
@@ -179,9 +179,10 @@ const styles = StyleSheet.create({
   signUpContainer: {
     alignItems: 'center',
     marginTop: 150,
+    fontSize: 220,
   },
   signUpText: {
     color: '#fff',
-    fontSize: 16,
+    fontSize: 18,
   },
 });

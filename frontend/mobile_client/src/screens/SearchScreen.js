@@ -176,7 +176,13 @@ export default class SearchScreen extends Component {
         <View style={{ flex: 16 }}>
           <FlatList data={this.state.ingredients} extraData={this.state.refresh} renderItem={({ item }) => this.renderItem(item)} />
         </View>
-        <Button inheritStyle={styles.searchButtonStyle} inheritTextStyle={styles.searchButtonText} onPress={this.searchButtonPressed} definedFlex={1}>
+        <Button
+          inheritStyle={styles.searchButtonStyle}
+          inheritTextStyle={styles.searchButtonText}
+          onPress={this.searchButtonPressed}
+          definedFlex={1}
+        >
+
           Search with selected ingredients
         </Button>
       </View>
@@ -208,7 +214,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: 'white',
     alignSelf: 'center',
-
   },
   headerBar: {
     textAlign: 'center',
