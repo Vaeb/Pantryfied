@@ -169,15 +169,14 @@ export default class SearchScreen extends Component {
   }
 
   render() {
-    const { search } = this.state;
-
     return (
-      <View>
+      <View style={{ flex: 1 }}>
         {/* <SearchBar placeholder="Type Here..." onChangeText={this.updateSearch} value={search} /> */}
         <Text style={styles.headerBar}> Search Screen </Text>
-        <FlatList data={this.state.ingredients} extraData={this.state.refresh} renderItem={({ item }) => this.renderItem(item)} />
-        <Button inheritStyle={styles.searchButtonStyle} inheritTextStyle={styles.searchButtonText} onPress={this.searchButtonPressed}>
-
+        <View style={{ flex: 16 }}>
+          <FlatList data={this.state.ingredients} extraData={this.state.refresh} renderItem={({ item }) => this.renderItem(item)} />
+        </View>
+        <Button inheritStyle={styles.searchButtonStyle} inheritTextStyle={styles.searchButtonText} onPress={this.searchButtonPressed} definedFlex={1}>
           Search with selected ingredients
         </Button>
       </View>
@@ -195,21 +194,26 @@ const styles = StyleSheet.create({
   item: {
     flex: 4,
     padding: 10,
-    fontSize: 18,
-    borderBottomWidth: 1,
-    borderBottomColor: 'grey',
+    fontSize: 26,
   },
   searchButtonStyle: {
     padding: 10,
+    marginLeft: 10,
+    marginRight: 10,
     flex: 1,
+    borderRadius: 10,
+    backgroundColor: '#28BAA5',
   },
   searchButtonText: {
     fontSize: 18,
+    color: 'white',
+    alignSelf: 'center',
+
   },
   headerBar: {
     textAlign: 'center',
-    width: 360,
-    height: 50,
+    width: '100%',
+    height: 60,
     paddingTop: 10,
     fontSize: 28,
     borderBottomWidth: 1,

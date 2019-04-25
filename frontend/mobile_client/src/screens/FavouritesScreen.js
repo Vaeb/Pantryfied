@@ -69,8 +69,6 @@ export default class FavouritesScreen extends Component {
   }
 }
 
-// Loch can you fix the issue with it not spanning across the whole width?
-
 const styles = StyleSheet.create({
   navButton: {
     flex: 1,
@@ -85,11 +83,10 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: 'grey',
   },
-
   headerBar: {
     textAlign: 'center',
-    width: 360,
-    height: 50,
+    width: '100%',
+    height: 60,
     paddingTop: 10,
     fontSize: 28,
     borderBottomWidth: 1,
