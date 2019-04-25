@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Image, FlatList} from 'react-native';
+import { Text, View, StyleSheet, Image, FlatList } from 'react-native';
 import { PantryfiedContext } from '../context/PantryfiedContext';
 import { Button } from '../components/common/Button';
 
@@ -28,8 +28,6 @@ export default class InstructionsScreen extends Component {
                 data={this.context.renderRecipe.ingredients}
                 renderItem={({ item }) => <Text style={styles.directionText}>{item.quantity}x {item.name}</Text>}
             />
-
-
         <Text style={styles.directionHeading}>Directions</Text>
         <Text style={styles.directionText}>{this.context.renderRecipe.directions}</Text>
         {/* either use ListItem or FlatList for ingredients, they work mostly the same */}
@@ -47,16 +45,16 @@ const styles = StyleSheet.create({
         height: 50,
         alignItems: "center",
         textAlign: "center",
-        textAlignVertical:"center"
+        textAlignVertical:"center",
     },
 
     directionHeading: {
         fontSize: 20,
-        fontWeight: "bold"
+        fontWeight: "bold",
     },
 
     directionText: {
-        fontSize: 15
+        fontSize: 15,
     },
 });
 

@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
   },
   signUpContainer: {
     alignItems: 'center',
-    paddingTop: 150,
+    marginTop: 150,
   },
   signUpText: {
     color: '#fff',
