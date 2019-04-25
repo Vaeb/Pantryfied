@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Image, FlatList} from 'react-native';
+import { Text, View, StyleSheet, Image, FlatList } from 'react-native';
 import { PantryfiedContext } from '../context/PantryfiedContext';
 import { Button } from '../components/common/Button';
 
@@ -22,18 +22,18 @@ export default class InstructionsScreen extends Component {
         <Image
             source={{uri: this.context.renderRecipe.imgUrl}}
             style={{width: 200, height: 200,}}
-        /> //Display the image for the recipe with height and width 200 from the recipe object in the database
+        /> {/*Display the image for the recipe with height and width 200 from the recipe object in the database*/}
 
-        //<View>
+        <View>
             <FlatList
                 data={this.context.renderRecipe.ingredients}
                 renderItem={({ item }) => <Text> {item.name} </Text>}
             />
-        //</View>
+        </View>
 
 
-        <Text style={styles.directionHeading}>Directions</Text> //Heading with text Directions
-        <Text style={styles.directionText}>{this.context.renderRecipe.directions}</Text> //Display the directions for the recipe
+        <Text style={styles.directionHeading}>Directions</Text>{/*Heading with text Directions*/}
+        <Text style={styles.directionText}>{this.context.renderRecipe.directions}</Text> {/* Display the directions for the recipe */}
         {/* either use ListItem or FlatList for ingredients, they work mostly the same */}
       </View>
     );
@@ -49,16 +49,16 @@ const styles = StyleSheet.create({
         height: 50,
         alignItems: "center",
         textAlign: "center",
-        textAlignVertical:"center"
+        textAlignVertical:"center",
     },
 
     directionHeading: {
         fontSize: 20,
-        fontWeight: "bold"
+        fontWeight: "bold",
     },
 
     directionText: {
-        fontSize: 18
+        fontSize: 18,
     },
 });
 
