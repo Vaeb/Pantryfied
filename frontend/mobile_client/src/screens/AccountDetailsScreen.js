@@ -27,11 +27,32 @@ const styles = StyleSheet.create({
     flex: 1,
     margin: 2,
   },
+  headerBar: {
+    textAlign: 'center',
+    width: '100%',
+    height: 60,
+    paddingTop: 10,
+    fontSize: 28,
+    borderBottomWidth: 1,
+    color: '#fff',
+    borderBottomColor: 'grey',
+    backgroundColor: '#28BAA5',
+  },
   cell: {
     padding: 10,
     fontSize: 18,
     height: 44,
     margin: 30,
     justifyContent: 'center', // https://reactnativecode.com/justifycontenton-style-explained/
+  },
+  text: {
+    textAlign: 'left',
+    paddingLeft: 5,
+    marginTop: 20,
+    width: 360,
+    height: 40,
+    fontSize: 28,
+    borderBottomWidth: 1,
+    borderBottomColor: 'grey',
   },
 });

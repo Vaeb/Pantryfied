@@ -49,6 +49,8 @@ export default class UnitsScreen extends Component {
   render() {
     return (
       <View>
+        <Text style={styles.headerBar}> Unit system </Text>
+
         <TouchableOpacity
           style={[styles.buttonContainer, { backgroundColor: this.state.colorImperial }]}
           onPress={() => this.buttonPressed('imperial')}
@@ -88,5 +90,16 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: '#fff',
     borderColor: '#28BAA5',
+  },
+  headerBar: {
+    textAlign: 'center',
+    width: '100%',
+    height: 60,
+    paddingTop: 10,
+    fontSize: 28,
+    borderBottomWidth: 1,
+    color: '#fff',
+    borderBottomColor: 'grey',
+    backgroundColor: '#28BAA5',
   },
 });
