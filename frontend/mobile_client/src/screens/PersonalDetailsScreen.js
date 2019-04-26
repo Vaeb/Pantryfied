@@ -16,13 +16,23 @@ export default class PersonalDetailsScreen extends Component {
         weight: '',
       },
       data: ['Email Address', 'First name'],
+      dialogVisibleArray: [false, false],
       dialogVisible: false,
     };
   }
 
-  showDialog = () => {
+  // Plan:
+  /*
+      User selects a button, goes to render button, which passes the item to AlertBox, which will find out which button was pressed,
+      with this value we will make the dialogBox correlated to that appear and the text on the diaglog will be associated with that. i.e:
+      email button is pressed, this will show the dialog button which will also change any text for the dialog.
+
+  */
+
+  showDialog(i) {
     this.setState({ dialogVisible: true });
-  };
+    this.setState({ [this.state.dialogVisibleArray[i]]: true });
+  }
 
   handleCancel = () => {
     this.setState({ dialogVisible: false });
@@ -33,7 +43,7 @@ export default class PersonalDetailsScreen extends Component {
     for (let i = 0; i < this.state.data.length; i++) {
       if (item.key == this.state.data[i]) {
         console.log(`Pressed: ${item.key}`);
-        this.showDialog();
+        this.showDialog(i);
       }
     }
   }
@@ -52,11 +62,18 @@ export default class PersonalDetailsScreen extends Component {
 
   render() {
     const data = [{ key: 'Email Address' }, { key: 'First name' }];
+    const text = this.state.dialogVisibleArray[0] ? 'Enter email etc ' : ''; // If email is pressed, text will be this
+
     return (
       <View>
         <Dialog.Container visible={this.state.dialogVisible}>
           <Dialog.Title>Account delete</Dialog.Title>
           <Dialog.Description>Do you want to delete this account? You cannot undo this action.</Dialog.Description>
+          <Dialog.Input>
+            {' '}
+            {text}
+            {' '}
+          </Dialog.Input>
           <Dialog.Button label="Cancel" onPress={this.handleCancel} />
           <Dialog.Button label="Delete" onPress={this.handleDelete} />
         </Dialog.Container>
