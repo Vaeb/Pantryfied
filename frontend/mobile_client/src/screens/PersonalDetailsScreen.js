@@ -8,6 +8,8 @@ import { PantryfiedContext } from '../context/PantryfiedContext';
 export default class PersonalDetailsScreen extends Component {
   constructor(props) {
     super(props);
+    this.showDialog = this.showDialog.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
 
     // obtain stored data
     this.state = {

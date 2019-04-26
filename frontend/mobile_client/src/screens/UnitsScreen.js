@@ -7,7 +7,7 @@ import { PantryfiedContext } from '../context/PantryfiedContext';
 export default class UnitsScreen extends Component {
   constructor(props) {
     super(props);
-    // this.checkInitialState = this.checkInitialState.bind(this);
+    this.checkInitialState = this.checkInitialState.bind(this);
     this.buttonPressed = this.buttonPressed.bind(this);
     // obtain stored data
     this.state = {
@@ -27,8 +27,8 @@ export default class UnitsScreen extends Component {
   checkInitialState() {
     if (this.context.units == 'imperial') {
       this.setState({ checked: true });
-      this.setState({ colorMetric: '#rgba(40,186,163, 1)' });
-      this.setState({ colorImperial: 'grey' });
+      this.setState({ colorMetric: 'grey' });
+      this.setState({ colorImperial: '#rgba(40,186,163, 1)' });
     }
   }
 
