@@ -31,18 +31,23 @@ export default class PersonalDetailsScreen extends Component {
 
   showDialog(i) {
     this.setState({ dialogVisible: true });
+    console.log(i);
+    console.log(this.state.dialogVisibleArray[i]);
     this.setState({ [this.state.dialogVisibleArray[i]]: true });
+    console.log(this.state.dialogVisibleArray[i]);
   }
 
-  handleCancel = () => {
+  handleCancel(i) {
     this.setState({ dialogVisible: false });
-  };
+    // this.setState({ [this.state.dialogVisibleArray[i]]: false });
+  }
 
   // eslint-disable-next-line class-methods-use-this
   alertBox(item) {
     for (let i = 0; i < this.state.data.length; i++) {
       if (item.key == this.state.data[i]) {
         console.log(`Pressed: ${item.key}`);
+        console.log(i);
         this.showDialog(i);
       }
     }
@@ -62,7 +67,7 @@ export default class PersonalDetailsScreen extends Component {
 
   render() {
     const data = [{ key: 'Email Address' }, { key: 'First name' }];
-    const text = this.state.dialogVisibleArray[0] ? 'Enter email etc ' : ''; // If email is pressed, text will be this
+    const text = this.state.dialogVisibleArray[0] == true ? 'Enter email etc ' : 'JKWDFNJKSED'; // If email is pressed, text will be this
 
     return (
       <View>
