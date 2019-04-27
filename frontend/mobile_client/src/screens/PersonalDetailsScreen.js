@@ -20,6 +20,7 @@ export default class PersonalDetailsScreen extends Component {
       data: ['Email Address', 'First name'],
       dialogVisibleArray: [false, false],
       dialogVisible: false,
+      index: 0,
     };
   }
 
@@ -33,23 +34,23 @@ export default class PersonalDetailsScreen extends Component {
 
   showDialog(i) {
     this.setState({ dialogVisible: true });
-    console.log(i);
-    console.log(this.state.dialogVisibleArray[i]);
     this.setState({ [this.state.dialogVisibleArray[i]]: true });
-    console.log(this.state.dialogVisibleArray[i]);
+    // this.setState({ [dialogVisibleArray[i]]: true }); // Does not work either
+
+    console.log(`state on 1: ${this.state.dialogVisibleArray}`); // Returns false for some reason
+    console.log(`state on 2: ${this.state.dialogVisible}`); // Returns true
   }
 
   handleCancel(i) {
-    this.setState({ dialogVisible: false });
-    // this.setState({ [this.state.dialogVisibleArray[i]]: false });
+    // this.setState({ dialogVisible: false });
+    this.setState({ [this.state.dialogVisibleArray[i]]: false });
+    console.log(this.state.dialogVisibleArray[i]);
   }
 
   // eslint-disable-next-line class-methods-use-this
   alertBox(item) {
     for (let i = 0; i < this.state.data.length; i++) {
       if (item.key == this.state.data[i]) {
-        console.log(`Pressed: ${item.key}`);
-        console.log(i);
         this.showDialog(i);
       }
     }
@@ -57,7 +58,6 @@ export default class PersonalDetailsScreen extends Component {
 
   // eslint-disable-next-line class-methods-use-this
   renderButton(item) {
-    console.log('renderButton: ', item);
     return (
       <View>
         <TouchableOpacity onPress={() => this.alertBox(item)}>
@@ -69,18 +69,28 @@ export default class PersonalDetailsScreen extends Component {
 
   render() {
     const data = [{ key: 'Email Address' }, { key: 'First name' }];
-    const text = this.state.dialogVisibleArray[0] == true ? 'Enter email etc ' : 'JKWDFNJKSED'; // If email is pressed, text will be this
+    let text = this.state.dialogVisibleArray[0] == true ? 'Enter email etc ' : 'error'; // If email is pressed, text will be this
 
+    if (this.state.dialogVisibleArray[0] == true) {
+      text = 'Enter email etc';
+    } else if (this.state.dialogVisibleArray[1] == true) {
+      text = 'Enter Name etc';
+    } else {
+      text = 'error';
+    }
+
+    for (let i = 0; i < this.state.dialogVisibleArray.length; i++) {
+      if (this.state.dialogVisibleArray[i] == true) {
+        console.log(`-------: ${this.state.dialogVisibleArray}`);
+        this.index = i;
+      }
+    }
     return (
       <View>
-        <Dialog.Container visible={this.state.dialogVisible}>
+        <Dialog.Container visible={this.state.dialogVisibleArray[this.index]}>
           <Dialog.Title>Account delete</Dialog.Title>
           <Dialog.Description>Do you want to delete this account? You cannot undo this action.</Dialog.Description>
-          <Dialog.Input>
-            {' '}
-            {text}
-            {' '}
-          </Dialog.Input>
+          <Dialog.Input>{text}</Dialog.Input>
           <Dialog.Button label="Cancel" onPress={this.handleCancel} />
           <Dialog.Button label="Delete" onPress={this.handleDelete} />
         </Dialog.Container>
