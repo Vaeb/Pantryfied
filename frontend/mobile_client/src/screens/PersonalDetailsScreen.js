@@ -17,9 +17,8 @@ export default class PersonalDetailsScreen extends Component {
         height: '',
         weight: '',
       },
-      data: ['Email Address', 'First name'],
-      dialogVisibleArray: [false, false],
-      dialogVisible: false,
+      data: ['Email Address', 'First name', 'Second name'],
+      dialogVisibleArray: [false, false, false],
       index: 0,
     };
   }
@@ -36,17 +35,12 @@ export default class PersonalDetailsScreen extends Component {
     const newArray = [this.state.dialogVisibleArray];
     newArray[i] = true;
     this.setState({ dialogVisibleArray: newArray });
-
-    console.log(`state on 1: ${this.state.dialogVisibleArray}`); // Returns false for some reason
   }
 
-  handleCancel(i) {
-    // this.setState({ dialogVisible: false });
+  handleUpdate(i) {
     const newArray = [this.state.dialogVisibleArray];
     newArray[i] = false;
     this.setState({ dialogVisibleArray: newArray });
-
-    console.log(`delete: ${this.state.dialogVisibleArray}`);
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -70,35 +64,26 @@ export default class PersonalDetailsScreen extends Component {
   }
 
   render() {
-    const data = [{ key: 'Email Address' }, { key: 'First name' }];
-    // let text = this.state.dialogVisibleArray[0] == true ? 'Enter email etc ' : 'error'; // If email is pressed, text will be this
+    const data = [{ key: 'Email Address' }, { key: 'First name' }, { key: 'Second name' }];
 
-    let text = '';
-    if (this.state.dialogVisibleArray[0] == true) {
-      text = 'Enter email etc';
-    } else if (this.state.dialogVisibleArray[1] == true) {
-      text = 'Enter Name etc';
-    } else {
-      text = 'error';
-    }
-
+    let title = 'Enter ';
     for (let i = 0; i < this.state.dialogVisibleArray.length; i++) {
       if (this.state.dialogVisibleArray[i] == true) {
-        console.log(`-------: ${this.state.dialogVisibleArray}`);
+        title += data[i].key;
         this.state.index = i;
-        console.log(`Index ${this.state.index}`);
-        console.log(`111  ${this.state.dialogVisibleArray[this.state.index]}`);
       }
     }
+
     return (
       <View>
         <Dialog.Container visible={this.state.dialogVisibleArray.includes(true)}>
-          <Dialog.Title>Account delete</Dialog.Title>
+          <Dialog.Title>{title}</Dialog.Title>
           <Dialog.Description>Do you want to delete this account? You cannot undo this action.</Dialog.Description>
-          <Dialog.Input>{text}</Dialog.Input>
+          <Dialog.Input />
           <Dialog.Button label="Cancel" onPress={this.handleCancel} />
-          <Dialog.Button label="Delete" onPress={this.handleDelete} />
+          <Dialog.Button label="Update" onPress={this.handleUpdate} />
         </Dialog.Container>
+
         <Text style={styles.headerBar}> Personal details </Text>
         <FlatList data={data} renderItem={({ item }) => this.renderButton(item)} />
       </View>
