@@ -3,9 +3,10 @@ import {
   StyleSheet, Text, View, FlatList, TouchableOpacity,
 } from 'react-native';
 import { PantryfiedContext } from '../context/PantryfiedContext';
+import { withNavigation } from 'react-navigation';
 
 // eslint-disable-next-line react/prefer-stateless-function
-export default class MainSettingsScreen extends Component {
+class MainSettingsScreen extends Component {
   constructor(props) {
     super(props);
     this.navigateToScreen = this.navigateToScreen.bind(this);
@@ -24,10 +25,11 @@ export default class MainSettingsScreen extends Component {
   }
 
   navigateToScreen(item) {
-    if (item == 'LogoutScreen') {
+    if (item.nav == 'LogoutScreen') {
       // logout user and switch back to login page
       console.log('logout');
-      this.props.navigation.navigate(item.nav);
+      // remove tokens and data etc.
+      this.props.navigation.navigate("Login");
     } else {
       this.props.navigation.navigate(item.nav);
     }
@@ -52,6 +54,8 @@ export default class MainSettingsScreen extends Component {
     );
   }
 }
+
+export default withNavigation(MainSettingsScreen);
 
 MainSettingsScreen.contextType = PantryfiedContext;
 
