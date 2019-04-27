@@ -33,18 +33,20 @@ export default class PersonalDetailsScreen extends Component {
   */
 
   showDialog(i) {
-    this.setState({ dialogVisible: true });
-    this.setState({ [this.state.dialogVisibleArray[i]]: true });
-    // this.setState({ [dialogVisibleArray[i]]: true }); // Does not work either
+    const newArray = [this.state.dialogVisibleArray];
+    newArray[i] = true;
+    this.setState({ dialogVisibleArray: newArray });
 
     console.log(`state on 1: ${this.state.dialogVisibleArray}`); // Returns false for some reason
-    console.log(`state on 2: ${this.state.dialogVisible}`); // Returns true
   }
 
   handleCancel(i) {
     // this.setState({ dialogVisible: false });
-    this.setState({ [this.state.dialogVisibleArray[i]]: false });
-    console.log(this.state.dialogVisibleArray[i]);
+    const newArray = [this.state.dialogVisibleArray];
+    newArray[i] = false;
+    this.setState({ dialogVisibleArray: newArray });
+
+    console.log(`delete: ${this.state.dialogVisibleArray}`);
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -69,8 +71,9 @@ export default class PersonalDetailsScreen extends Component {
 
   render() {
     const data = [{ key: 'Email Address' }, { key: 'First name' }];
-    let text = this.state.dialogVisibleArray[0] == true ? 'Enter email etc ' : 'error'; // If email is pressed, text will be this
+    // let text = this.state.dialogVisibleArray[0] == true ? 'Enter email etc ' : 'error'; // If email is pressed, text will be this
 
+    let text = '';
     if (this.state.dialogVisibleArray[0] == true) {
       text = 'Enter email etc';
     } else if (this.state.dialogVisibleArray[1] == true) {
@@ -82,12 +85,14 @@ export default class PersonalDetailsScreen extends Component {
     for (let i = 0; i < this.state.dialogVisibleArray.length; i++) {
       if (this.state.dialogVisibleArray[i] == true) {
         console.log(`-------: ${this.state.dialogVisibleArray}`);
-        this.index = i;
+        this.state.index = i;
+        console.log(`Index ${this.state.index}`);
+        console.log(`111  ${this.state.dialogVisibleArray[this.state.index]}`);
       }
     }
     return (
       <View>
-        <Dialog.Container visible={this.state.dialogVisibleArray[this.index]}>
+        <Dialog.Container visible={this.state.dialogVisibleArray.includes(true)}>
           <Dialog.Title>Account delete</Dialog.Title>
           <Dialog.Description>Do you want to delete this account? You cannot undo this action.</Dialog.Description>
           <Dialog.Input>{text}</Dialog.Input>
