@@ -17,18 +17,18 @@ export default class PersonalDetailsScreen extends Component {
       details: {
         height: '',
         weight: '',
+        gender: '',
+        dateOfBirth: '',
       },
 
       flatList: [
-        { key: 'First name' },
-        { key: 'Second name' },
         { key: 'Date of birth' },
         { key: 'Gender' },
         { key: 'height' },
         { key: 'Weight' },
       ],
 
-      dialogVisibleArray: [false, false, false, false, false, false],
+      dialogVisibleArray: [false, false, false, false],
       index: 0,
     };
   }
@@ -82,7 +82,7 @@ export default class PersonalDetailsScreen extends Component {
       <View>
         <Dialog.Container visible={this.state.dialogVisibleArray.includes(true)}>
           <Dialog.Title>{title}</Dialog.Title>
-          <Dialog.Description>Do you want to delete this account? You cannot undo this action.</Dialog.Description>
+          <Dialog.Description>Do you want to update {this.state.flatList[this.state.index]} ?</Dialog.Description>
           <Dialog.Input />
           <Dialog.Button label="Cancel" onPress={this.handleCancel} />
           <Dialog.Button label="Update" onPress={this.handleUpdate} />

@@ -26,6 +26,8 @@ class LoginForm extends Component {
     this.displayLogin = this.displayLogin.bind(this);
     this.displayLoading = this.displayLoading.bind(this);
     this.registerButtonPressed = this.registerButtonPressed.bind(this);
+    this.resetPassword = this.resetPassword.bind(this);
+
     this.state = {
       loading: false,
       loginFailed: false,
@@ -69,6 +71,11 @@ class LoginForm extends Component {
     this.props.navigation.navigate('RegisterPage');
   }
 
+  resetPassword() {
+    // Probs dont actually need to do this?
+    console.log("reset password")
+  }
+
   displayLogin() {
     if (!this.state.loading) {
       return (
@@ -98,6 +105,9 @@ class LoginForm extends Component {
           />
           <TouchableOpacity style={styles.buttonContainer} onPress={this.loginButtonPressed}>
             <Text style={styles.buttonText}>Login</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.buttonContainer} onPress={this.resetPassword}>
+            <Text style={styles.buttonText}>Forgot password?</Text>
           </TouchableOpacity>
           {this.displayFailedLogin()}
           <TouchableOpacity style={styles.signUpContainer} onPress={this.registerButtonPressed}>
