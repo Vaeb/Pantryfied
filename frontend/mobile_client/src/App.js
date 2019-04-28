@@ -35,7 +35,10 @@ export default class App extends Component {
     this.storeFavourites = this.storeFavourites.bind(this);
     this.getUnits = this.getUnits.bind(this);
     this.storeUnits = this.storeUnits.bind(this);
+    this.storeAllergens = this.storeAllergens.bind(this);
+    this.retrieveAllergens = this.retrieveAllergens.bind(this);
 
+    
     // actual code
     // this.setRecipeToRender = (recipe) => {
     //   this.setState({ renderRecipe: recipe.recipe });
@@ -119,6 +122,22 @@ export default class App extends Component {
       this.storeUnits(unit);
     };
 
+    this.updateAllergens = (item) => {
+      let newAllergens = [];
+      this.state.allergens.forEach((arrayItem) => {
+        if (arrayItem.key == item.key) {
+          if (arrayItem.selected) {
+            arrayItem.selected = false;
+          } else {
+            arrayItem.selected = true;
+          }
+        }
+        newAllergens.push(arrayItem);
+      });
+      this.storeAllergens();
+      this.setState({ allergens: newAllergens });
+    };
+
     this.state = {
       userData: {
         username: undefined,
@@ -159,21 +178,34 @@ export default class App extends Component {
       setUnits: this.setUnits,
       apolloClient: client,
       favourites: [],
-      /*
-      // for testing
-      favourites: [
-        { key: "key1", name: "Recipe1", favourite: true },
-        { key: "key2", name: "Recipe2", favourite: true },
-        { key: "key3", name: "Recipe3", favourite: true },
-        { key: "key4", name: "Recipe4", favourite: true },
+      updateAllergens: this.updateAllergens,
+      allergens: [
+        { key: "Wheat", id: "unknown", selected: false },
+        { key: "Eggs", id: "unknown", selected: false },
+        { key: "Milk", id: "unknown", selected: false },
+        { key: "Fish", id: "unknown", selected: false },
+        { key: "Shellfish", id: "unknown", selected: false },
+        { key: "Tree nuts", id: "unknown", selected: false },
+        { key: "Peanuts", id: "unknown", selected: false },
+        { key: "Soybeans", id: "unknown", selected: false },
       ],
-      */
     };
   }
 
   componentDidMount() {
     this.getFavourites();
+    this.retrieveAllergens();
     this.getUnits();
+  }
+
+  async retrieveAllergens() {
+    let retrievedAllergens = '';
+    try {
+      retrievedAllergens = await AsyncStorage.getItem('userAllergens') || this.state.allergens;
+    } catch (error) {
+      console.log(error.message);
+    }
+    this.setState({ allergens: JSON.parse(retrievedAllergens) });
   }
 
   async getUnits() {
@@ -217,6 +249,14 @@ export default class App extends Component {
       newFavArr = this.storeFavourites();
       await AsyncStorage.setItem('favouritesList', JSON.stringify(newFavArr));
       console.log("favList add: ", JSON.stringify(newFavArr));
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
+  async storeAllergens() {
+    try {
+      await AsyncStorage.setItem('userAllergens', JSON.stringify(this.state.allergens));
     } catch (error) {
       console.log(error.message);
     }
@@ -283,6 +323,8 @@ export default class App extends Component {
           updateResultsFavourites: this.state.updateResultsFavourites,
           units: this.state.units,
           setUnits: this.state.setUnits,
+          allergens: this.state.allergens,
+          updateAllergens: this.state.updateAllergens,
         }}
       >
         <AppNavigation screenProps={{ ...this.props }} />

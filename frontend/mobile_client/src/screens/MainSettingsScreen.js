@@ -16,7 +16,7 @@ class MainSettingsScreen extends Component {
         { key: 'Personal details', nav: 'PersonalDetailsScreen' },
         { key: 'Account details', nav: 'AccountDetailsScreen' },
         { key: 'Unit system', nav: 'UnitsScreen' },
-        { key: 'Food preference', nav: 'PreferencesScreen' },
+        { key: 'Allergies', nav: 'PreferencesScreen' },
         { key: 'Logout', nav: 'LogoutScreen' },
       ],
       loading: false,

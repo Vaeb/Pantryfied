@@ -93,7 +93,7 @@ export default class AccountDetailsScreen extends Component {
   }
 }
 
-PersonalDetailsScreen.contextType = PantryfiedContext;
+AccountDetailsScreen.contextType = PantryfiedContext;
 
 const styles = StyleSheet.create({
   MainContainer: {
