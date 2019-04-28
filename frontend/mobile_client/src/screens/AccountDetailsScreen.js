@@ -83,12 +83,13 @@ Do you want to update
             {this.state.flatList[this.state.index].key}
             {' '}
 ?
+            {' '}
           </Dialog.Description>
           <Dialog.Input />
           <Dialog.Button label="Cancel" onPress={this.handleCancel} />
           <Dialog.Button label="Update" onPress={this.handleUpdate} />
         </Dialog.Container>
-        <Text style={styles.headerBar}> Personal details </Text>
+        <Text style={styles.headerBar}> Account details </Text>
         <FlatList data={this.state.flatList} renderItem={({ item }) => this.renderButton(item)} />
       </View>
     );
