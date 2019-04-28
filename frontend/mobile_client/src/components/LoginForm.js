@@ -169,6 +169,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     backgroundColor: '#rgba(1,1,1,0.3)',
+    marginBottom: 10,
     padding: 10,
     borderRadius: 5,
   },

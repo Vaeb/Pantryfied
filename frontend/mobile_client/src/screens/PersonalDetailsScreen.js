@@ -21,12 +21,7 @@ export default class PersonalDetailsScreen extends Component {
         dateOfBirth: '',
       },
 
-      flatList: [
-        { key: 'Date of birth' },
-        { key: 'Gender' },
-        { key: 'height' },
-        { key: 'Weight' },
-      ],
+      flatList: [{ key: 'Date of birth' }, { key: 'Gender' }, { key: 'height' }, { key: 'Weight' }],
 
       dialogVisibleArray: [false, false, false, false],
       index: 0,
@@ -82,7 +77,14 @@ export default class PersonalDetailsScreen extends Component {
       <View>
         <Dialog.Container visible={this.state.dialogVisibleArray.includes(true)}>
           <Dialog.Title>{title}</Dialog.Title>
-          <Dialog.Description>Do you want to update {this.state.flatList[this.state.index]} ?</Dialog.Description>
+          <Dialog.Description>
+            {' '}
+Do you want to update:
+            {this.state.flatList[this.state.index].key}
+            {' '}
+?
+            {' '}
+          </Dialog.Description>
           <Dialog.Input />
           <Dialog.Button label="Cancel" onPress={this.handleCancel} />
           <Dialog.Button label="Update" onPress={this.handleUpdate} />

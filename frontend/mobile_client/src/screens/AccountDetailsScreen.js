@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import {
+  StyleSheet, Text, View, FlatList, TouchableOpacity,
+} from 'react-native';
 import Dialog from 'react-native-dialog';
 import { PantryfiedContext } from '../context/PantryfiedContext';
 
@@ -20,12 +22,7 @@ export default class AccountDetailsScreen extends Component {
         password: '',
       },
 
-      flatList: [
-        { key: 'Email address' },
-        { key: 'First name' },
-        { key: 'Second name' },
-        { key: 'Password' },
-      ],
+      flatList: [{ key: 'Email address' }, { key: 'First name' }, { key: 'Second name' }, { key: 'Password' }],
 
       dialogVisibleArray: [false, false, false, false],
       index: 0,
@@ -81,7 +78,12 @@ export default class AccountDetailsScreen extends Component {
       <View>
         <Dialog.Container visible={this.state.dialogVisibleArray.includes(true)}>
           <Dialog.Title>{title}</Dialog.Title>
-          <Dialog.Description>Do you want to update {this.state.flatList[this.state.index]} ?</Dialog.Description>
+          <Dialog.Description>
+Do you want to update
+            {this.state.flatList[this.state.index].key}
+            {' '}
+?
+          </Dialog.Description>
           <Dialog.Input />
           <Dialog.Button label="Cancel" onPress={this.handleCancel} />
           <Dialog.Button label="Update" onPress={this.handleUpdate} />
