@@ -42,6 +42,10 @@ export default (sequelize, DataTypes) => {
                     },
                 },
             },
+            admin: {
+                type: DataTypes.BOOLEAN,
+                defaultValue: false,
+            },
         },
         {
             hooks: {
@@ -56,6 +60,16 @@ export default (sequelize, DataTypes) => {
             },
         },
     );
+
+    User.associate = (models) => {
+        User.belongsToMany(models.Recipe, {
+            through: models.RecipeUser,
+            foreignKey: {
+                name: 'userId',
+                field: 'user_id',
+            },
+        });
+    };
 
     return User;
 };
