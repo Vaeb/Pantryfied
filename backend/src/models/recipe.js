@@ -12,7 +12,7 @@ export default (sequelize, DataTypes) => {
                 if (stepsArr == null) stepsArr = [];
                 return this.setDataValue('steps', JSON.stringify(stepsArr));
             },
-            defaultValue: [], // Unsure if this is checked before or after the "set" method. If it's after, I should change it to '[]'
+            defaultValue: '[]', // Unsure if this is checked before or after the "set" method. If it's after, I should change it to '[]', else []
         },
     });
 
