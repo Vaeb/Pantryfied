@@ -1,7 +1,7 @@
 export default (sequelize, DataTypes) => {
     const RecipeIngredient = sequelize.define('recipeingredient', {
         quantity: {
-            type: DataTypes.INT,
+            type: DataTypes.INTEGER,
             defaultValue: 1,
         },
         unit: {
