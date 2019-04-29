@@ -10,6 +10,7 @@ export default `
         id: Int!
         username: String!
         email: String!
+        admin: Boolean!
     }
 
     type RegisterResponse {
