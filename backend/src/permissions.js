@@ -52,7 +52,26 @@ export const requiresAuth = createResolver((parent, args, { clientUser }) => {
         delete args.testing;
         return;
     }
+
     if (!clientUser || !clientUser.id) {
         throw new QuickError('Not logged in');
     }
+});
+
+export const requiresEditor = requiresAuth.createResolver(async (parent, args, { models, clientUser }) => {
+    if (!args.recipeId) return;
+
+    try {
+        const recipe = await models.Recipe.findOne({
+            id: args.recipeId,
+        });
+
+        const user = await models.User.findOne({
+            id: clientUser.id,
+        });
+
+        if (!user.admin && !recipe.editors.some(editorUser => editorUser.id === user.id)) {
+            throw new QuickError('Not authorized to edit this recipe');
+        }
+    } catch (err) {}
 });
