@@ -57,13 +57,19 @@ export default {
         quantities: async ({ id: recipeId, quantities }, args, { models }) => {
             if (quantities) return quantities;
 
-            quantities = await models.RecipeIngredient.findAll({ recipeId });
-
-            await Promise.all(
-                quantities.map(async (recipeIngredient) => {
-                    recipeIngredient.ingredient = await models.Ingredient.findOne({ id: recipeIngredient.ingredientId });
-                }),
-            );
+            quantities = (await models.Role.sequelize.query(
+                // eslint-disable-next-line max-len
+                'select m.quantity, m.unit, m.ingredient_id, u.name from ingredients as u join recipeingredients as m on m.ingredient_id = u.id where m.recipe_id = ?',
+                {
+                    replacements: [recipeId],
+                    model: models.Role,
+                    raw: true,
+                },
+            )).map(queryData => ({
+                quantity: queryData.quantity,
+                unit: queryData.unit,
+                ingredient: { id: queryData.ingredient_id, name: queryData.name },
+            }));
 
             return quantities;
         },
