@@ -13,9 +13,9 @@ export const linkedQueryId = ({ keyModel, midModel, returnModel, id }) => {
 
     if (id instanceof Array) {
         return returnModel.sequelize.query(
-            `SELECT u.* FROM ${returnTable} as u JOIN ${midTable} as m on m.${retMidCol}_id = u.id WHERE m.${keyMidCol}_id in ?`,
+            `SELECT u.* FROM ${returnTable} as u JOIN ${midTable} as m on m.${retMidCol}_id = u.id WHERE m.${keyMidCol}_id in (:id)`,
             {
-                replacements: [`(${id.join(',')})`],
+                replacements: { id },
                 model: returnModel,
                 raw: true,
             },
@@ -23,9 +23,9 @@ export const linkedQueryId = ({ keyModel, midModel, returnModel, id }) => {
     }
 
     return returnModel.sequelize.query(
-        `SELECT u.* FROM ${returnTable} as u JOIN ${midTable} as m on m.${retMidCol}_id = u.id WHERE m.${keyMidCol}_id = ?`,
+        `SELECT u.* FROM ${returnTable} as u JOIN ${midTable} as m on m.${retMidCol}_id = u.id WHERE m.${keyMidCol}_id = :id`,
         {
-            replacements: [id],
+            replacements: { id },
             model: returnModel,
             raw: true,
         },
