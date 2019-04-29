@@ -4,9 +4,7 @@ import { requiresAuth } from '../permissions';
 export default {
     Query: {
         getIngredients: async (parent, args, { models }) => {
-            const ingredients = models.Ingredient.findAll({
-                raw: true,
-            });
+            const ingredients = models.Ingredient.findAll({});
 
             return ingredients;
         },

@@ -3,7 +3,7 @@ import { login } from '../auth';
 
 export default {
     Query: {
-        allUsers: (parent, args, { models }) => models.User.findAll({ raw: true }),
+        allUsers: (parent, args, { models }) => models.User.findAll({}),
     },
     Mutation: {
         register: async (parent, args, { models }) => {

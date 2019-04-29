@@ -41,7 +41,7 @@ export const refreshTokens = async (refreshToken, models, SECRETS) => {
 
     if (!userId) return {};
 
-    const user = await models.User.findOne({ where: { id: userId }, raw: true });
+    const user = await models.User.findOne({ where: { id: userId } });
 
     if (!user) return {};
 
