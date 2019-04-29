@@ -54,5 +54,18 @@ export default {
                 keyModel: models.Recipe,
                 id: recipeId,
             }),
+        quantities: async ({ id: recipeId, quantities }, args, { models }) => {
+            if (quantities) return quantities;
+
+            quantities = await models.RecipeIngredient.findAll({ recipeId });
+
+            await Promise.all(
+                quantities.map(async (recipeIngredient) => {
+                    recipeIngredient.ingredient = await models.Ingredient.findOne({ id: recipeIngredient.ingredientId });
+                }),
+            );
+
+            return quantities;
+        },
     },
 };
