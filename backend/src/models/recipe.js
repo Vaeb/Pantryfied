@@ -2,6 +2,7 @@ export default (sequelize, DataTypes) => {
     const Recipe = sequelize.define('recipe', {
         name: {
             type: DataTypes.STRING,
+            unique: true,
         },
         steps: {
             type: DataTypes.STRING(10000),
