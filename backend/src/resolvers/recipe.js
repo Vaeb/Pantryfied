@@ -7,7 +7,7 @@ export default {
     Query: {
         getRecipes: async (parent, { ingredientsRaw }, { models }) => {
             if (!ingredientsRaw || ingredientsRaw.length === 0) {
-                const allRecipes = models.Recipe.findAll({});
+                const allRecipes = await models.Recipe.findAll({});
                 console.log(allRecipes[0]);
                 return allRecipes;
             }
