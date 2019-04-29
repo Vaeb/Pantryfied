@@ -14,7 +14,7 @@ export default `
         unit: String
     }
 
-    type RecipeIngredientRaw {
+    input RecipeIngredientRaw {
         ingredientId: Int!
         quantity: Int!
         unit: String
