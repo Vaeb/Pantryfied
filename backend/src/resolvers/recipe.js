@@ -18,6 +18,10 @@ export default {
                 id: ingredientsRaw,
             });
 
+            foundRecipes.forEach((recipe) => {
+                recipe.steps = JSON.parse(recipe.steps);
+            });
+
             return foundRecipes;
         },
     },
