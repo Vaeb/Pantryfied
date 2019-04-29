@@ -1,7 +1,9 @@
 export default (sequelize, DataTypes) => {
     const Ingredient = sequelize.define('ingredient', {
-        name: DataTypes.STRING(1000),
-        unique: true,
+        name: {
+            type: DataTypes.STRING(1000),
+            unique: true,
+        },
     });
 
     Ingredient.associate = (models) => {
