@@ -9,6 +9,7 @@ export default {
             if (!ingredientsRaw || ingredientsRaw.length === 0) {
                 const allRecipes = models.Recipe.findAll({});
                 console.log(allRecipes[0]);
+                return allRecipes;
             }
 
             const foundRecipes = await linkedQueryId({
