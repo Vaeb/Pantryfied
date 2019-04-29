@@ -15,7 +15,7 @@ export const linkedQueryId = ({ keyModel, midModel, returnModel, id }) => {
         return returnModel.sequelize.query(
             `SELECT u.* FROM ${returnTable} as u JOIN ${midTable} as m on m.${retMidCol}_id = u.id WHERE m.${keyMidCol}_id in ?`,
             {
-                replacements: `(${id.join(',')})`,
+                replacements: [`(${id.join(',')})`],
                 model: returnModel,
                 raw: true,
             },
