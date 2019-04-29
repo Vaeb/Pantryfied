@@ -1,14 +1,13 @@
 import pick from 'lodash/pick';
 import formatErrors from '../formatErrors';
 import { requiresAuth, requiresEditor } from '../permissions';
-import { linkedQueryId, linkedQuery } from '../linkedQueries';
+import { linkedQueryId } from '../linkedQueries';
 
 export default {
     Query: {
         getRecipes: async (parent, { ingredientsRaw }, { models }) => {
             if (!ingredientsRaw || ingredientsRaw.length === 0) {
                 const allRecipes = await models.Recipe.findAll({});
-                console.log(allRecipes[0]);
                 return allRecipes;
             }
 
