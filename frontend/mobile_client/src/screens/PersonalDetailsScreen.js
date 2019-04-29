@@ -10,43 +10,45 @@ export default class PersonalDetailsScreen extends Component {
     super(props);
     this.showDialog = this.showDialog.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
+    this.handleUpdate = this.handleUpdate.bind(this);
 
     // obtain stored data
     this.state = {
       details: {
         height: '',
         weight: '',
+        gender: '',
+        dateOfBirth: '',
       },
-      data: ['Email Address', 'First name', 'Second name'],
-      dialogVisibleArray: [false, false, false],
+
+      flatList: [{ key: 'Date of birth' }, { key: 'Gender' }, { key: 'height' }, { key: 'Weight' }],
+
+      dialogVisibleArray: [false, false, false, false],
       index: 0,
     };
   }
 
-  // Plan:
-  /*
-      User selects a button, goes to render button, which passes the item to AlertBox, which will find out which button was pressed,
-      with this value we will make the dialogBox correlated to that appear and the text on the diaglog will be associated with that. i.e:
-      email button is pressed, this will show the dialog button which will also change any text for the dialog.
-
-  */
-
   showDialog(i) {
-    const newArray = [this.state.dialogVisibleArray];
+    const newArray = [this.dialogVisibleArray];
     newArray[i] = true;
     this.setState({ dialogVisibleArray: newArray });
   }
 
-  handleUpdate(i) {
-    const newArray = [this.state.dialogVisibleArray];
+  handleCancel(i) {
+    const newArray = [this.dialogVisibleArray];
     newArray[i] = false;
     this.setState({ dialogVisibleArray: newArray });
   }
 
+  handleUpdate(i) {
+    // TODO
+    console.log(i);
+  }
+
   // eslint-disable-next-line class-methods-use-this
   alertBox(item) {
-    for (let i = 0; i < this.state.data.length; i++) {
-      if (item.key == this.state.data[i]) {
+    for (let i = 0; i < this.state.flatList.length; i++) {
+      if (item.key == this.state.flatList[i].key) {
         this.showDialog(i);
       }
     }
@@ -64,28 +66,31 @@ export default class PersonalDetailsScreen extends Component {
   }
 
   render() {
-    const data = [{ key: 'Email Address' }, { key: 'First name' }, { key: 'Second name' }];
-
     let title = 'Enter ';
     for (let i = 0; i < this.state.dialogVisibleArray.length; i++) {
       if (this.state.dialogVisibleArray[i] == true) {
-        title += data[i].key;
+        title += this.state.flatList[i].key;
         this.state.index = i;
       }
     }
-
     return (
       <View>
         <Dialog.Container visible={this.state.dialogVisibleArray.includes(true)}>
           <Dialog.Title>{title}</Dialog.Title>
-          <Dialog.Description>Do you want to delete this account? You cannot undo this action.</Dialog.Description>
+          <Dialog.Description>
+            {' '}
+Do you want to update:
+            {this.state.flatList[this.state.index].key}
+            {' '}
+?
+            {' '}
+          </Dialog.Description>
           <Dialog.Input />
           <Dialog.Button label="Cancel" onPress={this.handleCancel} />
           <Dialog.Button label="Update" onPress={this.handleUpdate} />
         </Dialog.Container>
-
         <Text style={styles.headerBar}> Personal details </Text>
-        <FlatList data={data} renderItem={({ item }) => this.renderButton(item)} />
+        <FlatList data={this.state.flatList} renderItem={({ item }) => this.renderButton(item)} />
       </View>
     );
   }

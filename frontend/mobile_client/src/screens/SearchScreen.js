@@ -136,6 +136,7 @@ export default class SearchScreen extends Component {
           //   ingredientItem.key = ingredientItem.id.toString();
           // });
         });
+        //dataArr = this.removeAllergens(dataArr);
         dataArr = this.checkResultsFavourites(dataArr);
         this.context.setFoundRecipeList(dataArr);
         console.log('data arr: ', dataArr);
@@ -157,6 +158,16 @@ export default class SearchScreen extends Component {
       });
     });
     return dataArr;
+  }
+
+  removeAllergens(dataArr) {
+    let newArr = [];
+    // loop through all allergens
+    // loop through dataArr
+    // loop through ingredients in dataArr
+    // if ingredients contains an allergen then dont add to array
+    // otherwise push item onto new Arr
+    return newArr;
   }
 
   shaveList() {
