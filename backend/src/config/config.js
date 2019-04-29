@@ -12,7 +12,7 @@ module.exports = {
             underscored: true,
         },
         logging: false,
-        query: { raw: true },
+        // query: { raw: true },
     },
     test: {
         username: 'postgres',
@@ -25,7 +25,7 @@ module.exports = {
             underscored: true,
         },
         logging: false,
-        query: { raw: true },
+        // query: { raw: true },
     },
     production: {
         username: 'postgres',
@@ -38,6 +38,6 @@ module.exports = {
             underscored: true,
         },
         logging: false,
-        query: { raw: true },
+        // query: { raw: true },
     },
 };
