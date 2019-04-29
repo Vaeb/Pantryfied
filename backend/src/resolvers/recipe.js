@@ -57,12 +57,12 @@ export default {
         quantities: async ({ id: recipeId, quantities }, args, { models }) => {
             if (quantities) return quantities;
 
-            quantities = (await models.Role.sequelize.query(
+            quantities = (await models.Ingredient.sequelize.query(
                 // eslint-disable-next-line max-len
                 'select m.quantity, m.unit, m.ingredient_id, u.name from ingredients as u join recipeingredients as m on m.ingredient_id = u.id where m.recipe_id = ?',
                 {
                     replacements: [recipeId],
-                    model: models.Role,
+                    model: models.Ingredient,
                     raw: true,
                 },
             )).map(queryData => ({
