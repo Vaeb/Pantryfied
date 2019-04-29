@@ -7,6 +7,7 @@ export default (sequelize, DataTypes) => {
         steps: {
             type: DataTypes.STRING(10000),
             get() {
+                console.log('getting steps', this.getDataValue('steps'), JSON.parse(this.getDataValue('steps')));
                 return JSON.parse(this.getDataValue('steps'));
             },
             set(stepsArr) {

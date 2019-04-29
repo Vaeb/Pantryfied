@@ -6,7 +6,10 @@ import { linkedQueryId, linkedQuery } from '../linkedQueries';
 export default {
     Query: {
         getRecipes: async (parent, { ingredientsRaw }, { models }) => {
-            if (!ingredientsRaw || ingredientsRaw.length === 0) return models.Recipe.findAll({});
+            if (!ingredientsRaw || ingredientsRaw.length === 0) {
+                const allRecipes = models.Recipe.findAll({});
+                console.log(allRecipes[0]);
+            }
 
             const foundRecipes = await linkedQueryId({
                 returnModel: models.Recipe,
