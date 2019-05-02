@@ -6,6 +6,13 @@ export default `
         quantities: [RecipeIngredient!]!
         steps: [String!]!
         editors: [User!]!
+        description: String
+        rating: Int
+        imgURL: String
+        fat: Int
+        protein: Int
+        sodium: Int
+        calories: Int
     }
 
     type RecipeIngredient {
@@ -31,7 +38,7 @@ export default `
     }
 
     type Mutation {
-        createRecipe(name: String!, quantitiesRaw: [RecipeIngredientRaw!], steps: [String!], testing: Int): CreateRecipeResponse!
+        createRecipe(name: String!, quantitiesRaw: [RecipeIngredientRaw!], steps: [String!], editors: [Int!], description: String, rating: Int, imgURL: String, fat: Int, protein: Int, sodium: Int, calories: Int, testing: Int): CreateRecipeResponse!
         addRecipeIngredient(recipeId: Int!, ingredientId: Int!, quantity: Int!, unit: String): CreateRecipeResponse!
     }
 

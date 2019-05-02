@@ -36,6 +36,13 @@ const getRecipeQuery = gql`
           name
         }
       }
+      description
+      rating
+      imgURL
+      fat
+      protein
+      sodium
+      calories
     }
   }
 `;
@@ -82,7 +89,7 @@ export default class SearchScreen extends Component {
         const dataArr = data.getIngredients;
         dataArr.forEach(arrayItem => {
           arrayItem.selected = false;
-          arrayItem.key = arrayItem.id.toString();
+          arrayItem.key = String(arrayItem.id);
           this.state.ingredients.push(arrayItem);
         });
       })
@@ -137,16 +144,16 @@ export default class SearchScreen extends Component {
         let dataArr = data.getRecipes;
         console.log('dataArr here', dataArr);
         dataArr.forEach(arrayItem => {
-          arrayItem.key = arrayItem.id.toString();
+          arrayItem.key = String(arrayItem.id);
           arrayItem.favourite = false;
-          arrayItem.quantities.forEach((ingredientItem) => {
-            ingredientItem.key = ingredientItem.ingredient.id.toString();
+          arrayItem.quantities.forEach(ingredientItem => {
+            ingredientItem.key = String(ingredientItem.ingredient.id);
           });
 
           let stepsKey = 1;
-          let newSteps = [];
-          arrayItem.steps.forEach((item) => {
-            newSteps.push({ step: item, key: stepsKey.toString() });
+          const newSteps = [];
+          arrayItem.steps.forEach(item => {
+            newSteps.push({ step: item, key: String(stepsKey) });
             stepsKey++;
           });
           arrayItem.steps = newSteps;

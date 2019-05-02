@@ -28,7 +28,7 @@ export default {
     Mutation: {
         createRecipe: requiresAuth.createResolver(async (parent, args, { models }) => {
             try {
-                const recipeData = pick(args, ['name', 'steps']);
+                const recipeData = pick(args, ['name', 'steps', 'description', 'rating', 'imgURL', 'fat', 'protein', 'sodium', 'calories']);
                 const recipe = await models.Recipe.create({ ...recipeData });
 
                 if (args.quantitiesRaw && args.quantitiesRaw.length > 0) {
