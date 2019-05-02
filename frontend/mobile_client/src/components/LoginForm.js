@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Platform, StyleSheet, Text, View, TextInput, TouchableOpacity, StatusBar, ScrollView, ActivityIndicator,
+  StyleSheet, Text, View, TextInput, TouchableOpacity, StatusBar, ScrollView, ActivityIndicator, AsyncStorage,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import gql from 'graphql-tag';
@@ -11,10 +11,18 @@ const loginRequest = gql`
   mutation($username: String!, $password: String!) {
     login(userKey: $username, password: $password) {
       ok
-      user
+      user {
+        id
+        username
+        email
+        admin
+      }
       token
       refreshToken
-      errors
+      errors {
+        path
+        message
+      }
     }
   }
 `;
@@ -36,35 +44,35 @@ class LoginForm extends Component {
     };
   }
 
+  componentDidMount() {
+    // check for token and if there is one then navigate to main
+  }
+
   async loginButtonPressed() {
     this.setState({ loading: true });
     console.log(`user: ${this.state.username} pass: ${this.state.password}`);
     // check username and password here, if correct then set loading to false, and navigate
     // if incorrect then set loading to false and loginfailed to true
-    this.props.navigation.navigate('Main');
-    /*
+    
+    
     await this.context.apolloClient
       .mutate({
         mutation: loginRequest,
         variables: { username: this.state.username, password: this.state.password },
         fetchPolicy: 'no-cache',
       })
-      .then(({ data }) => {
-        const dataArr = data.getIngredients;
-        console.log("log Data Arr", dataArr)
-        dataArr.forEach((arrayItem) => {
-          arrayItem.selected = false;
-          arrayItem.key = arrayItem.id.toString();
-          this.state.ingredients.push(arrayItem);
-        });
+      .then(async ({ data }) => {
+        console.log("login Data: ", data);
+        if (data.login.ok) {
+          await AsyncStorage.setItem('userToken', JSON.stringify(data.login.token));
+          this.props.navigation.navigate("Main");
+        } else {
+          setTimeout(() => {
+            this.setState({ loading: false, loginFailed: true, username: '', password: '' });
+          }, 3000);
+        }
       })
       .catch((error) => console.log(error));
-
-    setTimeout(() => {
-      this.setState({ loading: false, loginFailed: true, username: '', password: '' });
-    }, 3000);
-*/
-    // this.props.navigation.navigate("Main");
   }
 
   registerButtonPressed() {

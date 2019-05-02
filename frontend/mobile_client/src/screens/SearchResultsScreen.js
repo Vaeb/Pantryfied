@@ -17,11 +17,6 @@ export default class SearchResultsScreen extends Component {
     };
   }
 
-  componentWillMount() {
-    console.log('Found Recipes: ', JSON.stringify(this.context.foundRecipes));
-    console.log("searchReulst");
-  }
-
   // sync this.state.favourites with favourites screen using context and functions
   favouriteButtonPressed(item) {
     this.context.updateFavouriteArray(item);
