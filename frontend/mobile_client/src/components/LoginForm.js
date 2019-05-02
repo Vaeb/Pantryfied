@@ -53,8 +53,7 @@ class LoginForm extends Component {
     console.log(`user: ${this.state.username} pass: ${this.state.password}`);
     // check username and password here, if correct then set loading to false, and navigate
     // if incorrect then set loading to false and loginfailed to true
-    this.props.navigation.navigate("Main");
-    /*
+    
     await this.context.apolloClient
       .mutate({
         mutation: loginRequest,
@@ -73,7 +72,7 @@ class LoginForm extends Component {
         }
       })
       .catch((error) => console.log(error));
-      */
+      
   }
 
   registerButtonPressed() {
