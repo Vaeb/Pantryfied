@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Text, View, StyleSheet, FlatList, TouchableOpacity, Image, CheckBox,
+  Text, View, StyleSheet, FlatList, TouchableOpacity, Image, CheckBox 
 } from 'react-native';
 import gql from 'graphql-tag';
 // import { SearchBar } from 'react-native-elements';
@@ -23,10 +23,19 @@ import { Button } from '../components/common/Button';
 `; */
 
 const getRecipeQuery = gql`
-  query {
-    getRecipes {
+  query GetRecipes($ingredientsRaw: [Int!]) {
+    getRecipes(ingredientsRaw: $ingredientsRaw) {
       id
       name
+      steps
+      quantities {
+        quantity
+        unit
+        ingredient {
+          id
+          name
+        }
+      }
     }
   }
 `;
@@ -55,7 +64,7 @@ export default class SearchScreen extends Component {
       ingredients: [],
       ingredientsArg: [],
       ingredientsToSearch: [],
-      isChecked: false,
+      isChecked: false
       // search: '', // Can remove this if you dont need, following a tutorial to add search bar in
     };
     // updateSearch = (search) => {
@@ -71,29 +80,31 @@ export default class SearchScreen extends Component {
     await this.context.apolloClient
       .query({
         query: getIngredientsQuery,
-        fetchPolicy: 'network-only',
+        fetchPolicy: 'network-only'
       })
       .then(({ data }) => {
         const dataArr = data.getIngredients;
-        dataArr.forEach((arrayItem) => {
+        dataArr.forEach(arrayItem => {
           arrayItem.selected = false;
           arrayItem.key = arrayItem.id.toString();
           this.state.ingredients.push(arrayItem);
         });
       })
       .catch(error => console.log(error));
-    this.setState({ refresh: !this.state.refresh });
+    const nowRefresh = this.state.refresh;
+    this.setState({ refresh: !nowRefresh });
   }
 
   ingredientPressed(item) {
-    this.state.ingredients.forEach((arrayItem) => {
+    this.state.ingredients.forEach(arrayItem => {
       if (arrayItem.key == item.key) {
         if (arrayItem.selected) {
           arrayItem.selected = false;
         } else {
           arrayItem.selected = true;
         }
-        this.setState({ refresh: !this.state.refresh });
+        const nowRefresh = this.state.refresh;
+        this.setState({ refresh: !nowRefresh });
       }
     });
   }
@@ -119,16 +130,18 @@ export default class SearchScreen extends Component {
   async searchButtonPressed() {
     this.shaveList();
     // get the recipes from the backend using this.state.ingredientsToSearch
+    const ingredientsRaw = this.state.ingredients.filter(ingr => ingr.selected).map(ingr => ingr.id);
+    console.log('Searching for:', ingredientsRaw);
     await this.context.apolloClient
       .query({
         query: getRecipeQuery,
-        // variables: { ingredients: this.state.ingredientsArg },
-        fetchPolicy: 'network-only',
+        variables: { ingredientsRaw },
+        fetchPolicy: 'network-only'
       })
       .then(({ data }) => {
         let dataArr = data.getRecipes;
         console.log('dataArr here', dataArr);
-        dataArr.forEach((arrayItem) => {
+        dataArr.forEach(arrayItem => {
           arrayItem.key = arrayItem.id.toString();
           arrayItem.favourite = false;
           // this code wont work for now so leave it commented out
@@ -136,10 +149,10 @@ export default class SearchScreen extends Component {
           //   ingredientItem.key = ingredientItem.id.toString();
           // });
         });
-        //dataArr = this.removeAllergens(dataArr);
+        // dataArr = this.removeAllergens(dataArr);
         dataArr = this.checkResultsFavourites(dataArr);
         this.context.setFoundRecipeList(dataArr);
-        console.log('data arr: ', dataArr);
+        // console.log('data arr: ', dataArr);
       })
       .catch(error => console.log(error));
 
@@ -148,8 +161,8 @@ export default class SearchScreen extends Component {
 
   // probably needs optimising
   checkResultsFavourites(dataArr) {
-    this.context.favourites.forEach((arrayItem) => {
-      dataArr.forEach((dataItem) => {
+    this.context.favourites.forEach(arrayItem => {
+      dataArr.forEach(dataItem => {
         if (arrayItem.key == dataItem.key) {
           if (arrayItem.favourite) {
             dataItem.favourite = true;
@@ -161,7 +174,7 @@ export default class SearchScreen extends Component {
   }
 
   removeAllergens(dataArr) {
-    let newArr = [];
+    const newArr = [];
     // loop through all allergens
     // loop through dataArr
     // loop through ingredients in dataArr
@@ -171,7 +184,8 @@ export default class SearchScreen extends Component {
   }
 
   shaveList() {
-    this.state.ingredients.forEach((arrayItem) => {
+    // this.state.ingredientsArgs.splice(0, this.state.ingredientsArg.length);
+    this.state.ingredients.forEach(arrayItem => {
       if (arrayItem.selected) {
         this.state.ingredientsArg.push(arrayItem.id);
         this.state.ingredientsToSearch.push(arrayItem);
@@ -193,7 +207,6 @@ export default class SearchScreen extends Component {
           onPress={this.searchButtonPressed}
           definedFlex={1}
         >
-
           Search with selected ingredients
         </Button>
       </View>
@@ -203,15 +216,15 @@ export default class SearchScreen extends Component {
 
 const styles = StyleSheet.create({
   navButton: {
-    flex: 1,
+    flex: 1
   },
   navButtonText: {
-    fontSize: 18,
+    fontSize: 18
   },
   item: {
     flex: 4,
     padding: 10,
-    fontSize: 26,
+    fontSize: 26
   },
   searchButtonStyle: {
     padding: 10,
@@ -219,12 +232,12 @@ const styles = StyleSheet.create({
     marginRight: 10,
     flex: 1,
     borderRadius: 10,
-    backgroundColor: '#28BAA5',
+    backgroundColor: '#28BAA5'
   },
   searchButtonText: {
     fontSize: 18,
     color: 'white',
-    alignSelf: 'center',
+    alignSelf: 'center'
   },
   headerBar: {
     textAlign: 'center',
@@ -235,8 +248,8 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     color: '#fff',
     borderBottomColor: 'grey',
-    backgroundColor: '#28BAA5',
-  },
+    backgroundColor: '#28BAA5'
+  }
 });
 
 SearchScreen.contextType = PantryfiedContext;
