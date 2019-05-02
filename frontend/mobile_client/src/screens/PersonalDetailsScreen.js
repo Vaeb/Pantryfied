@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import {
-  StyleSheet, Text, View, FlatList, TouchableOpacity,
+  StyleSheet,
+  Text,
+  View,
+  FlatList,
+  TouchableOpacity
 } from 'react-native';
 import Dialog from 'react-native-dialog';
 import { PantryfiedContext } from '../context/PantryfiedContext';
@@ -18,13 +22,18 @@ export default class PersonalDetailsScreen extends Component {
         height: '',
         weight: '',
         gender: '',
-        dateOfBirth: '',
+        dateOfBirth: ''
       },
 
-      flatList: [{ key: 'Date of birth' }, { key: 'Gender' }, { key: 'height' }, { key: 'Weight' }],
+      flatList: [
+        { key: 'Date of birth' },
+        { key: 'Gender' },
+        { key: 'height' },
+        { key: 'Weight' }
+      ],
 
       dialogVisibleArray: [false, false, false, false],
-      index: 0,
+      index: 0
     };
   }
 
@@ -75,22 +84,25 @@ export default class PersonalDetailsScreen extends Component {
     }
     return (
       <View>
-        <Dialog.Container visible={this.state.dialogVisibleArray.includes(true)}>
+        <Dialog.Container
+          visible={this.state.dialogVisibleArray.includes(true)}
+        >
           <Dialog.Title>{title}</Dialog.Title>
           <Dialog.Description>
             {' '}
-Do you want to update:
-            {this.state.flatList[this.state.index].key}
-            {' '}
-?
-            {' '}
+            Do you want to update: {
+              this.state.flatList[this.state.index].key
+            }?{' '}
           </Dialog.Description>
           <Dialog.Input />
           <Dialog.Button label="Cancel" onPress={this.handleCancel} />
           <Dialog.Button label="Update" onPress={this.handleUpdate} />
         </Dialog.Container>
         <Text style={styles.headerBar}> Personal details </Text>
-        <FlatList data={this.state.flatList} renderItem={({ item }) => this.renderButton(item)} />
+        <FlatList
+          data={this.state.flatList}
+          renderItem={({ item }) => this.renderButton(item)}
+        />
       </View>
     );
   }
@@ -103,7 +115,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flex: 1,
-    margin: 2,
+    margin: 2
   },
   headerBar: {
     textAlign: 'center',
@@ -114,14 +126,14 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     color: '#fff',
     borderBottomColor: 'grey',
-    backgroundColor: '#28BAA5',
+    backgroundColor: '#28BAA5'
   },
   cell: {
     padding: 10,
     fontSize: 18,
     height: 44,
     margin: 30,
-    justifyContent: 'center', // https://reactnativecode.com/justifycontenton-style-explained/
+    justifyContent: 'center' // https://reactnativecode.com/justifycontenton-style-explained/
   },
   text: {
     textAlign: 'left',
@@ -131,6 +143,6 @@ const styles = StyleSheet.create({
     height: 40,
     fontSize: 28,
     borderBottomWidth: 1,
-    borderBottomColor: 'grey',
-  },
+    borderBottomColor: 'grey'
+  }
 });
