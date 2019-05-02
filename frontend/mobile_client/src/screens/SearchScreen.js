@@ -65,11 +65,7 @@ export default class SearchScreen extends Component {
       ingredientsArg: [],
       ingredientsToSearch: [],
       isChecked: false
-      // search: '', // Can remove this if you dont need, following a tutorial to add search bar in
     };
-    // updateSearch = (search) => {
-    //   this.setState({ search });
-    // };
   }
 
   componentDidMount() {
@@ -131,7 +127,6 @@ export default class SearchScreen extends Component {
     this.shaveList();
     // get the recipes from the backend using this.state.ingredientsToSearch
     const ingredientsRaw = this.state.ingredients.filter(ingr => ingr.selected).map(ingr => ingr.id);
-    console.log('Searching for:', ingredientsRaw);
     await this.context.apolloClient
       .query({
         query: getRecipeQuery,
@@ -144,10 +139,17 @@ export default class SearchScreen extends Component {
         dataArr.forEach(arrayItem => {
           arrayItem.key = arrayItem.id.toString();
           arrayItem.favourite = false;
-          // this code wont work for now so leave it commented out
-          // arrayItem.ingredients.forEach((ingredientItem) => {
-          //   ingredientItem.key = ingredientItem.id.toString();
-          // });
+          arrayItem.quantities.forEach((ingredientItem) => {
+            ingredientItem.key = ingredientItem.ingredient.id.toString();
+          });
+          
+          let stepsKey = 1;
+          let newSteps = [];
+          arrayItem.steps.forEach((item) => {
+            newSteps.push({ step: item, key: stepsKey.toString() });
+            stepsKey++;
+          });
+          arrayItem.steps = newSteps;
         });
         // dataArr = this.removeAllergens(dataArr);
         dataArr = this.checkResultsFavourites(dataArr);

@@ -40,36 +40,8 @@ export default class App extends Component {
 
     
     // actual code
-    // this.setRecipeToRender = (recipe) => {
-    //   this.setState({ renderRecipe: recipe.recipe });
-    // };
-
-    // test code
     this.setRecipeToRender = (recipe) => {
-      this.setState({ renderRecipe: {
-        key: 101,
-        title: "Potato and Fennel Soup Hodge",
-        desc: "The Sicilian-style tomato sauce has tons of Mediterranean flavor, thanks to the orange peel, olives, and oregano.",
-        imgUrl: "../Images/testRecipeImage.jpg",
-        directions: "Step1: dsfsdljfdskljf\nStep2:jldsfhdslfds\nStep3:lkdsfhdujksdsfds",
-        fat: 32,
-        protein: 20,
-        sodium: 452,
-        calories: 546,
-        rating: 3,
-        ingredients: [
-          {
-            id: 201,
-            name: "Ingredient 1",
-            key: "201",
-          },
-          {
-            id: 202,
-            name: "Ingredient 2",
-            key: "202",
-          },
-        ],
-      }});
+      this.setState({ renderRecipe: recipe.recipe });
     };
 
     this.setRecipeList = (recipeList) => {
@@ -146,31 +118,7 @@ export default class App extends Component {
       },
       units: '',
       setFoundRecipeList: this.setRecipeList,
-      // foundRecipes: [],
-      foundRecipes: [
-        {
-          key: 101,
-          title: "Potato and Fennel Soup Hodge",
-          desc: "The Sicilian-style tomato sauce has tons of Mediterranean flavor, thanks to the orange peel, olives, and oregano.",
-          imgUrl: "../Images/testRecipeImage.jpg",
-          directions: "Step1: dsfsdljfdskljf\nStep2:jldsfhdslfds\nStep3:lkdsfhdujksdsfds",
-          fat: 32,
-          protein: 20,
-          sodium: 452,
-          calories: 546,
-          rating: 3,
-          ingredients: [
-            {
-              id: 201,
-              name: "Ingredient 1",
-            },
-            {
-              id: 202,
-              name: "Ingredient 2",
-            },
-          ],
-        },
-      ],
+      foundRecipes: [],
       renderRecipe: {},
       setRenderRecipe: this.setRecipeToRender,
       updateFavouriteArray: this.updateFavouriteArray,

@@ -7,12 +7,10 @@ import { Button } from '../components/common/Button';
 // eslint-disable-next-line react/prefer-stateless-function
 export default class InstructionsScreen extends Component {
 
-  /* 
-   * The recipe object will be stored in this.context.renderRecipe
-   * Will probably just be a simple case of displaying an image in the <Image> tag
-   * Along with some <Text> which you'll need to style
-   * remove the braces from where the comments are in the middle of the JSX when you remove the comments
-  */
+
+  componentDidMount() {
+    console.log("Instructions: ", this.context.renderRecipe);
+  }
 
   // make lists into ListItem and add key fields in App.js when setting renderRecipe
   render() {
@@ -25,11 +23,14 @@ export default class InstructionsScreen extends Component {
         />
         <Text style={styles.directionHeading}>Ingredients</Text>
             <FlatList
-                data={this.context.renderRecipe.ingredients}
-                renderItem={({ item }) => <Text style={styles.directionText}>{item.quantity}x {item.name}</Text>}
+                data={this.context.renderRecipe.quantities}
+                renderItem={({ item }) => <Text style={styles.directionText}>{item.quantity}x {item.ingredient.name}</Text>}
             />
         <Text style={styles.directionHeading}>Directions</Text>
-        <Text style={styles.directionText}>{this.context.renderRecipe.directions}</Text>
+        <FlatList
+            data={this.context.renderRecipe.steps}
+            renderItem={({ item }) => <Text style={styles.directionText}>{item.step}</Text>}
+        />
         {/* either use ListItem or FlatList for ingredients, they work mostly the same */}
       </View>
     );
