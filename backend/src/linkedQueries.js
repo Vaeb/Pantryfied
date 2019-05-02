@@ -13,6 +13,7 @@ export const linkedQueryId = ({ keyModel, midModel, returnModel, id }) => {
 
     if (id instanceof Array) {
         return returnModel.sequelize.query(
+            // eslint-disable-next-line max-len
             `SELECT DISTINCT u.* FROM ${returnTable} as u JOIN ${midTable} as m on m.${retMidCol}_id = u.id WHERE m.${keyMidCol}_id in (:id)`,
             {
                 replacements: { id },
