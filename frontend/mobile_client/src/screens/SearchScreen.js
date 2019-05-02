@@ -142,7 +142,7 @@ export default class SearchScreen extends Component {
           arrayItem.quantities.forEach((ingredientItem) => {
             ingredientItem.key = ingredientItem.ingredient.id.toString();
           });
-          
+
           let stepsKey = 1;
           let newSteps = [];
           arrayItem.steps.forEach((item) => {
