@@ -1,6 +1,8 @@
 import request from 'request-promise-native';
 import models from './models';
 
+const startRecipeId = 1;
+const startIngredientId = 1;
 const numSearch = 2;
 const resetDatabase = false;
 
@@ -15,8 +17,8 @@ const doImport = async () => {
             json: true,
         });
 
-        let nextRecipeId = 1;
-        let nextIngredientId = 1;
+        let nextRecipeId = startRecipeId;
+        let nextIngredientId = startIngredientId;
         const foundIngredients = {};
 
         const createRecipes = [];
@@ -58,6 +60,8 @@ const doImport = async () => {
 
             // Ingredients
 
+            const linkedIngredients = {};
+
             recipe.extendedIngredients.forEach((ingredient) => {
                 let ingredientId = foundIngredients[ingredient.name];
 
@@ -73,7 +77,10 @@ const doImport = async () => {
                     createIngredients.push(ingredientData);
                 }
 
-                createRecipeIngredients.push({ recipeId, ingredientId, quantity: ingredient.amount, unit: ingredient.unit });
+                if (!linkedIngredients[ingredientId]) {
+                    linkedIngredients[ingredientId] = true;
+                    createRecipeIngredients.push({ recipeId, ingredientId, quantity: ingredient.amount, unit: ingredient.unit });
+                }
             });
 
             // Recipe Ingredients
