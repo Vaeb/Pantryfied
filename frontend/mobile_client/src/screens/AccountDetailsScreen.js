@@ -90,7 +90,7 @@ export default class AccountDetailsScreen extends Component {
         >
           <Dialog.Title>{title}</Dialog.Title>
           <Dialog.Description>
-            Do you want to update: {this.state.flatList[this.state.index].key} ?
+            Do you want to update: {this.state.flatList[this.state.index].key}?
           </Dialog.Description>
           <Dialog.Input />
           <Dialog.Button label="Cancel" onPress={this.handleCancel} />

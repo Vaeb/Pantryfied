@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
-import {
-  Text, View, StyleSheet, TouchableOpacity, Image 
-} from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { PantryfiedContext } from '../context/PantryfiedContext';
 // import { Button } from '../components/common/Button';
 
-const parseRecipeData = (possibleData, alt, extra) => (possibleData != null ? `${possibleData}${extra != null ? extra : ''}` : alt); // Can't just use || below in case possibleData is 0
+const parseRecipeData = (possibleData, alt, extra) =>
+  possibleData != null ? `${possibleData}${extra != null ? extra : ''}` : alt; // Can't just use || below in case possibleData is 0
 
 // eslint-disable-next-line react/prefer-stateless-function
 export default class RecipeScreen extends Component {
   constructor(props) {
     super(props);
-    this.navigateInstructionsPressed = this.navigateInstructionsPressed.bind(this);
+    this.navigateInstructionsPressed = this.navigateInstructionsPressed.bind(
+      this
+    );
   }
 
   componentDidMount() {
@@ -27,7 +28,12 @@ export default class RecipeScreen extends Component {
     // const toRenderRecipe = JSON.stringify(this.context.renderRecipe);
     return (
       <View style={{ flex: 1 }}>
-        <Text allowFontScaling adjustsFontSizeToFit numberOfLines={1} style={styles.nameText}>
+        <Text
+          allowFontScaling
+          adjustsFontSizeToFit
+          numberOfLines={1}
+          style={styles.nameText}
+        >
           {this.context.renderRecipe.name}
         </Text>
         <View
@@ -40,7 +46,10 @@ export default class RecipeScreen extends Component {
         >
           <Image
             source={{
-              uri: parseRecipeData(this.context.renderRecipe.imgUrl, 'http://getdrawings.com/free-icon/free-question-mark-icon-67.png')
+              uri: parseRecipeData(
+                this.context.renderRecipe.imgUrl,
+                'http://getdrawings.com/free-icon/free-question-mark-icon-67.png'
+              )
             }}
             style={{
               width: 200,
@@ -55,16 +64,63 @@ export default class RecipeScreen extends Component {
             justifyContent: 'flex-end'
           }}
         >
-          <Text style={styles.descriptionText}>{parseRecipeData(this.context.renderRecipe.description, 'No description available')}</Text>
-          <Text style={styles.ratingText}>Rating: {parseRecipeData(this.context.renderRecipe.rating, 'Not available', '/5')}</Text>
+          <Text style={styles.descriptionText}>
+            {parseRecipeData(
+              this.context.renderRecipe.description,
+              'No description available'
+            )}
+          </Text>
+          <Text style={styles.ratingText}>
+            Rating:{' '}
+            {parseRecipeData(
+              this.context.renderRecipe.rating,
+              'Not available',
+              '/5'
+            )}
+          </Text>
           <Text />
-          <Text style={styles.infoText}>Calories: {parseRecipeData(this.context.renderRecipe.calories, 'Not available')}</Text>
-          <Text style={styles.infoText}>Protein: {parseRecipeData(this.context.renderRecipe.protein, 'Not available', 'g')}</Text>
-          <Text style={styles.infoText}>Fat: {parseRecipeData(this.context.renderRecipe.fat, 'Not available', 'g')}</Text>
-          <Text style={styles.infoText}>Sodium: {parseRecipeData(this.context.renderRecipe.sodium, 'Not available', 'g')}</Text>
+          <Text style={styles.infoText}>
+            Calories:{' '}
+            {parseRecipeData(
+              this.context.renderRecipe.calories,
+              'Not available'
+            )}
+          </Text>
+          <Text style={styles.infoText}>
+            Protein:{' '}
+            {parseRecipeData(
+              this.context.renderRecipe.protein,
+              'Not available',
+              'g'
+            )}
+          </Text>
+          <Text style={styles.infoText}>
+            Fat:{' '}
+            {parseRecipeData(
+              this.context.renderRecipe.fat,
+              'Not available',
+              'g'
+            )}
+          </Text>
+          <Text style={styles.infoText}>
+            Sodium:{' '}
+            {parseRecipeData(
+              this.context.renderRecipe.sodium,
+              'Not available',
+              'g'
+            )}
+          </Text>
           <Text />
-          <TouchableOpacity onPress={this.navigateInstructionsPressed} style={styles.navButton} activeOpacity={0.5}>
-            <Text adjustsFontSizeToFit numberOfLines={1} style={styles.navButtonText}>
+          <TouchableOpacity
+            onPress={this.navigateInstructionsPressed}
+            style={styles.navButton}
+            activeOpacity={0.5}
+          >
+            <Text
+              adjustsFontSizeToFit
+              numberOfLines={1}
+              style={styles.navButtonText}
+            >
               View Instructions
             </Text>
           </TouchableOpacity>
@@ -77,7 +133,7 @@ export default class RecipeScreen extends Component {
 const styles = StyleSheet.create({
   navButton: {
     flex: 0,
-    backgroundColor: '#1F7C71',
+    backgroundColor: '#28BAA5',
     marginBottom: 10,
     width: 300,
     height: 38,
@@ -88,9 +144,8 @@ const styles = StyleSheet.create({
 
     marginLeft: 30,
     marginRight: 30,
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: '#1F7C71'
+    borderRadius: 5,
+    backgroundColor: '#28BAA5'
   },
 
   navButtonText: {
@@ -108,7 +163,6 @@ const styles = StyleSheet.create({
 
   nameText: {
     fontSize: 25,
-
     color: '#FFFFFF',
     backgroundColor: '#28BAA5',
     height: 50,
