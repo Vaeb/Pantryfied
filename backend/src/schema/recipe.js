@@ -3,16 +3,20 @@ export default `
     type Recipe {
         id: Int!
         name: String!
+        description: String
         quantities: [RecipeIngredient!]!
         steps: [String!]!
         editors: [User!]!
-        description: String
         rating: Int
         imgURL: String
         fat: Int
         protein: Int
         sodium: Int
         calories: Int
+        tags: [String!]
+        preparationMinutes: Int
+        cookingMinutes: Int
+        servings: Int
     }
 
     type RecipeIngredient {
