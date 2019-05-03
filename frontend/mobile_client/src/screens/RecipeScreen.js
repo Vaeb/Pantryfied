@@ -80,34 +80,33 @@ export default class RecipeScreen extends Component {
           </Text>
           <Text />
           <Text style={styles.infoText}>
-            Calories:{' '}
+            Servings:{' '}
             {parseRecipeData(
-              this.context.renderRecipe.calories,
+              this.context.renderRecipe.servings,
               'Not available'
             )}
           </Text>
           <Text style={styles.infoText}>
-            Protein:{' '}
+            Preparation time:{' '}
             {parseRecipeData(
-              this.context.renderRecipe.protein,
+              this.context.renderRecipe.preparationMinutes,
               'Not available',
-              'g'
+              'mins'
             )}
           </Text>
           <Text style={styles.infoText}>
-            Fat:{' '}
+            Cooking time:{' '}
             {parseRecipeData(
-              this.context.renderRecipe.fat,
+              this.context.renderRecipe.cookingMinutes,
               'Not available',
-              'g'
+              'mins'
             )}
           </Text>
           <Text style={styles.infoText}>
-            Sodium:{' '}
+            Match:{' '}
             {parseRecipeData(
               this.context.renderRecipe.sodium,
               'Not available',
-              'g'
             )}
           </Text>
           <Text />

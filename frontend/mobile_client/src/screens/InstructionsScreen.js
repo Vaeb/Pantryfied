@@ -26,6 +26,13 @@ export default class InstructionsScreen extends Component {
         </Text>
       );
     }
+    if (!('unit' in item)) {
+      return (
+        <Text style={styles.directionText}>
+          {item.quantity} {item.ingredient.name}
+        </Text>
+      );
+    }
     return (
       <Text style={styles.directionText}>
         {item.quantity} {item.unit} {item.ingredient.name}
