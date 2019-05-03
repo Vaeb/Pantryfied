@@ -105,7 +105,7 @@ export default class RecipeScreen extends Component {
           <Text style={styles.infoText}>
             Match:{' '}
             {parseRecipeData(
-              this.context.renderRecipe.sodium,
+              this.context.renderRecipe.matchScore,
               'Not available',
             )}
           </Text>

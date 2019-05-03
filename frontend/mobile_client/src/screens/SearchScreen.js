@@ -43,6 +43,7 @@ const getRecipeQuery = gql`
       preparationMinutes
       cookingMinutes
       servings
+      matchScore
     }
   }
 `;
