@@ -24,6 +24,7 @@ export default {
 
                 foundRecipes.forEach(async (recipe) => {
                     if (typeof recipe.steps === 'string') recipe.steps = JSON.parse(recipe.steps);
+                    if (typeof recipe.tags === 'string') recipe.tags = JSON.parse(recipe.tags);
 
                     recipe.quantities = (await models.Ingredient.sequelize.query(
                         // eslint-disable-next-line max-len
