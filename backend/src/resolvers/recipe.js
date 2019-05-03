@@ -27,6 +27,8 @@ export default {
                         if (typeof recipe.steps === 'string') recipe.steps = JSON.parse(recipe.steps);
                         if (typeof recipe.tags === 'string') recipe.tags = JSON.parse(recipe.tags);
 
+                        recipe.imgURL = recipe.imgUrl;
+
                         recipe.quantities = (await models.Ingredient.sequelize.query(
                             // eslint-disable-next-line max-len
                             'select m.quantity, m.unit, m.ingredient_id, u.name from ingredients as u join recipeingredients as m on m.ingredient_id = u.id where m.recipe_id = ?',
