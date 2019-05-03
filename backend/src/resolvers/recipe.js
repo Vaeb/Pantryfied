@@ -6,20 +6,21 @@ import { linkedQueryId } from '../linkedQueries';
 export default {
     Query: {
         getRecipes: async (parent, { ingredientsRaw }, { models }) => {
+            let foundRecipes;
+
             if (!ingredientsRaw || ingredientsRaw.length === 0) {
-                const allRecipes = await models.Recipe.findAll({});
-                return allRecipes;
+                foundRecipes = await models.Recipe.findAll({});
+            } else {
+                foundRecipes = await linkedQueryId({
+                    returnModel: models.Recipe,
+                    midModel: models.RecipeIngredient,
+                    keyModel: models.Ingredient,
+                    id: ingredientsRaw,
+                });
             }
 
-            const foundRecipes = await linkedQueryId({
-                returnModel: models.Recipe,
-                midModel: models.RecipeIngredient,
-                keyModel: models.Ingredient,
-                id: ingredientsRaw,
-            });
-
             foundRecipes.forEach((recipe) => {
-                recipe.steps = JSON.parse(recipe.steps);
+                if (typeof recipe.steps === 'string') recipe.steps = JSON.parse(recipe.steps);
 
                 const numMatchedIngredients = recipe.quantities.reduce(
                     (total, recipeIngredient) => (ingredientsRaw.includes(recipeIngredient.ingredient.id) ? total + 1 : total),
