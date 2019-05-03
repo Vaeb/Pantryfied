@@ -9,9 +9,30 @@ const parseRecipeData = (possibleData, alt, extra) => (possibleData != null ? `$
 
 // eslint-disable-next-line react/prefer-stateless-function
 export default class InstructionsScreen extends Component {
+  constructor(props) {
+    super(props);
+    this.renderIngredient = this.renderIngredient.bind(this);
+  }
+
   componentDidMount() {
     console.log('Mounting instructions page');
   }
+
+  renderIngredient(item) {
+    if (item.quantity == 0) {
+      return (
+        <Text style={styles.directionText}>
+          {item.ingredient.name}
+        </Text>
+      );
+    }
+    return (
+      <Text style={styles.directionText}>
+        {item.quantity} {item.unit} {item.ingredient.name}
+      </Text>
+    );
+  }
+  
 
   // make lists into ListItem and add key fields in App.js when setting renderRecipe
   render() {
@@ -33,11 +54,7 @@ export default class InstructionsScreen extends Component {
           <Text style={styles.directionHeading}>Ingredients</Text>
           <FlatList
             data={this.context.renderRecipe.quantities}
-            renderItem={({ item }) => (
-              <Text style={styles.directionText}>
-                {item.quantity}x {item.ingredient.name}
-              </Text>
-            )}
+            renderItem={({ item }) => this.renderIngredient(item)}
           />
           <Text style={styles.directionHeading}>Directions</Text>
           <FlatList
