@@ -39,10 +39,11 @@ const getRecipeQuery = gql`
       description
       rating
       imgURL
-      fat
-      protein
-      sodium
-      calories
+      tags
+      preparationMinutes
+      cookingMinutes
+      servings
+      matchScore
     }
   }
 `;
