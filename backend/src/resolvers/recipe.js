@@ -20,7 +20,16 @@ export default {
 
             foundRecipes.forEach((recipe) => {
                 recipe.steps = JSON.parse(recipe.steps);
+
+                const numMatchedIngredients = recipe.quantities.reduce(
+                    (total, recipeIngredient) => (ingredientsRaw.includes(recipeIngredient.ingredient.id) ? total + 1 : total),
+                    0,
+                );
+
+                recipe.matchScore = Math.floor((numMatchedIngredients / recipe.quantities.length) * 1000 + numMatchedIngredients);
             });
+
+            foundRecipes.sort((a, b) => b.matchScore - a.matchScore);
 
             return foundRecipes;
         },

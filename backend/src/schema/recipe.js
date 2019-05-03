@@ -17,6 +17,7 @@ export default `
         preparationMinutes: Int
         cookingMinutes: Int
         servings: Int
+        matchScore: Int
     }
 
     type RecipeIngredient {
