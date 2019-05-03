@@ -22,37 +22,43 @@ export default {
                     });
                 }
 
-                foundRecipes.forEach(async (recipe) => {
-                    if (typeof recipe.steps === 'string') recipe.steps = JSON.parse(recipe.steps);
-                    if (typeof recipe.tags === 'string') recipe.tags = JSON.parse(recipe.tags);
+                await Promise.all(
+                    foundRecipes.map(async (recipe) => {
+                        if (typeof recipe.steps === 'string') recipe.steps = JSON.parse(recipe.steps);
+                        if (typeof recipe.tags === 'string') recipe.tags = JSON.parse(recipe.tags);
 
-                    recipe.quantities = (await models.Ingredient.sequelize.query(
-                        // eslint-disable-next-line max-len
-                        'select m.quantity, m.unit, m.ingredient_id, u.name from ingredients as u join recipeingredients as m on m.ingredient_id = u.id where m.recipe_id = ?',
-                        {
-                            replacements: [recipe.id],
-                            model: models.Ingredient,
-                            raw: true,
-                        },
-                    )).map(queryData => ({
-                        quantity: queryData.quantity,
-                        unit: queryData.unit,
-                        ingredient: { id: queryData.ingredient_id, name: queryData.name },
-                    }));
+                        recipe.quantities = (await models.Ingredient.sequelize.query(
+                            // eslint-disable-next-line max-len
+                            'select m.quantity, m.unit, m.ingredient_id, u.name from ingredients as u join recipeingredients as m on m.ingredient_id = u.id where m.recipe_id = ?',
+                            {
+                                replacements: [recipe.id],
+                                model: models.Ingredient,
+                                raw: true,
+                            },
+                        )).map(queryData => ({
+                            quantity: queryData.quantity,
+                            unit: queryData.unit,
+                            ingredient: { id: queryData.ingredient_id, name: queryData.name },
+                        }));
 
-                    if (ingredientsRaw.length > 0) {
-                        const numMatchedIngredients = recipe.quantities.reduce(
-                            (total, recipeIngredient) => (ingredientsRaw.includes(recipeIngredient.ingredient.id) ? total + 1 : total),
-                            0,
-                        );
+                        if (ingredientsRaw.length > 0) {
+                            const numMatchedIngredients = recipe.quantities.reduce(
+                                (total, recipeIngredient) => (ingredientsRaw.includes(recipeIngredient.ingredient.id) ? total + 1 : total),
+                                0,
+                            );
 
-                        recipe.matchScore = Math.floor((numMatchedIngredients / recipe.quantities.length) * 1000 + numMatchedIngredients);
-                    } else {
-                        recipe.matchScore = 0;
-                    }
-                });
+                            recipe.matchScore = Math.floor(
+                                (numMatchedIngredients / recipe.quantities.length) * 1000 + numMatchedIngredients,
+                            );
+                        } else {
+                            recipe.matchScore = 0;
+                        }
+                    }),
+                );
 
                 foundRecipes.sort((a, b) => b.matchScore - a.matchScore);
+
+                // console.log(foundRecipes[0]);
 
                 return foundRecipes;
             } catch (err) {
