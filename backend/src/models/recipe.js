@@ -1,11 +1,11 @@
 export default (sequelize, DataTypes) => {
     const Recipe = sequelize.define('recipe', {
         name: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING, // set
             unique: true,
         },
         steps: {
-            type: DataTypes.STRING(10000),
+            type: DataTypes.STRING(10000), // set
             get() {
                 return JSON.parse(this.getDataValue('steps'));
             },
@@ -14,6 +14,39 @@ export default (sequelize, DataTypes) => {
                 return this.setDataValue('steps', JSON.stringify(stepsArr));
             },
             defaultValue: '[]', // Unsure if this is checked before or after the "set" method. If it's after, I should change it to '[]', else []
+        },
+        description: {
+            type: DataTypes.STRING, // set
+        },
+        rating: {
+            type: DataTypes.INTEGER, // set
+        },
+        imgURL: {
+            type: DataTypes.STRING(1000), // set
+        },
+        fat: {
+            type: DataTypes.INTEGER,
+        },
+        protein: {
+            type: DataTypes.INTEGER,
+        },
+        sodium: {
+            type: DataTypes.INTEGER,
+        },
+        calories: {
+            type: DataTypes.INTEGER,
+        },
+        tags: {
+            type: DataTypes.STRING(500), // set
+        },
+        preparationMinutes: {
+            type: DataTypes.INTEGER, // set
+        },
+        cookingMinutes: {
+            type: DataTypes.INTEGER, // set
+        },
+        servings: {
+            type: DataTypes.INTEGER, // set
         },
     });
 
