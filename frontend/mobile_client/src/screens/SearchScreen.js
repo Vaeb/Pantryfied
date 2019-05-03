@@ -142,21 +142,23 @@ export default class SearchScreen extends Component {
       })
       .then(({ data }) => {
         let dataArr = data.getRecipes;
-        console.log('dataArr here', dataArr);
+        console.log('\nRecipe data:\n', dataArr);
         dataArr.forEach(arrayItem => {
-          arrayItem.key = String(arrayItem.id);
-          arrayItem.favourite = false;
-          arrayItem.quantities.forEach(ingredientItem => {
-            ingredientItem.key = String(ingredientItem.ingredient.id);
-          });
+          if (!arrayItem.key) {
+            arrayItem.key = String(arrayItem.id);
+            arrayItem.favourite = false;
+            arrayItem.quantities.forEach(ingredientItem => {
+              ingredientItem.key = String(ingredientItem.ingredient.id);
+            });
 
-          let stepsKey = 1;
-          const newSteps = [];
-          arrayItem.steps.forEach(item => {
-            newSteps.push({ step: item, key: String(stepsKey) });
-            stepsKey++;
-          });
-          arrayItem.steps = newSteps;
+            let stepsKey = 1;
+            const newSteps = [];
+            arrayItem.steps.forEach(item => {
+              newSteps.push({ step: item, key: String(stepsKey) });
+              stepsKey++;
+            });
+            arrayItem.steps = newSteps;
+          }
         });
         // dataArr = this.removeAllergens(dataArr);
         dataArr = this.checkResultsFavourites(dataArr);

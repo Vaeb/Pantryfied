@@ -5,6 +5,8 @@ import {
 import { PantryfiedContext } from '../context/PantryfiedContext';
 // import { Button } from '../components/common/Button';
 
+const parseRecipeData = (possibleData, alt, extra) => (possibleData != null ? `${possibleData}${extra != null ? extra : ''}` : alt); // Can't just use || below in case possibleData is 0
+
 // eslint-disable-next-line react/prefer-stateless-function
 export default class RecipeScreen extends Component {
   constructor(props) {
@@ -13,7 +15,7 @@ export default class RecipeScreen extends Component {
   }
 
   componentDidMount() {
-    console.log(JSON.stringify(this.context.renderRecipe));
+    console.log('Mounting recipe screen');
   }
 
   navigateInstructionsPressed() {
@@ -21,26 +23,52 @@ export default class RecipeScreen extends Component {
   }
 
   render() {
-    const toRenderRecipe = JSON.stringify(this.context.renderRecipe);
+    console.log('Rendering recipe data');
+    // const toRenderRecipe = JSON.stringify(this.context.renderRecipe);
     return (
-      <View>
+      <View style={{ flex: 1 }}>
         <Text allowFontScaling adjustsFontSizeToFit numberOfLines={1} style={styles.nameText}>
           {this.context.renderRecipe.name}
         </Text>
-        <Image source={{ uri: this.context.renderRecipe.imgUrl }} style={{ width: 200, height: 200 }} />
-        <Text style={styles.descriptionText}>{this.context.renderRecipe.description}</Text>
-        <Text style={styles.ratingText}>Rating: {this.context.renderRecipe.rating}/5</Text>
-        <Text />
-        <Text style={styles.infoText}>Calories: {this.context.renderRecipe.calories}</Text>
-        <Text style={styles.infoText}>Protein: {this.context.renderRecipe.protein}g</Text>
-        <Text style={styles.infoText}>Fat: {this.context.renderRecipe.fat}g</Text>
-        <Text style={styles.infoText}>Sodium: {this.context.renderRecipe.sodium}g</Text>
-        <Text />
-        <TouchableOpacity onPress={this.navigateInstructionsPressed} style={styles.navButton} activeOpacity={0.5}>
-          <Text adjustsFontSizeToFit numberOfLines={1} style={styles.navButtonText}>
-            View Instructions
-          </Text>
-        </TouchableOpacity>
+        <View
+          style={{
+            flex: 1,
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}
+        >
+          <Image
+            source={{
+              uri: parseRecipeData(this.context.renderRecipe.imgUrl, 'http://getdrawings.com/free-icon/free-question-mark-icon-67.png')
+            }}
+            style={{
+              width: 200,
+              height: 200
+            }}
+          />
+        </View>
+        <View
+          style={{
+            flex: 1,
+            flexDirection: 'column',
+            justifyContent: 'flex-end'
+          }}
+        >
+          <Text style={styles.descriptionText}>{parseRecipeData(this.context.renderRecipe.description, 'No description available')}</Text>
+          <Text style={styles.ratingText}>Rating: {parseRecipeData(this.context.renderRecipe.rating, 'Not available', '/5')}</Text>
+          <Text />
+          <Text style={styles.infoText}>Calories: {parseRecipeData(this.context.renderRecipe.calories, 'Not available')}</Text>
+          <Text style={styles.infoText}>Protein: {parseRecipeData(this.context.renderRecipe.protein, 'Not available', 'g')}</Text>
+          <Text style={styles.infoText}>Fat: {parseRecipeData(this.context.renderRecipe.fat, 'Not available', 'g')}</Text>
+          <Text style={styles.infoText}>Sodium: {parseRecipeData(this.context.renderRecipe.sodium, 'Not available', 'g')}</Text>
+          <Text />
+          <TouchableOpacity onPress={this.navigateInstructionsPressed} style={styles.navButton} activeOpacity={0.5}>
+            <Text adjustsFontSizeToFit numberOfLines={1} style={styles.navButtonText}>
+              View Instructions
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
@@ -48,18 +76,18 @@ export default class RecipeScreen extends Component {
 
 const styles = StyleSheet.create({
   navButton: {
-    flex: 1,
+    flex: 0,
     backgroundColor: '#1F7C71',
     marginBottom: 10,
     width: 300,
+    height: 38,
     alignSelf: 'center',
     paddingHorizontal: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
 
-    paddingTop: 5,
-    paddingBottom: 30,
     marginLeft: 30,
     marginRight: 30,
-    backgroundColor: '#1F7C71',
     borderRadius: 10,
     borderWidth: 1,
     borderColor: '#1F7C71'
