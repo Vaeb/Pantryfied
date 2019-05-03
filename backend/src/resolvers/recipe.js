@@ -6,21 +6,37 @@ import { linkedQueryId } from '../linkedQueries';
 export default {
     Query: {
         getRecipes: async (parent, { ingredientsRaw }, { models }) => {
-            if (!ingredientsRaw || ingredientsRaw.length === 0) {
-                const allRecipes = await models.Recipe.findAll({});
-                return allRecipes;
+            let foundRecipes;
+
+            if (!ingredientsRaw) ingredientsRaw = [];
+
+            if (ingredientsRaw.length === 0) {
+                foundRecipes = await models.Recipe.findAll({});
+            } else {
+                foundRecipes = await linkedQueryId({
+                    returnModel: models.Recipe,
+                    midModel: models.RecipeIngredient,
+                    keyModel: models.Ingredient,
+                    id: ingredientsRaw,
+                });
             }
 
-            const foundRecipes = await linkedQueryId({
-                returnModel: models.Recipe,
-                midModel: models.RecipeIngredient,
-                keyModel: models.Ingredient,
-                id: ingredientsRaw,
+            foundRecipes.forEach((recipe) => {
+                if (typeof recipe.steps === 'string') recipe.steps = JSON.parse(recipe.steps);
+
+                if (ingredientsRaw.length > 0) {
+                    const numMatchedIngredients = recipe.quantities.reduce(
+                        (total, recipeIngredient) => (ingredientsRaw.includes(recipeIngredient.ingredient.id) ? total + 1 : total),
+                        0,
+                    );
+
+                    recipe.matchScore = Math.floor((numMatchedIngredients / recipe.quantities.length) * 1000 + numMatchedIngredients);
+                } else {
+                    recipe.matchScore = 0;
+                }
             });
 
-            foundRecipes.forEach((recipe) => {
-                recipe.steps = JSON.parse(recipe.steps);
-            });
+            foundRecipes.sort((a, b) => b.matchScore - a.matchScore);
 
             return foundRecipes;
         },
