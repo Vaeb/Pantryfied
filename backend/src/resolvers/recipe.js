@@ -8,7 +8,9 @@ export default {
         getRecipes: async (parent, { ingredientsRaw }, { models }) => {
             let foundRecipes;
 
-            if (!ingredientsRaw || ingredientsRaw.length === 0) {
+            if (!ingredientsRaw) ingredientsRaw = [];
+
+            if (ingredientsRaw.length === 0) {
                 foundRecipes = await models.Recipe.findAll({});
             } else {
                 foundRecipes = await linkedQueryId({
@@ -22,12 +24,16 @@ export default {
             foundRecipes.forEach((recipe) => {
                 if (typeof recipe.steps === 'string') recipe.steps = JSON.parse(recipe.steps);
 
-                const numMatchedIngredients = recipe.quantities.reduce(
-                    (total, recipeIngredient) => (ingredientsRaw.includes(recipeIngredient.ingredient.id) ? total + 1 : total),
-                    0,
-                );
+                if (ingredientsRaw.length > 0) {
+                    const numMatchedIngredients = recipe.quantities.reduce(
+                        (total, recipeIngredient) => (ingredientsRaw.includes(recipeIngredient.ingredient.id) ? total + 1 : total),
+                        0,
+                    );
 
-                recipe.matchScore = Math.floor((numMatchedIngredients / recipe.quantities.length) * 1000 + numMatchedIngredients);
+                    recipe.matchScore = Math.floor((numMatchedIngredients / recipe.quantities.length) * 1000 + numMatchedIngredients);
+                } else {
+                    recipe.matchScore = 0;
+                }
             });
 
             foundRecipes.sort((a, b) => b.matchScore - a.matchScore);
