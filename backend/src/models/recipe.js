@@ -38,6 +38,7 @@ export default (sequelize, DataTypes) => {
         },
         tags: {
             type: DataTypes.STRING(500), // set
+            defaultValue: '[]',
         },
         preparationMinutes: {
             type: DataTypes.INTEGER, // set
