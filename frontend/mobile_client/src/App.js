@@ -235,7 +235,7 @@ export default class App extends Component {
   async removeFavourite(item) {
     try {
       const favListArr = this.removeItemFromArray(item);
-    console.log("newFavArr: " + JSON.stringify(favListArr));
+      console.log("newFavArr: " + JSON.stringify(favListArr));
       await AsyncStorage.setItem('favouritesList', JSON.stringify(favListArr));
       console.log("favList remove: ", favListArr);
     } catch (error) {
