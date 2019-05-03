@@ -9,9 +9,9 @@ export default (sequelize, DataTypes) => {
             get() {
                 return JSON.parse(this.getDataValue('steps'));
             },
-            set(stepsArr) {
-                if (stepsArr == null) stepsArr = [];
-                return this.setDataValue('steps', JSON.stringify(stepsArr));
+            set(arr) {
+                if (arr == null) arr = [];
+                return this.setDataValue('steps', JSON.stringify(arr));
             },
             defaultValue: '[]', // Unsure if this is checked before or after the "set" method. If it's after, I should change it to '[]', else []
         },
@@ -38,6 +38,13 @@ export default (sequelize, DataTypes) => {
         },
         tags: {
             type: DataTypes.STRING(500), // set
+            get() {
+                return JSON.parse(this.getDataValue('tags'));
+            },
+            set(arr) {
+                if (arr == null) arr = [];
+                return this.setDataValue('tags', JSON.stringify(arr));
+            },
             defaultValue: '[]',
         },
         preparationMinutes: {

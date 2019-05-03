@@ -6,7 +6,8 @@
     "scripts": {
         "serve": "node dist/index.js",
         "build": "babel src -d dist",
-        "start": "nodemon --exec babel-node src/index.js"
+        "start": "nodemon --exec babel-node src/index.js",
+        "import": "babel-node src/importData.js"
     },
     "author": "Adam & Pedro",
     "license": "ISC",
@@ -40,6 +41,8 @@
         "lodash": "^4.17.11",
         "merge-graphql-schemas": "^1.5.8",
         "pg": "^7.8.1",
+        "request": "^2.88.0",
+        "request-promise-native": "^1.0.7",
         "sequelize": "^4.42.0"
     }
 }
