@@ -29,7 +29,7 @@ export default {
                         if (typeof recipe.steps === 'string') recipe.steps = JSON.parse(recipe.steps);
                         if (typeof recipe.tags === 'string') recipe.tags = JSON.parse(recipe.tags);
 
-                        recipe.imgURL = recipe.imgUrl;
+                        recipe.imgURL = recipe.img_url;
 
                         recipe.quantities = (await models.Ingredient.sequelize.query(
                             // eslint-disable-next-line max-len
