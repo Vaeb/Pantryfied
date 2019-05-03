@@ -22,6 +22,8 @@ export default {
                     });
                 }
 
+                console.log(foundRecipes[0]);
+
                 await Promise.all(
                     foundRecipes.map(async (recipe) => {
                         if (typeof recipe.steps === 'string') recipe.steps = JSON.parse(recipe.steps);
