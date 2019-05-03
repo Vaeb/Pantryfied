@@ -74,8 +74,8 @@ export default class RecipeScreen extends Component {
             Rating:{' '}
             {parseRecipeData(
               this.context.renderRecipe.rating,
-              'Not available',
-              '/5'
+              'Not available'
+              // '/5'
             )}
           </Text>
           <Text />
