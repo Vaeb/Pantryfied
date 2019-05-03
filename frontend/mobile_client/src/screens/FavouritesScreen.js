@@ -62,7 +62,7 @@ export default class FavouritesScreen extends Component {
     return (
       <View>
         <Text style={styles.headerBar}> Favourites </Text>
-        <FlatList data={this.context.favourites} extraData={this.state.refresh} renderItem={({ item }) => this.renderItem(item)} />
+        <FlatList data={this.context.favourites} extraData={[this.state.refresh, this.context.refreshFavourites]} renderItem={({ item }) => this.renderItem(item)} />
       </View>
     );
   }

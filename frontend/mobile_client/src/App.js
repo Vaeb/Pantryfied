@@ -32,6 +32,7 @@ export default class App extends Component {
     this.storeUnits = this.storeUnits.bind(this);
     this.storeAllergens = this.storeAllergens.bind(this);
     this.retrieveAllergens = this.retrieveAllergens.bind(this);
+    
 
     // actual code
     this.setRecipeToRender = recipe => {
@@ -60,6 +61,7 @@ export default class App extends Component {
 
     this.updateFavouriteArray = item => {
       // also update foundRecipes with the check
+      this.setState({ refreshFavourites: !this.state.refreshFavourites });
       const newFav = [];
       if (!this.checkIfInList(item)) {
         console.log('item not in list');
@@ -122,6 +124,7 @@ export default class App extends Component {
       apolloClient: client,
       favourites: [],
       updateAllergens: this.updateAllergens,
+      refreshFavourites: false,
       allergens: [
         { key: 'Wheat', id: 'unknown', selected: false },
         { key: 'Eggs', id: 'unknown', selected: false },
@@ -267,7 +270,8 @@ export default class App extends Component {
           units: this.state.units,
           setUnits: this.state.setUnits,
           allergens: this.state.allergens,
-          updateAllergens: this.state.updateAllergens
+          updateAllergens: this.state.updateAllergens,
+          refreshFavourites: this.state.refreshFavourites,
         }}
       >
         <AppNavigation screenProps={{ ...this.props }} />
