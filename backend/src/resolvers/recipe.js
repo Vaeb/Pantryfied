@@ -6,39 +6,57 @@ import { linkedQueryId } from '../linkedQueries';
 export default {
     Query: {
         getRecipes: async (parent, { ingredientsRaw }, { models }) => {
-            let foundRecipes;
+            try {
+                let foundRecipes;
 
-            if (!ingredientsRaw) ingredientsRaw = [];
+                if (!ingredientsRaw) ingredientsRaw = [];
 
-            if (ingredientsRaw.length === 0) {
-                foundRecipes = await models.Recipe.findAll({});
-            } else {
-                foundRecipes = await linkedQueryId({
-                    returnModel: models.Recipe,
-                    midModel: models.RecipeIngredient,
-                    keyModel: models.Ingredient,
-                    id: ingredientsRaw,
-                });
-            }
-
-            foundRecipes.forEach((recipe) => {
-                if (typeof recipe.steps === 'string') recipe.steps = JSON.parse(recipe.steps);
-
-                if (ingredientsRaw.length > 0) {
-                    const numMatchedIngredients = recipe.quantities.reduce(
-                        (total, recipeIngredient) => (ingredientsRaw.includes(recipeIngredient.ingredient.id) ? total + 1 : total),
-                        0,
-                    );
-
-                    recipe.matchScore = Math.floor((numMatchedIngredients / recipe.quantities.length) * 1000 + numMatchedIngredients);
+                if (ingredientsRaw.length === 0) {
+                    foundRecipes = await models.Recipe.findAll({});
                 } else {
-                    recipe.matchScore = 0;
+                    foundRecipes = await linkedQueryId({
+                        returnModel: models.Recipe,
+                        midModel: models.RecipeIngredient,
+                        keyModel: models.Ingredient,
+                        id: ingredientsRaw,
+                    });
                 }
-            });
 
-            foundRecipes.sort((a, b) => b.matchScore - a.matchScore);
+                foundRecipes.forEach(async (recipe) => {
+                    if (typeof recipe.steps === 'string') recipe.steps = JSON.parse(recipe.steps);
 
-            return foundRecipes;
+                    recipe.quantities = (await models.Ingredient.sequelize.query(
+                        // eslint-disable-next-line max-len
+                        'select m.quantity, m.unit, m.ingredient_id, u.name from ingredients as u join recipeingredients as m on m.ingredient_id = u.id where m.recipe_id = ?',
+                        {
+                            replacements: [recipe.id],
+                            model: models.Ingredient,
+                            raw: true,
+                        },
+                    )).map(queryData => ({
+                        quantity: queryData.quantity,
+                        unit: queryData.unit,
+                        ingredient: { id: queryData.ingredient_id, name: queryData.name },
+                    }));
+
+                    if (ingredientsRaw.length > 0) {
+                        const numMatchedIngredients = recipe.quantities.reduce(
+                            (total, recipeIngredient) => (ingredientsRaw.includes(recipeIngredient.ingredient.id) ? total + 1 : total),
+                            0,
+                        );
+
+                        recipe.matchScore = Math.floor((numMatchedIngredients / recipe.quantities.length) * 1000 + numMatchedIngredients);
+                    } else {
+                        recipe.matchScore = 0;
+                    }
+                });
+
+                foundRecipes.sort((a, b) => b.matchScore - a.matchScore);
+
+                return foundRecipes;
+            } catch (err) {
+                return { ok: false, errors: formatErrors(err, models) };
+            }
         },
     },
     Mutation: {
@@ -77,24 +95,24 @@ export default {
                 keyModel: models.Recipe,
                 id: recipeId,
             }),
-        quantities: async ({ id: recipeId, quantities }, args, { models }) => {
-            if (quantities) return quantities;
+        // quantities: async ({ id: recipeId, quantities }, args, { models }) => {
+        //     if (quantities) return quantities;
 
-            quantities = (await models.Ingredient.sequelize.query(
-                // eslint-disable-next-line max-len
-                'select m.quantity, m.unit, m.ingredient_id, u.name from ingredients as u join recipeingredients as m on m.ingredient_id = u.id where m.recipe_id = ?',
-                {
-                    replacements: [recipeId],
-                    model: models.Ingredient,
-                    raw: true,
-                },
-            )).map(queryData => ({
-                quantity: queryData.quantity,
-                unit: queryData.unit,
-                ingredient: { id: queryData.ingredient_id, name: queryData.name },
-            }));
+        //     quantities = (await models.Ingredient.sequelize.query(
+        //         // eslint-disable-next-line max-len
+        //         'select m.quantity, m.unit, m.ingredient_id, u.name from ingredients as u join recipeingredients as m on m.ingredient_id = u.id where m.recipe_id = ?',
+        //         {
+        //             replacements: [recipeId],
+        //             model: models.Ingredient,
+        //             raw: true,
+        //         },
+        //     )).map(queryData => ({
+        //         quantity: queryData.quantity,
+        //         unit: queryData.unit,
+        //         ingredient: { id: queryData.ingredient_id, name: queryData.name },
+        //     }));
 
-            return quantities;
-        },
+        //     return quantities;
+        // },
     },
 };
