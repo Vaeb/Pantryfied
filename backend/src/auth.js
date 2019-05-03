@@ -71,6 +71,13 @@ export const login = async ({ userKey, password }, models, SECRETS) => {
 
         const user = await models.User.findOne({ where: { [userKeyType]: userKey } });
 
+        if (!user) {
+            return {
+                ok: false,
+                errors: [{ path: 'user', message: 'Account does not exist' }],
+            };
+        }
+
         const correctPass = await bcrypt.compare(password, user.password);
 
         if (!correctPass) {

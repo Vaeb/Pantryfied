@@ -9,19 +9,14 @@
 
 import React, { Component } from 'react';
 import {
-  Platform,
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  AsyncStorage,
+  Platform, StyleSheet, Text, View, Image, AsyncStorage 
 } from 'react-native';
 import ApolloClient from 'apollo-boost';
 import { PantryfiedContext } from './context/PantryfiedContext';
 import AppNavigation from './navigation/AppNavigation';
 
 const client = new ApolloClient({
-  uri: 'http://vaeb.io:8080/graphql',
+  uri: 'http://vaeb.io:8080/graphql'
 });
 
 export default class App extends Component {
@@ -38,20 +33,20 @@ export default class App extends Component {
     this.storeAllergens = this.storeAllergens.bind(this);
     this.retrieveAllergens = this.retrieveAllergens.bind(this);
 
-    
     // actual code
-    this.setRecipeToRender = (recipe) => {
+    this.setRecipeToRender = recipe => {
+      console.log('Set render recipe');
       this.setState({ renderRecipe: recipe.recipe });
     };
 
-    this.setRecipeList = (recipeList) => {
+    this.setRecipeList = recipeList => {
       this.setState({ foundRecipes: recipeList });
     };
 
     this.updateResultsFavourites = () => {
-      console.log("updateResultsFav");
-      this.state.favourites.forEach((arrayItem) => {
-        this.state.foundRecipes.forEach((dataItem) => {
+      console.log('updateResultsFav');
+      this.state.favourites.forEach(arrayItem => {
+        this.state.foundRecipes.forEach(dataItem => {
           if (arrayItem.key == dataItem.key) {
             if (arrayItem.favourite) {
               dataItem.favourite = true;
@@ -62,17 +57,17 @@ export default class App extends Component {
         });
       });
     };
-    
-    this.updateFavouriteArray = (item) => {
+
+    this.updateFavouriteArray = item => {
       // also update foundRecipes with the check
-      let newFav = [];
+      const newFav = [];
       if (!this.checkIfInList(item)) {
-        console.log("item not in list");
+        console.log('item not in list');
         item.favourite = true;
         this.addFavourite(item);
       } else {
-        console.log("item already in list");
-        this.state.favourites.forEach((arrayItem) => {
+        console.log('item already in list');
+        this.state.favourites.forEach(arrayItem => {
           if (arrayItem.key == item.key) {
             if (arrayItem.favourite) {
               arrayItem.favourite = false;
@@ -89,14 +84,14 @@ export default class App extends Component {
       this.updateResultsFavourites();
     };
 
-    this.setUnits = (unit) => {
+    this.setUnits = unit => {
       this.setState({ units: unit });
       this.storeUnits(unit);
     };
 
-    this.updateAllergens = (item) => {
-      let newAllergens = [];
-      this.state.allergens.forEach((arrayItem) => {
+    this.updateAllergens = item => {
+      const newAllergens = [];
+      this.state.allergens.forEach(arrayItem => {
         if (arrayItem.key == item.key) {
           if (arrayItem.selected) {
             arrayItem.selected = false;
@@ -114,7 +109,7 @@ export default class App extends Component {
       userData: {
         username: undefined,
         password: undefined,
-        loginToken: undefined,
+        loginToken: undefined
       },
       units: '',
       setFoundRecipeList: this.setRecipeList,
@@ -128,15 +123,15 @@ export default class App extends Component {
       favourites: [],
       updateAllergens: this.updateAllergens,
       allergens: [
-        { key: "Wheat", id: "unknown", selected: false },
-        { key: "Eggs", id: "unknown", selected: false },
-        { key: "Milk", id: "unknown", selected: false },
-        { key: "Fish", id: "unknown", selected: false },
-        { key: "Shellfish", id: "unknown", selected: false },
-        { key: "Tree nuts", id: "unknown", selected: false },
-        { key: "Peanuts", id: "unknown", selected: false },
-        { key: "Soybeans", id: "unknown", selected: false },
-      ],
+        { key: 'Wheat', id: 'unknown', selected: false },
+        { key: 'Eggs', id: 'unknown', selected: false },
+        { key: 'Milk', id: 'unknown', selected: false },
+        { key: 'Fish', id: 'unknown', selected: false },
+        { key: 'Shellfish', id: 'unknown', selected: false },
+        { key: 'Tree nuts', id: 'unknown', selected: false },
+        { key: 'Peanuts', id: 'unknown', selected: false },
+        { key: 'Soybeans', id: 'unknown', selected: false }
+      ]
     };
   }
 
@@ -149,7 +144,7 @@ export default class App extends Component {
   async retrieveAllergens() {
     let retrievedAllergens = '';
     try {
-      retrievedAllergens = await AsyncStorage.getItem('userAllergens') || this.state.allergens;
+      retrievedAllergens = (await AsyncStorage.getItem('userAllergens')) || this.state.allergens;
     } catch (error) {
       console.log(error.message);
     }
@@ -159,7 +154,7 @@ export default class App extends Component {
   async getUnits() {
     let retreivedUnit = '';
     try {
-      retreivedUnit = await AsyncStorage.getItem('userUnits') || 'metric';
+      retreivedUnit = (await AsyncStorage.getItem('userUnits')) || 'metric';
     } catch (error) {
       console.log(error.message);
     }
@@ -177,8 +172,8 @@ export default class App extends Component {
   async getFavourites() {
     let favList = '';
     try {
-      favList = await AsyncStorage.getItem('favouritesList') || 'none';
-      console.log("init favList: ", favList);
+      favList = (await AsyncStorage.getItem('favouritesList')) || 'none';
+      console.log('init favList: ', favList);
     } catch (error) {
       console.log(error.message);
     }
@@ -187,16 +182,16 @@ export default class App extends Component {
 
   async addFavourite(item) {
     if (this.checkIfInList(item)) {
-      console.log("item already in list so dont push");
+      console.log('item already in list so dont push');
     } else {
-      console.log("item not in list");
+      console.log('item not in list');
       this.state.favourites.push(item);
     }
     try {
       let newFavArr = [];
       newFavArr = this.storeFavourites();
       await AsyncStorage.setItem('favouritesList', JSON.stringify(newFavArr));
-      console.log("favList add: ", JSON.stringify(newFavArr));
+      console.log('favList add: ', JSON.stringify(newFavArr));
     } catch (error) {
       console.log(error.message);
     }
@@ -211,8 +206,8 @@ export default class App extends Component {
   }
 
   storeFavourites() {
-    let newFavArr = [];
-    this.state.favourites.forEach((arrayItem) => {
+    const newFavArr = [];
+    this.state.favourites.forEach(arrayItem => {
       if (arrayItem.favourite) {
         newFavArr.push(arrayItem);
       }
@@ -221,11 +216,11 @@ export default class App extends Component {
   }
 
   checkIfInList(item) {
-    console.log("checkItem");
+    console.log('checkItem');
     let itemFound = false;
-    this.state.favourites.forEach((arrayItem) => {
+    this.state.favourites.forEach(arrayItem => {
       if (arrayItem.key == item.key) {
-        console.log("Item found");
+        console.log('Item found');
         itemFound = true;
       }
     });
@@ -235,20 +230,20 @@ export default class App extends Component {
   async removeFavourite(item) {
     try {
       const favListArr = this.removeItemFromArray(item);
-      console.log("newFavArr: " + JSON.stringify(favListArr));
+      console.log(`newFavArr: ${JSON.stringify(favListArr)}`);
       await AsyncStorage.setItem('favouritesList', JSON.stringify(favListArr));
-      console.log("favList remove: ", favListArr);
+      console.log('favList remove: ', favListArr);
     } catch (error) {
       console.log(error.message);
     }
   }
 
   removeItemFromArray(item) {
-    let newFavArr = [];
-    this.state.favourites.forEach((arrayItem) => {
+    const newFavArr = [];
+    this.state.favourites.forEach(arrayItem => {
       if (arrayItem.key != item.key) {
-        if(arrayItem.favourite) {
-          console.log("item: ", arrayItem, " added to favArr");
+        if (arrayItem.favourite) {
+          console.log('item: ', arrayItem, ' added to favArr');
           newFavArr.push(arrayItem);
         }
       }
@@ -272,7 +267,7 @@ export default class App extends Component {
           units: this.state.units,
           setUnits: this.state.setUnits,
           allergens: this.state.allergens,
-          updateAllergens: this.state.updateAllergens,
+          updateAllergens: this.state.updateAllergens
         }}
       >
         <AppNavigation screenProps={{ ...this.props }} />

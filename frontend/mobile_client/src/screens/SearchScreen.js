@@ -36,6 +36,13 @@ const getRecipeQuery = gql`
           name
         }
       }
+      description
+      rating
+      imgURL
+      fat
+      protein
+      sodium
+      calories
     }
   }
 `;
@@ -82,7 +89,7 @@ export default class SearchScreen extends Component {
         const dataArr = data.getIngredients;
         dataArr.forEach(arrayItem => {
           arrayItem.selected = false;
-          arrayItem.key = arrayItem.id.toString();
+          arrayItem.key = String(arrayItem.id);
           this.state.ingredients.push(arrayItem);
         });
       })
@@ -135,21 +142,23 @@ export default class SearchScreen extends Component {
       })
       .then(({ data }) => {
         let dataArr = data.getRecipes;
-        console.log('dataArr here', dataArr);
+        console.log('\nRecipe data:\n', dataArr);
         dataArr.forEach(arrayItem => {
-          arrayItem.key = arrayItem.id.toString();
-          arrayItem.favourite = false;
-          arrayItem.quantities.forEach((ingredientItem) => {
-            ingredientItem.key = ingredientItem.ingredient.id.toString();
-          });
+          if (!arrayItem.key) {
+            arrayItem.key = String(arrayItem.id);
+            arrayItem.favourite = false;
+            arrayItem.quantities.forEach(ingredientItem => {
+              ingredientItem.key = String(ingredientItem.ingredient.id);
+            });
 
-          let stepsKey = 1;
-          let newSteps = [];
-          arrayItem.steps.forEach((item) => {
-            newSteps.push({ step: item, key: stepsKey.toString() });
-            stepsKey++;
-          });
-          arrayItem.steps = newSteps;
+            let stepsKey = 1;
+            const newSteps = [];
+            arrayItem.steps.forEach(item => {
+              newSteps.push({ step: item, key: String(stepsKey) });
+              stepsKey++;
+            });
+            arrayItem.steps = newSteps;
+          }
         });
         // dataArr = this.removeAllergens(dataArr);
         dataArr = this.checkResultsFavourites(dataArr);

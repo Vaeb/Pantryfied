@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import {
-  StyleSheet, Text, View, TextInput, TouchableOpacity, StatusBar, ScrollView, ActivityIndicator, AsyncStorage,
+  StyleSheet, Text, View, TextInput, TouchableOpacity, StatusBar, ScrollView, ActivityIndicator, AsyncStorage 
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import gql from 'graphql-tag';
 import { withNavigation } from 'react-navigation';
 import { PantryfiedContext } from '../context/PantryfiedContext';
+
+const skipLogin = false;
 
 const loginRequest = gql`
   mutation($username: String!, $password: String!) {
@@ -40,7 +42,7 @@ class LoginForm extends Component {
       loading: false,
       loginFailed: false,
       username: '',
-      password: '',
+      password: ''
     };
   }
 
@@ -53,26 +55,29 @@ class LoginForm extends Component {
     console.log(`user: ${this.state.username} pass: ${this.state.password}`);
     // check username and password here, if correct then set loading to false, and navigate
     // if incorrect then set loading to false and loginfailed to true
-    
-    await this.context.apolloClient
-      .mutate({
-        mutation: loginRequest,
-        variables: { username: this.state.username, password: this.state.password },
-        fetchPolicy: 'no-cache',
-      })
-      .then(async ({ data }) => {
-        console.log("login Data: ", data);
-        if (data.login.ok) {
-          await AsyncStorage.setItem('userToken', JSON.stringify(data.login.token));
-          this.props.navigation.navigate("Main");
-        } else {
-          setTimeout(() => {
-            this.setState({ loading: false, loginFailed: true, username: '', password: '' });
-          }, 3000);
-        }
-      })
-      .catch((error) => console.log(error));
-      
+
+    if (skipLogin) {
+      this.props.navigation.navigate('Main');
+    } else {
+      await this.context.apolloClient
+        .mutate({
+          mutation: loginRequest,
+          variables: { username: this.state.username, password: this.state.password },
+          fetchPolicy: 'no-cache'
+        })
+        .then(async ({ data }) => {
+          console.log('login Data: ', data);
+          if (data.login.ok) {
+            await AsyncStorage.setItem('userTokens', JSON.stringify([data.login.token, data.login.refreshToken]));
+            this.props.navigation.navigate('Main');
+          } else {
+            setTimeout(() => {
+              this.setState({ loading: false, loginFailed: true, username: '', password: '' });
+            }, 3000);
+          }
+        })
+        .catch(error => console.log(error));
+    }
   }
 
   registerButtonPressed() {
@@ -81,7 +86,7 @@ class LoginForm extends Component {
 
   resetPassword() {
     // Probs dont actually need to do this?
-    console.log("reset password")
+    console.log('reset password');
   }
 
   displayLogin() {
@@ -165,7 +170,7 @@ const styles = StyleSheet.create({
   container: {
     padding: 20,
     bottom: 100,
-    justifyContent: 'center', // https://reactnativecode.com/justifycontenton-style-explained/
+    justifyContent: 'center' // https://reactnativecode.com/justifycontenton-style-explained/
   },
   input: {
     height: 40,
@@ -173,35 +178,35 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     color: '#fff',
     paddingLeft: 35,
-    borderRadius: 10,
+    borderRadius: 10
   },
   buttonContainer: {
     backgroundColor: '#rgba(1,1,1,0.3)',
     marginBottom: 10,
     padding: 10,
-    borderRadius: 5,
+    borderRadius: 5
   },
   buttonText: {
     textAlign: 'center',
     fontWeight: '700',
     color: '#fff',
-    borderColor: '#rgba(1,1,1,0.3)',
+    borderColor: '#rgba(1,1,1,0.3)'
   },
   inputIconPerson: {
     top: 55,
-    left: 8,
+    left: 8
   },
   inputIconLock: {
     top: 85,
-    left: 8,
+    left: 8
   },
   signUpContainer: {
     alignItems: 'center',
     marginTop: 150,
-    fontSize: 220,
+    fontSize: 220
   },
   signUpText: {
     color: '#fff',
-    fontSize: 18,
-  },
+    fontSize: 18
+  }
 });

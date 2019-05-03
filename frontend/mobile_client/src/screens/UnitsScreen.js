@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  StyleSheet, Text, View, FlatList, TouchableOpacity,
+  StyleSheet, Text, View, FlatList, TouchableOpacity 
 } from 'react-native';
 import { PantryfiedContext } from '../context/PantryfiedContext';
 
@@ -14,7 +14,7 @@ export default class UnitsScreen extends Component {
       details: {},
       checked: false,
       colorMetric: '#rgba(40,186,163, 1)',
-      colorImperial: 'grey',
+      colorImperial: 'grey'
     };
   }
 
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
   MainContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    flex: 1,
+    flex: 1
   },
   buttonContainer: {
     justifyContent: 'center',
@@ -83,13 +83,13 @@ const styles = StyleSheet.create({
     margin: 10,
     top: 100,
     marginTop: 90,
-    borderRadius: 5,
+    borderRadius: 5
   },
   buttonText: {
     textAlign: 'center',
     fontWeight: '700',
     color: '#fff',
-    borderColor: '#28BAA5',
+    borderColor: '#28BAA5'
   },
   headerBar: {
     textAlign: 'center',
@@ -100,6 +100,6 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     color: '#fff',
     borderBottomColor: 'grey',
-    backgroundColor: '#28BAA5',
-  },
+    backgroundColor: '#28BAA5'
+  }
 });
