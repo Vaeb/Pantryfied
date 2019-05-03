@@ -109,6 +109,13 @@ export default class RecipeScreen extends Component {
               'Not available',
             )}
           </Text>
+          <Text style={styles.infoText}>
+            Tags:{' '}
+            {parseRecipeData(
+              this.context.renderRecipe.tags,
+              'Not available',
+            )}
+          </Text>
           <Text />
           <TouchableOpacity
             onPress={this.navigateInstructionsPressed}
