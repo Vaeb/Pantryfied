@@ -47,7 +47,7 @@ export default class RecipeScreen extends Component {
           <Image
             source={{
               uri: parseRecipeData(
-                this.context.renderRecipe.imgUrl,
+                this.context.renderRecipe.imgURL,
                 'http://getdrawings.com/free-icon/free-question-mark-icon-67.png'
               )
             }}
