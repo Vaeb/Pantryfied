@@ -7,14 +7,13 @@ import cors from 'cors';
 
 import models from './models';
 import { refreshTokens } from './auth';
+import { SECRETS } from './hidden';
 
 process.on('unhandledRejection', (reason, p) => {
     // When we forget to catch a promise which errors, it'll be auto-caught here
     console.log('Unhandled Promise Rejection at:', p);
     console.log('Reason:', reason);
 });
-
-const SECRETS = { tokenSecret: 'fdafkjlaefaf9834j2f', refreshTokenSecret: 'j4r3rjnkjklfau33325f' };
 
 const typeDefs = mergeTypes(fileLoader(path.join(__dirname, './schema'))); // Our GraphQL schema
 const resolvers = mergeResolvers(fileLoader(path.join(__dirname, './resolvers'))); // Our GraphQL resolvers

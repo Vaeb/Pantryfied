@@ -1,5 +1,7 @@
 import request from 'request-promise-native';
+
 import models from './models';
+import { RAPIDAPI } from './hidden';
 
 const startRecipeId = 1;
 const startIngredientId = 1;
@@ -11,8 +13,8 @@ const doImport = async () => {
         const { recipes } = await request({
             uri: `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random?number=${numSearch}`,
             headers: {
-                'X-RapidAPI-Host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com',
-                'X-RapidAPI-Key': 'acbac90c5emshbe76c8c442f7faap19c0a2jsn4091616a66ba',
+                'X-RapidAPI-Host': RAPIDAPI.host,
+                'X-RapidAPI-Key': RAPIDAPI.key,
             },
             json: true,
         });
